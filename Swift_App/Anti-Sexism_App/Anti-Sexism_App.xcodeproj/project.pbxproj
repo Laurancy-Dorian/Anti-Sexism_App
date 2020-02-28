@@ -1,0 +1,617 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B339CA13240971CF0095CE9B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B339CA12240971CF0095CE9B /* AppDelegate.swift */; };
+		B339CA15240971CF0095CE9B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B339CA14240971CF0095CE9B /* SceneDelegate.swift */; };
+		B339CA17240971CF0095CE9B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B339CA16240971CF0095CE9B /* ContentView.swift */; };
+		B339CA19240971D10095CE9B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B339CA18240971D10095CE9B /* Assets.xcassets */; };
+		B339CA1C240971D10095CE9B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B339CA1B240971D10095CE9B /* Preview Assets.xcassets */; };
+		B339CA1F240971D10095CE9B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B339CA1D240971D10095CE9B /* LaunchScreen.storyboard */; };
+		B339CA2A240971D10095CE9B /* Anti_Sexism_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B339CA29240971D10095CE9B /* Anti_Sexism_AppTests.swift */; };
+		B339CA35240971D10095CE9B /* Anti_Sexism_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B339CA34240971D10095CE9B /* Anti_Sexism_AppUITests.swift */; };
+		B339CA45240972510095CE9B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B339CA44240972510095CE9B /* LoginView.swift */; };
+		B339CA47240972960095CE9B /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B339CA46240972960095CE9B /* SignupView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B339CA26240971D10095CE9B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B339CA07240971CF0095CE9B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B339CA0E240971CF0095CE9B;
+			remoteInfo = "Anti-Sexism_App";
+		};
+		B339CA31240971D10095CE9B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B339CA07240971CF0095CE9B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B339CA0E240971CF0095CE9B;
+			remoteInfo = "Anti-Sexism_App";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B339CA0F240971CF0095CE9B /* Anti-Sexism_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Anti-Sexism_App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B339CA12240971CF0095CE9B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B339CA14240971CF0095CE9B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		B339CA16240971CF0095CE9B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		B339CA18240971D10095CE9B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B339CA1B240971D10095CE9B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		B339CA1E240971D10095CE9B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B339CA20240971D10095CE9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B339CA25240971D10095CE9B /* Anti-Sexism_AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Anti-Sexism_AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B339CA29240971D10095CE9B /* Anti_Sexism_AppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Anti_Sexism_AppTests.swift; sourceTree = "<group>"; };
+		B339CA2B240971D10095CE9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B339CA30240971D10095CE9B /* Anti-Sexism_AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Anti-Sexism_AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B339CA34240971D10095CE9B /* Anti_Sexism_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Anti_Sexism_AppUITests.swift; sourceTree = "<group>"; };
+		B339CA36240971D10095CE9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B339CA44240972510095CE9B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		B339CA46240972960095CE9B /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B339CA0C240971CF0095CE9B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B339CA22240971D10095CE9B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B339CA2D240971D10095CE9B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B339CA06240971CF0095CE9B = {
+			isa = PBXGroup;
+			children = (
+				B339CA11240971CF0095CE9B /* Anti-Sexism_App */,
+				B339CA28240971D10095CE9B /* Anti-Sexism_AppTests */,
+				B339CA33240971D10095CE9B /* Anti-Sexism_AppUITests */,
+				B339CA10240971CF0095CE9B /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B339CA10240971CF0095CE9B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B339CA0F240971CF0095CE9B /* Anti-Sexism_App.app */,
+				B339CA25240971D10095CE9B /* Anti-Sexism_AppTests.xctest */,
+				B339CA30240971D10095CE9B /* Anti-Sexism_AppUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B339CA11240971CF0095CE9B /* Anti-Sexism_App */ = {
+			isa = PBXGroup;
+			children = (
+				B339CA43240972190095CE9B /* views */,
+				B339CA42240972110095CE9B /* models */,
+				B339CA12240971CF0095CE9B /* AppDelegate.swift */,
+				B339CA14240971CF0095CE9B /* SceneDelegate.swift */,
+				B339CA16240971CF0095CE9B /* ContentView.swift */,
+				B339CA18240971D10095CE9B /* Assets.xcassets */,
+				B339CA1D240971D10095CE9B /* LaunchScreen.storyboard */,
+				B339CA20240971D10095CE9B /* Info.plist */,
+				B339CA1A240971D10095CE9B /* Preview Content */,
+			);
+			path = "Anti-Sexism_App";
+			sourceTree = "<group>";
+		};
+		B339CA1A240971D10095CE9B /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				B339CA1B240971D10095CE9B /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		B339CA28240971D10095CE9B /* Anti-Sexism_AppTests */ = {
+			isa = PBXGroup;
+			children = (
+				B339CA29240971D10095CE9B /* Anti_Sexism_AppTests.swift */,
+				B339CA2B240971D10095CE9B /* Info.plist */,
+			);
+			path = "Anti-Sexism_AppTests";
+			sourceTree = "<group>";
+		};
+		B339CA33240971D10095CE9B /* Anti-Sexism_AppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				B339CA34240971D10095CE9B /* Anti_Sexism_AppUITests.swift */,
+				B339CA36240971D10095CE9B /* Info.plist */,
+			);
+			path = "Anti-Sexism_AppUITests";
+			sourceTree = "<group>";
+		};
+		B339CA42240972110095CE9B /* models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		B339CA43240972190095CE9B /* views */ = {
+			isa = PBXGroup;
+			children = (
+				B339CA44240972510095CE9B /* LoginView.swift */,
+				B339CA46240972960095CE9B /* SignupView.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B339CA0E240971CF0095CE9B /* Anti-Sexism_App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B339CA39240971D10095CE9B /* Build configuration list for PBXNativeTarget "Anti-Sexism_App" */;
+			buildPhases = (
+				B339CA0B240971CF0095CE9B /* Sources */,
+				B339CA0C240971CF0095CE9B /* Frameworks */,
+				B339CA0D240971CF0095CE9B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Anti-Sexism_App";
+			productName = "Anti-Sexism_App";
+			productReference = B339CA0F240971CF0095CE9B /* Anti-Sexism_App.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B339CA24240971D10095CE9B /* Anti-Sexism_AppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B339CA3C240971D10095CE9B /* Build configuration list for PBXNativeTarget "Anti-Sexism_AppTests" */;
+			buildPhases = (
+				B339CA21240971D10095CE9B /* Sources */,
+				B339CA22240971D10095CE9B /* Frameworks */,
+				B339CA23240971D10095CE9B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B339CA27240971D10095CE9B /* PBXTargetDependency */,
+			);
+			name = "Anti-Sexism_AppTests";
+			productName = "Anti-Sexism_AppTests";
+			productReference = B339CA25240971D10095CE9B /* Anti-Sexism_AppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B339CA2F240971D10095CE9B /* Anti-Sexism_AppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B339CA3F240971D10095CE9B /* Build configuration list for PBXNativeTarget "Anti-Sexism_AppUITests" */;
+			buildPhases = (
+				B339CA2C240971D10095CE9B /* Sources */,
+				B339CA2D240971D10095CE9B /* Frameworks */,
+				B339CA2E240971D10095CE9B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B339CA32240971D10095CE9B /* PBXTargetDependency */,
+			);
+			name = "Anti-Sexism_AppUITests";
+			productName = "Anti-Sexism_AppUITests";
+			productReference = B339CA30240971D10095CE9B /* Anti-Sexism_AppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B339CA07240971CF0095CE9B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1130;
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = Anthony_Dorian_Emma;
+				TargetAttributes = {
+					B339CA0E240971CF0095CE9B = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
+					B339CA24240971D10095CE9B = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = B339CA0E240971CF0095CE9B;
+					};
+					B339CA2F240971D10095CE9B = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = B339CA0E240971CF0095CE9B;
+					};
+				};
+			};
+			buildConfigurationList = B339CA0A240971CF0095CE9B /* Build configuration list for PBXProject "Anti-Sexism_App" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B339CA06240971CF0095CE9B;
+			productRefGroup = B339CA10240971CF0095CE9B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B339CA0E240971CF0095CE9B /* Anti-Sexism_App */,
+				B339CA24240971D10095CE9B /* Anti-Sexism_AppTests */,
+				B339CA2F240971D10095CE9B /* Anti-Sexism_AppUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B339CA0D240971CF0095CE9B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B339CA1F240971D10095CE9B /* LaunchScreen.storyboard in Resources */,
+				B339CA1C240971D10095CE9B /* Preview Assets.xcassets in Resources */,
+				B339CA19240971D10095CE9B /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B339CA23240971D10095CE9B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B339CA2E240971D10095CE9B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B339CA0B240971CF0095CE9B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B339CA13240971CF0095CE9B /* AppDelegate.swift in Sources */,
+				B339CA15240971CF0095CE9B /* SceneDelegate.swift in Sources */,
+				B339CA45240972510095CE9B /* LoginView.swift in Sources */,
+				B339CA17240971CF0095CE9B /* ContentView.swift in Sources */,
+				B339CA47240972960095CE9B /* SignupView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B339CA21240971D10095CE9B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B339CA2A240971D10095CE9B /* Anti_Sexism_AppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B339CA2C240971D10095CE9B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B339CA35240971D10095CE9B /* Anti_Sexism_AppUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B339CA27240971D10095CE9B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B339CA0E240971CF0095CE9B /* Anti-Sexism_App */;
+			targetProxy = B339CA26240971D10095CE9B /* PBXContainerItemProxy */;
+		};
+		B339CA32240971D10095CE9B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B339CA0E240971CF0095CE9B /* Anti-Sexism_App */;
+			targetProxy = B339CA31240971D10095CE9B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B339CA1D240971D10095CE9B /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B339CA1E240971D10095CE9B /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B339CA37240971D10095CE9B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		B339CA38240971D10095CE9B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B339CA3A240971D10095CE9B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Anti-Sexism_App/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Anti-Sexism_App/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Polytech.Anti-Sexism-App";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B339CA3B240971D10095CE9B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"Anti-Sexism_App/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "Anti-Sexism_App/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Polytech.Anti-Sexism-App";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		B339CA3D240971D10095CE9B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Anti-Sexism_AppTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Polytech.Anti-Sexism-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Anti-Sexism_App.app/Anti-Sexism_App";
+			};
+			name = Debug;
+		};
+		B339CA3E240971D10095CE9B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Anti-Sexism_AppTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Polytech.Anti-Sexism-AppTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Anti-Sexism_App.app/Anti-Sexism_App";
+			};
+			name = Release;
+		};
+		B339CA40240971D10095CE9B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Anti-Sexism_AppUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Polytech.Anti-Sexism-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Anti-Sexism_App";
+			};
+			name = Debug;
+		};
+		B339CA41240971D10095CE9B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "Anti-Sexism_AppUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "Polytech.Anti-Sexism-AppUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "Anti-Sexism_App";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B339CA0A240971CF0095CE9B /* Build configuration list for PBXProject "Anti-Sexism_App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B339CA37240971D10095CE9B /* Debug */,
+				B339CA38240971D10095CE9B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B339CA39240971D10095CE9B /* Build configuration list for PBXNativeTarget "Anti-Sexism_App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B339CA3A240971D10095CE9B /* Debug */,
+				B339CA3B240971D10095CE9B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B339CA3C240971D10095CE9B /* Build configuration list for PBXNativeTarget "Anti-Sexism_AppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B339CA3D240971D10095CE9B /* Debug */,
+				B339CA3E240971D10095CE9B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B339CA3F240971D10095CE9B /* Build configuration list for PBXNativeTarget "Anti-Sexism_AppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B339CA40240971D10095CE9B /* Debug */,
+				B339CA41240971D10095CE9B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B339CA07240971CF0095CE9B /* Project object */;
+}

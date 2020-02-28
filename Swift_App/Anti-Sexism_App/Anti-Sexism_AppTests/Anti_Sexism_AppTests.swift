@@ -1,15 +1,15 @@
 //
-//  Anti_Feminism_AppTests.swift
-//  Anti-Feminism_AppTests
+//  Anti_Sexism_AppTests.swift
+//  Anti-Sexism_AppTests
 //
 //  Created by user164247 on 2/28/20.
 //  Copyright © 2020 Anthony_Dorian_Emma. All rights reserved.
 //
 
 import XCTest
-@testable import Anti_Feminism_App
+@testable import Anti_Sexism_App
 
-class Anti_Feminism_AppTests: XCTestCase {
+class Anti_Sexism_AppTests: XCTestCase {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.

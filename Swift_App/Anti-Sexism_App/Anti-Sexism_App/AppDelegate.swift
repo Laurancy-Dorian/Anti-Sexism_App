@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  Anti-Feminism_App
+//  Anti-Sexism_App
 //
 //  Created by user164247 on 2/28/20.
 //  Copyright © 2020 Anthony_Dorian_Emma. All rights reserved.
