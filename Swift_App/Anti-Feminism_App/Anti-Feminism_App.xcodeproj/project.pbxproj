@@ -15,6 +15,7 @@
 		B339C9DC2409650D0095CE9B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B339C9DA2409650D0095CE9B /* LaunchScreen.storyboard */; };
 		B339C9E72409650D0095CE9B /* Anti_Feminism_AppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B339C9E62409650D0095CE9B /* Anti_Feminism_AppTests.swift */; };
 		B339C9F22409650D0095CE9B /* Anti_Feminism_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B339C9F12409650D0095CE9B /* Anti_Feminism_AppUITests.swift */; };
+		B339CA03240969100095CE9B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B339CA02240969100095CE9B /* LoginView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		B339C9ED2409650D0095CE9B /* Anti-Feminism_AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Anti-Feminism_AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B339C9F12409650D0095CE9B /* Anti_Feminism_AppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Anti_Feminism_AppUITests.swift; sourceTree = "<group>"; };
 		B339C9F32409650D0095CE9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B339CA02240969100095CE9B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,8 @@
 		B339C9CE240965080095CE9B /* Anti-Feminism_App */ = {
 			isa = PBXGroup;
 			children = (
+				B339CA01240968D20095CE9B /* views */,
+				B339CA00240968AF0095CE9B /* models */,
 				B339C9CF240965080095CE9B /* AppDelegate.swift */,
 				B339C9D1240965080095CE9B /* SceneDelegate.swift */,
 				B339C9D3240965080095CE9B /* ContentView.swift */,
@@ -134,6 +138,21 @@
 				B339C9F32409650D0095CE9B /* Info.plist */,
 			);
 			path = "Anti-Feminism_AppUITests";
+			sourceTree = "<group>";
+		};
+		B339CA00240968AF0095CE9B /* models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		B339CA01240968D20095CE9B /* views */ = {
+			isa = PBXGroup;
+			children = (
+				B339CA02240969100095CE9B /* LoginView.swift */,
+			);
+			path = views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -269,6 +288,7 @@
 			files = (
 				B339C9D0240965080095CE9B /* AppDelegate.swift in Sources */,
 				B339C9D2240965080095CE9B /* SceneDelegate.swift in Sources */,
+				B339CA03240969100095CE9B /* LoginView.swift in Sources */,
 				B339C9D4240965080095CE9B /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
