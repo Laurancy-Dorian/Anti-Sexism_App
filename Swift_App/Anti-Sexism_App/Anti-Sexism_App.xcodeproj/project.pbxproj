@@ -19,6 +19,8 @@
 		B339CA47240972960095CE9B /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B339CA46240972960095CE9B /* SignupView.swift */; };
 		B3F4FE10240CEC47009E48CB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F4FE0F240CEC47009E48CB /* User.swift */; };
 		B3F4FE13240CF030009E48CB /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F4FE12240CF030009E48CB /* API.swift */; };
+		B3F4FE15240D02AD009E48CB /* RemarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F4FE14240D02AD009E48CB /* RemarkView.swift */; };
+		B3F4FE17240D02D2009E48CB /* Remark.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F4FE16240D02D2009E48CB /* Remark.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +59,8 @@
 		B339CA46240972960095CE9B /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		B3F4FE0F240CEC47009E48CB /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B3F4FE12240CF030009E48CB /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		B3F4FE14240D02AD009E48CB /* RemarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemarkView.swift; sourceTree = "<group>"; };
+		B3F4FE16240D02D2009E48CB /* Remark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Remark.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				B3F4FE0F240CEC47009E48CB /* User.swift */,
+				B3F4FE16240D02D2009E48CB /* Remark.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -160,6 +165,7 @@
 			children = (
 				B339CA44240972510095CE9B /* LoginView.swift */,
 				B339CA46240972960095CE9B /* SignupView.swift */,
+				B3F4FE14240D02AD009E48CB /* RemarkView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -303,6 +309,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B3F4FE15240D02AD009E48CB /* RemarkView.swift in Sources */,
+				B3F4FE17240D02D2009E48CB /* Remark.swift in Sources */,
 				B339CA13240971CF0095CE9B /* AppDelegate.swift in Sources */,
 				B339CA15240971CF0095CE9B /* SceneDelegate.swift in Sources */,
 				B3F4FE10240CEC47009E48CB /* User.swift in Sources */,
