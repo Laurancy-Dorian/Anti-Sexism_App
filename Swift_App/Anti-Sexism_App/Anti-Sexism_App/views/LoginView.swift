@@ -20,7 +20,6 @@ struct LoginView: View {
                 .padding([.top, .bottom], 40)
                 .shadow(radius: 10.0, x: 20, y: 10)
             
-            
             VStack(alignment: .leading, spacing: 15) {
                 Text("Nom d'utilisateur")
                 TextField("Pseudonyme", text: self.$pseudo)

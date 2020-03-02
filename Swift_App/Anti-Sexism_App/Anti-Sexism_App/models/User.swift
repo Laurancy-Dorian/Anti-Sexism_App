@@ -16,6 +16,4 @@ class User {
         self.pseudo = pseudo
         self.password = password
     }
-    
-    
 }

@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct SignupView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     @State private var pseudo = ""
     @State private var password = ""
@@ -57,11 +58,11 @@ struct SignupView: View {
                 
                 Spacer()
                 HStack(spacing: 0) {
-                    Text("Vous n'avez pas de compte ? ")
-                    NavigationLink(destination: SignupView()){
-                        Text("Inscrivez-vous")
+                    Text("Vous avez déjà un compte ? ")
+                    Button(action: {self.presentationMode.wrappedValue.dismiss()} ){
+                        Text("Connectez-vous")
                         .foregroundColor(.red)
-                    
+                        
                     }.foregroundColor(.red)
                     
                 }
