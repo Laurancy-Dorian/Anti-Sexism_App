@@ -22,14 +22,16 @@ struct LoginView: View {
             
             
             VStack(alignment: .leading, spacing: 15) {
+                Text("Nom d'utilisateur")
                 TextField("Pseudonyme", text: self.$pseudo)
                     .cornerRadius(15.0)
-                    .shadow(radius: 2.0, x: 1, y: 1)
+                    .shadow(radius: 2.0, x: 0, y: 0)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                 
+                Text("Mot de passe")
                 SecureField("Mot de passe", text: self.$password)
                     .cornerRadius(15.0)
-                    .shadow(radius: 2.0, x: 1, y: 1)
+                    .shadow(radius: 2.0, x: 0, y: 0)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
             }.padding([.leading, .trailing], 27.5)
             

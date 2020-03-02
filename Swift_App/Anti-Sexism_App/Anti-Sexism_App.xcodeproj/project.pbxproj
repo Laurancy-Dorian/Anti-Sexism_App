@@ -17,6 +17,8 @@
 		B339CA35240971D10095CE9B /* Anti_Sexism_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B339CA34240971D10095CE9B /* Anti_Sexism_AppUITests.swift */; };
 		B339CA45240972510095CE9B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B339CA44240972510095CE9B /* LoginView.swift */; };
 		B339CA47240972960095CE9B /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B339CA46240972960095CE9B /* SignupView.swift */; };
+		B3F4FE10240CEC47009E48CB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F4FE0F240CEC47009E48CB /* User.swift */; };
+		B3F4FE13240CF030009E48CB /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F4FE12240CF030009E48CB /* API.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,8 @@
 		B339CA36240971D10095CE9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B339CA44240972510095CE9B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		B339CA46240972960095CE9B /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
+		B3F4FE0F240CEC47009E48CB /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		B3F4FE12240CF030009E48CB /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +107,7 @@
 		B339CA11240971CF0095CE9B /* Anti-Sexism_App */ = {
 			isa = PBXGroup;
 			children = (
+				B3F4FE11240CF00C009E48CB /* api */,
 				B339CA43240972190095CE9B /* views */,
 				B339CA42240972110095CE9B /* models */,
 				B339CA12240971CF0095CE9B /* AppDelegate.swift */,
@@ -145,6 +150,7 @@
 		B339CA42240972110095CE9B /* models */ = {
 			isa = PBXGroup;
 			children = (
+				B3F4FE0F240CEC47009E48CB /* User.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -156,6 +162,14 @@
 				B339CA46240972960095CE9B /* SignupView.swift */,
 			);
 			path = views;
+			sourceTree = "<group>";
+		};
+		B3F4FE11240CF00C009E48CB /* api */ = {
+			isa = PBXGroup;
+			children = (
+				B3F4FE12240CF030009E48CB /* API.swift */,
+			);
+			path = api;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -291,9 +305,11 @@
 			files = (
 				B339CA13240971CF0095CE9B /* AppDelegate.swift in Sources */,
 				B339CA15240971CF0095CE9B /* SceneDelegate.swift in Sources */,
+				B3F4FE10240CEC47009E48CB /* User.swift in Sources */,
 				B339CA45240972510095CE9B /* LoginView.swift in Sources */,
 				B339CA17240971CF0095CE9B /* ContentView.swift in Sources */,
 				B339CA47240972960095CE9B /* SignupView.swift in Sources */,
+				B3F4FE13240CF030009E48CB /* API.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
