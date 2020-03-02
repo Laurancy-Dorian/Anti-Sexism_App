@@ -17,7 +17,9 @@
   },
   "homepage": "https://github.com/Laurancy-Dorian/Anti-Sexism_App#readme",
   "dependencies": {
+    "cookie-parser": "^1.4.4",
     "express": "^4.17.1",
+    "morgan": "^1.9.1",
     "mysql": "^2.18.1"
   }
 }

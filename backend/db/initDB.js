@@ -1,5 +1,5 @@
 var path = require('path');
-var db = require(path.join(global.appRoot , 'config/db')).db;
+var db = require(path.join(global.appRoot , 'config/db'));
 var mysql = require('mysql');
 
 var pool = mysql.createPool({
