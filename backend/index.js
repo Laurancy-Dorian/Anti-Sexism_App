@@ -18,7 +18,7 @@ var bodyParser = require('body-parser');
 global.appRoot = path.resolve(__dirname);
 
 /* Saves config in global */
-//global.config = require('./config/config');
+global.config = require('./config/config');
 
 /* Creates pool and stores it in global so that all methods can access it */
 global.pool = require('./db/initDB');
@@ -41,8 +41,8 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 
 
 /*  Loads the routes for all resources */
-// var routes = require('./routes');
-// app.use('/', routes);
+var routes = require('./routes');
+app.use('/', routes);
 
 
 /* The 404 Route */
