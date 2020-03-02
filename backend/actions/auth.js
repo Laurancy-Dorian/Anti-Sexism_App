@@ -117,8 +117,5 @@ auth.login = (req, res, next) => {
     });
 }
 
-auth.logout = () => {
-
-}
 
 module.exports = auth;
