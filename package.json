@@ -1,0 +1,23 @@
+{
+  "name": "anti-sexism_app",
+  "version": "1.0.0",
+  "description": "Backend of the Anti-Sexism Application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Laurancy-Dorian/Anti-Sexism_App.git"
+  },
+  "author": "Dorian Laurancy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Laurancy-Dorian/Anti-Sexism_App/issues"
+  },
+  "homepage": "https://github.com/Laurancy-Dorian/Anti-Sexism_App#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql": "^2.18.1"
+  }
+}
