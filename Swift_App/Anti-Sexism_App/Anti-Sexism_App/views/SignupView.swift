@@ -17,6 +17,9 @@ struct SignupView: View {
     
     var body: some View {
             VStack() {
+                Image("Logo")
+                .resizable()
+                .frame(width: 120.0, height: 120.0)
                 Text("INSCRIPTION")
                     .font(.largeTitle).foregroundColor(Color.black)
                     .padding([.top, .bottom], 40)

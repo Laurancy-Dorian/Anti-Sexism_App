@@ -61,9 +61,6 @@ struct RemarkView: View {
                 }
             }
             HStack {
-                NavigationLink(destination: AddAnswerView()){
-                    Text("Répondre")
-                }
                 Spacer()
                 Text("10")
                 Image(systemName: "message")

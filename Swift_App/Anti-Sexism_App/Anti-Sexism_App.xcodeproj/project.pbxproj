@@ -23,6 +23,9 @@
 		B339CA45240972510095CE9B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B339CA44240972510095CE9B /* LoginView.swift */; };
 		B339CA47240972960095CE9B /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B339CA46240972960095CE9B /* SignupView.swift */; };
 		B3737776240E78E100871D52 /* AnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3737775240E78E100871D52 /* AnswerView.swift */; };
+		B3ACA1FA240E904F00E2895B /* AnswerListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3ACA1F9240E904F00E2895B /* AnswerListView.swift */; };
+		B3ACA1FC240E913400E2895B /* RemarkPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3ACA1FB240E913400E2895B /* RemarkPage.swift */; };
+		B3C906F4240EA81B006C8A2B /* HomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C906F3240EA81B006C8A2B /* HomePage.swift */; };
 		B3DF2F5C240D57BE00DCDB19 /* AnswerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DF2F5B240D57BE00DCDB19 /* AnswerType.swift */; };
 		B3DF2F5E240D583100DCDB19 /* AnswerTypeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DF2F5D240D583100DCDB19 /* AnswerTypeList.swift */; };
 		B3DF2F60240D590F00DCDB19 /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DF2F5F240D590F00DCDB19 /* Answer.swift */; };
@@ -75,6 +78,9 @@
 		B339CA44240972510095CE9B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		B339CA46240972960095CE9B /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		B3737775240E78E100871D52 /* AnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerView.swift; sourceTree = "<group>"; };
+		B3ACA1F9240E904F00E2895B /* AnswerListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerListView.swift; sourceTree = "<group>"; };
+		B3ACA1FB240E913400E2895B /* RemarkPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemarkPage.swift; sourceTree = "<group>"; };
+		B3C906F3240EA81B006C8A2B /* HomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePage.swift; sourceTree = "<group>"; };
 		B3DF2F5B240D57BE00DCDB19 /* AnswerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerType.swift; sourceTree = "<group>"; };
 		B3DF2F5D240D583100DCDB19 /* AnswerTypeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerTypeList.swift; sourceTree = "<group>"; };
 		B3DF2F5F240D590F00DCDB19 /* Answer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
@@ -202,6 +208,9 @@
 				B3FBFF9D240E58DA00C63EC1 /* AddRemarkView.swift */,
 				B3FBFF9F240E72D400C63EC1 /* AddAnswerView.swift */,
 				B3737775240E78E100871D52 /* AnswerView.swift */,
+				B3ACA1F9240E904F00E2895B /* AnswerListView.swift */,
+				B3ACA1FB240E913400E2895B /* RemarkPage.swift */,
+				B3C906F3240EA81B006C8A2B /* HomePage.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -351,8 +360,11 @@
 				B3F4FE15240D02AD009E48CB /* RemarkView.swift in Sources */,
 				B3F4FE17240D02D2009E48CB /* Remark.swift in Sources */,
 				B339CA13240971CF0095CE9B /* AppDelegate.swift in Sources */,
+				B3ACA1FC240E913400E2895B /* RemarkPage.swift in Sources */,
+				B3C906F4240EA81B006C8A2B /* HomePage.swift in Sources */,
 				B339CA15240971CF0095CE9B /* SceneDelegate.swift in Sources */,
 				B32DD4A0240D415C00BB4579 /* RemarkContext.swift in Sources */,
+				B3ACA1FA240E904F00E2895B /* AnswerListView.swift in Sources */,
 				B3DF2F60240D590F00DCDB19 /* Answer.swift in Sources */,
 				B3F4FE10240CEC47009E48CB /* User.swift in Sources */,
 				B339CA45240972510095CE9B /* LoginView.swift in Sources */,
@@ -529,7 +541,6 @@
 		B339CA3A240971D10095CE9B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Anti-Sexism_App/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
@@ -548,7 +559,6 @@
 		B339CA3B240971D10095CE9B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Anti-Sexism_App/Preview Content\"";
 				ENABLE_PREVIEWS = YES;

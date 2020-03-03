@@ -11,25 +11,22 @@ import SwiftUI
 struct RemarkListView: View {
     
     var remarkList : RemarkList
-    @State private var searchQuery: String = ""
+    
     
     init() {
         remarkList = RemarkList()
     }
-    
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
-                List{
-                    Section(header: HeaderView(text: self.$searchQuery)) {
-                        ForEach(self.remarkList.listRemarks) { remark in
-                            NavigationLink(destination: RemarkView(remark: remark)){
-                                VStack{
-                                    RemarkView(remark: remark)
-                                }
-                            }
-                        }.padding()
+            List{
+                ForEach(self.remarkList.listRemarks) { remark in
+                    NavigationLink(destination: RemarkPage(remark: remark)){
+                        VStack{
+                            RemarkView(remark: remark)
+                        }
                     }
-                }
+                }.padding()
+            }
             NavigationLink(destination: AddRemarkView()){
                 Image(systemName: "plus.circle.fill")
                     .resizable()

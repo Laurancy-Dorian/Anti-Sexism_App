@@ -8,34 +8,56 @@
 
 import SwiftUI
 
-struct HeaderView: UIViewRepresentable {
+struct HeaderView: View {
 
-    @Binding var text: String
+    @State var text = ""
 
-    class Coordinator: NSObject, UISearchBarDelegate {
-
-        @Binding var text: String
-
-        init(text: Binding<String>) {
-            _text = text
+    var body: some View{
+//        HStack{
+//            Image("Logo")
+//                .resizable()
+//                .frame(width: 120.0, height: 120.0)
+//            HStack {
+//                Image(systemName: "magnifyingglass")
+//                TextField("Recherche", text: self.$text)
+//            }
+//            .padding()
+//            .overlay(RoundedRectangle(cornerRadius: 20).stroke(lineWidth: 2).foregroundColor(Color.black))
+//
+//        }
+        VStack(alignment: .leading) {
+            HStack {
+                Image(systemName: "person")
+                    .foregroundColor(.gray)
+                    .imageScale(.large)
+                Text("Profile")
+                    .foregroundColor(.gray)
+                    .font(.headline)
+            }
+            .padding(.top, 100)
+            HStack {
+                Image(systemName: "envelope")
+                    .foregroundColor(.gray)
+                    .imageScale(.large)
+                Text("Messages")
+                    .foregroundColor(.gray)
+                    .font(.headline)
+            }
+                .padding(.top, 30)
+            HStack {
+                Image(systemName: "gear")
+                    .foregroundColor(.gray)
+                    .imageScale(.large)
+                Text("Settings")
+                    .foregroundColor(.gray)
+                    .font(.headline)
+            }
+            .padding(.top, 30)
+            Spacer()
         }
-
-        func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-            text = searchText
-        }
-    }
-
-    func makeCoordinator() -> Coordinator {
-        return Coordinator(text: $text)
-    }
-
-    func makeUIView(context: UIViewRepresentableContext<HeaderView>) -> UISearchBar {
-        let searchBar = UISearchBar(frame: .zero)
-        searchBar.delegate = context.coordinator
-        return searchBar
-    }
-
-    func updateUIView(_ uiView: UISearchBar, context: UIViewRepresentableContext<HeaderView>) {
-        uiView.text = text
+            .padding()
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .background(Color(red: 32/255, green: 32/255, blue: 32/255))
+            .edgesIgnoringSafeArea(.all)
     }
 }

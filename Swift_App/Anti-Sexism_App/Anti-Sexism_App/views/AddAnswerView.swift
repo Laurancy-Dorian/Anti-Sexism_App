@@ -36,8 +36,8 @@ struct AddAnswerView: View {
                 .shadow(radius: 2.0, x: 0, y: 0)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
             Toggle(isOn: $enableAnonymat) {
-                    Text("Rester anonyme")
-                }
+                Text("Rester anonyme")
+            }
             Spacer()
             Button(action: {}){
                 Text("Soumettre")
