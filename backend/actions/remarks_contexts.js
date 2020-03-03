@@ -36,7 +36,11 @@ remarks_contexts.readRemarkContext = (req, res, next) => {
     });
 }
 
-
+/**
+ * Creates a new remark context
+ * the body must contain in the body : {name_context, color_context}
+ * Send a 201 code if success, 400 if some data from the body is missing, 409 if error 
+ */
 remarks_contexts.addRemarkContext = (req, res, next) => {
     let errors = errorAction();
 
