@@ -1,4 +1,3 @@
-DROP TABLE remarks_responses;
 DROP TABLE responses;
 DROP TABLE responses_types;
 DROP TABLE remarks;

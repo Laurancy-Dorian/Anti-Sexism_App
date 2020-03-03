@@ -50,7 +50,10 @@ users.addUser = (req, res, next) => {
             /* Creates the user */
             model.create(req.body, {}, (results, error) => {
                 if (!error && results.affectedRows != 0) { /* Success */
-                    res.status(201).json({'pseudo_user': req.body.pseudo_user});
+                    res.status(201).json({
+                        'pseudo_user': req.body.pseudo_user,
+                        'is_admin_user' : false
+                    });
                 } else {
                     if (error.code == 'ER_DUP_ENTRY') { /* Database error */
                         errors.addErrorMessage('40005', "Pseudo already used - " + error.sqlMessage);

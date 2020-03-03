@@ -88,7 +88,7 @@ auth.login = (req, res, next) => {
     const password = req.body.password_user;
 
     // Fetch the data in db
-    const select = ['pseudo_user', 'password_user'];
+    const select = ['*'];
     const where = {pseudo_user: pseudo}
     modelUser.read(select, where, (results, err) => {
 
@@ -97,7 +97,8 @@ auth.login = (req, res, next) => {
             bcrypt.compare(password, results[0].password_user, (err, resEncrypt) => {
                 if (resEncrypt) {
                     const user = {
-                        pseudo_user: results[0].pseudo_user
+                        pseudo_user: results[0].pseudo_user,
+                        is_admin_user : results[0].is_admin_user
                     }
                     // Creates the token
                     jwt.sign({user}, config.jwtSecret, (err, token) => {
@@ -114,6 +115,26 @@ auth.login = (req, res, next) => {
             errors.addErrorMessage('40006', 'Invalid username');
             errors.sendErrors(res, 400);
         }
+    });
+}
+
+/**
+ * Check if the user is an admin and send a 403 error else
+ */
+auth.validateAdmin = (req, res, next) => {
+    let errors = errorAction();
+    auth.validateToken(req, res, () => {
+        const select = ['*'];
+        const where = {pseudo_user: req.dataToken.user.pseudo_user}
+        modelUser.read(select, where, (results, err) => {
+            if (!results[0].is_admin_user) {
+                errors.addErrorMessage('40300', "Forbidden - You must be admin to reach this ressource");
+                errors.sendErrors(res, 403)
+            } else {
+                next();
+            }
+        })
+       
     });
 }
 
