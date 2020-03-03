@@ -22,6 +22,7 @@
 		B339CA35240971D10095CE9B /* Anti_Sexism_AppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B339CA34240971D10095CE9B /* Anti_Sexism_AppUITests.swift */; };
 		B339CA45240972510095CE9B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B339CA44240972510095CE9B /* LoginView.swift */; };
 		B339CA47240972960095CE9B /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B339CA46240972960095CE9B /* SignupView.swift */; };
+		B3737776240E78E100871D52 /* AnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3737775240E78E100871D52 /* AnswerView.swift */; };
 		B3DF2F5C240D57BE00DCDB19 /* AnswerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DF2F5B240D57BE00DCDB19 /* AnswerType.swift */; };
 		B3DF2F5E240D583100DCDB19 /* AnswerTypeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DF2F5D240D583100DCDB19 /* AnswerTypeList.swift */; };
 		B3DF2F60240D590F00DCDB19 /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DF2F5F240D590F00DCDB19 /* Answer.swift */; };
@@ -30,6 +31,8 @@
 		B3F4FE13240CF030009E48CB /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F4FE12240CF030009E48CB /* API.swift */; };
 		B3F4FE15240D02AD009E48CB /* RemarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F4FE14240D02AD009E48CB /* RemarkView.swift */; };
 		B3F4FE17240D02D2009E48CB /* Remark.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3F4FE16240D02D2009E48CB /* Remark.swift */; };
+		B3FBFF9E240E58DA00C63EC1 /* AddRemarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FBFF9D240E58DA00C63EC1 /* AddRemarkView.swift */; };
+		B3FBFFA0240E72D400C63EC1 /* AddAnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FBFF9F240E72D400C63EC1 /* AddAnswerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +74,7 @@
 		B339CA36240971D10095CE9B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B339CA44240972510095CE9B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		B339CA46240972960095CE9B /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
+		B3737775240E78E100871D52 /* AnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerView.swift; sourceTree = "<group>"; };
 		B3DF2F5B240D57BE00DCDB19 /* AnswerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerType.swift; sourceTree = "<group>"; };
 		B3DF2F5D240D583100DCDB19 /* AnswerTypeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerTypeList.swift; sourceTree = "<group>"; };
 		B3DF2F5F240D590F00DCDB19 /* Answer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
@@ -79,6 +83,8 @@
 		B3F4FE12240CF030009E48CB /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		B3F4FE14240D02AD009E48CB /* RemarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemarkView.swift; sourceTree = "<group>"; };
 		B3F4FE16240D02D2009E48CB /* Remark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Remark.swift; sourceTree = "<group>"; };
+		B3FBFF9D240E58DA00C63EC1 /* AddRemarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRemarkView.swift; sourceTree = "<group>"; };
+		B3FBFF9F240E72D400C63EC1 /* AddAnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAnswerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +199,9 @@
 				B3F4FE14240D02AD009E48CB /* RemarkView.swift */,
 				B32DD499240D32F300BB4579 /* RemarkListView.swift */,
 				B32DD4A1240D45E600BB4579 /* HeaderView.swift */,
+				B3FBFF9D240E58DA00C63EC1 /* AddRemarkView.swift */,
+				B3FBFF9F240E72D400C63EC1 /* AddAnswerView.swift */,
+				B3737775240E78E100871D52 /* AnswerView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -338,6 +347,7 @@
 			files = (
 				B32DD49C240D331A00BB4579 /* RemarkList.swift in Sources */,
 				B32DD49A240D32F300BB4579 /* RemarkListView.swift in Sources */,
+				B3737776240E78E100871D52 /* AnswerView.swift in Sources */,
 				B3F4FE15240D02AD009E48CB /* RemarkView.swift in Sources */,
 				B3F4FE17240D02D2009E48CB /* Remark.swift in Sources */,
 				B339CA13240971CF0095CE9B /* AppDelegate.swift in Sources */,
@@ -348,11 +358,13 @@
 				B339CA45240972510095CE9B /* LoginView.swift in Sources */,
 				B339CA17240971CF0095CE9B /* ContentView.swift in Sources */,
 				B3DF2F5C240D57BE00DCDB19 /* AnswerType.swift in Sources */,
+				B3FBFF9E240E58DA00C63EC1 /* AddRemarkView.swift in Sources */,
 				B32DD49E240D412300BB4579 /* RemarkContextList.swift in Sources */,
 				B3DF2F62240D599F00DCDB19 /* AnswerList.swift in Sources */,
 				B339CA47240972960095CE9B /* SignupView.swift in Sources */,
 				B3DF2F5E240D583100DCDB19 /* AnswerTypeList.swift in Sources */,
 				B3F4FE13240CF030009E48CB /* API.swift in Sources */,
+				B3FBFFA0240E72D400C63EC1 /* AddAnswerView.swift in Sources */,
 				B32DD4A2240D45E600BB4579 /* HeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

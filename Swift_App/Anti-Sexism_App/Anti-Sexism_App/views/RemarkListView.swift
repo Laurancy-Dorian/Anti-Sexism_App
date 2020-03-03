@@ -23,13 +23,14 @@ struct RemarkListView: View {
                     Section(header: HeaderView(text: self.$searchQuery)) {
                         ForEach(self.remarkList.listRemarks) { remark in
                             NavigationLink(destination: RemarkView(remark: remark)){
-                                RemarkView(remark: remark)
+                                VStack{
+                                    RemarkView(remark: remark)
+                                }
                             }
                         }.padding()
                     }
                 }
-            Button(action: {
-            }) {
+            NavigationLink(destination: AddRemarkView()){
                 Image(systemName: "plus.circle.fill")
                     .resizable()
                     .frame(width: 70, height: 70)
