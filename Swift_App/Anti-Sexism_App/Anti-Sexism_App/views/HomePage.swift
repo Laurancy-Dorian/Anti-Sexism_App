@@ -11,6 +11,7 @@ import SwiftUI
 struct HomePage: View {
     
     @State var showMenu = false
+    @State var text = ""
     
     var body: some View {
         let drag = DragGesture()
@@ -36,8 +37,21 @@ struct HomePage: View {
                 }
                     .gesture(drag)
             }
-                .navigationBarTitle("Side Menu", displayMode: .inline)
-                .navigationBarItems(trailing: (
+                .navigationBarItems(leading: (
+                    HStack{
+                        Image("Logo")
+                            .resizable()
+                            .frame(width: 70.0, height: 70.0)
+                        Spacer()
+                        HStack {
+                            Image(systemName: "magnifyingglass")
+                            TextField("Recherche", text: self.$text)
+                            .frame(width: 200, height: 1)
+                        }
+                        .padding()
+                        .overlay(RoundedRectangle(cornerRadius: 20).stroke(lineWidth: 2).foregroundColor(Color.black))
+                    }
+                ),trailing: (
                     Button(action: {
                         withAnimation {
                             self.showMenu.toggle()
@@ -56,9 +70,9 @@ struct MainView: View {
     @Binding var showMenu: Bool
     
     var body: some View {
-                VStack{
-                    RemarkListView()
-                }
+        VStack{
+            RemarkListView()
+        }
     }
 }
 
