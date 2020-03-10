@@ -21,6 +21,9 @@ struct RemarkPage: View {
             RemarkView(remark: remark)
             NavigationLink(destination: AddAnswerView()){
                 Text("Répondre")
+                    .frame(width: 100, height: 25, alignment: .center)
+                    .background(Color.green)
+                    .cornerRadius(20)
             }
             AnswerListView()
         }

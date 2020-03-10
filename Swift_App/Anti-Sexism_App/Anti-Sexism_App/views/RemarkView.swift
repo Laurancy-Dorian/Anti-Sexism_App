@@ -59,6 +59,7 @@ struct RemarkView: View {
                     .background(Color.red)
                     .cornerRadius(15)
                 }
+                .buttonStyle(PlainButtonStyle())
             }
             HStack {
                 Spacer()
