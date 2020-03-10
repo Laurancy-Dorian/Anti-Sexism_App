@@ -22,7 +22,6 @@ struct HomePage: View {
                     }
                 }
             }
-        
         return NavigationView {
             GeometryReader { geometry in
                 ZStack(alignment: .trailing) {
@@ -39,9 +38,13 @@ struct HomePage: View {
             }
                 .navigationBarItems(leading: (
                     HStack{
-                        Image("Logo")
+                        //TODO: change navigation link
+                        NavigationLink(destination: HomePage()){
+                            Image("Logo")
                             .resizable()
                             .frame(width: 70.0, height: 70.0)
+                            .foregroundColor(.black)
+                        }
                         Spacer()
                         HStack {
                             Image(systemName: "magnifyingglass")
