@@ -3,7 +3,7 @@ define({ "api": [
     "type": "post",
     "url": "/auth",
     "title": "Athentification",
-    "description": "<p>Authentification process If the user is successfully logged in, this will return a json web token that must be sent in a Bearer Header</p>",
+    "description": "<p>Authentification process <br/> If the user is successfully logged in, this will return a json web token (jwt) that must be sent in a Bearer Header</p>",
     "name": "PostAuth",
     "group": "Auth",
     "parameter": {
@@ -163,6 +163,18 @@ define({ "api": [
     "description": "<p>Create a new Remark Context</p>",
     "name": "PostRemarksContexts",
     "group": "Remarks_Contexts",
+    "permission": [
+      {
+        "name": "MustBeAdmin",
+        "title": "The user must be admin to reach this ressource",
+        "description": ""
+      },
+      {
+        "name": "NeedToken",
+        "title": "The json Web token (jwt) is needed",
+        "description": ""
+      }
+    ],
     "parameter": {
       "fields": {
         "Parameter": [
@@ -347,6 +359,18 @@ define({ "api": [
     "description": "<p>Create a new Responses Type</p>",
     "name": "PostResponsesTypes",
     "group": "Responses_Types",
+    "permission": [
+      {
+        "name": "MustBeAdmin",
+        "title": "The user must be admin to reach this ressource",
+        "description": ""
+      },
+      {
+        "name": "NeedToken",
+        "title": "The json Web token (jwt) is needed",
+        "description": ""
+      }
+    ],
     "parameter": {
       "fields": {
         "Parameter": [

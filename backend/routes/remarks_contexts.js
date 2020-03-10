@@ -31,6 +31,8 @@ router.route('/')
      *
      * @apiUse NeedToken
      * @apiUse MustBeAdmin
+     * @apiPermission MustBeAdmin
+     * @apiPermission NeedToken
      * 
      * @apiParam {String} name_context The name of the Remarks Context.
      * @apiParam {integer} color_context The color of the Remarks Context.

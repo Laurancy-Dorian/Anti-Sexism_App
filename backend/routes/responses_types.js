@@ -31,7 +31,8 @@ router.route('/')
      *
      * @apiUse NeedToken
      * @apiUse MustBeAdmin
-     * 
+     * @apiPermission MustBeAdmin
+     * @apiPermission NeedToken
      * 
      * @apiParam {String} name_response_type The name of the Responses Type.
      * @apiParam {String} emoji_response_type The emoji associated with this responses type.
