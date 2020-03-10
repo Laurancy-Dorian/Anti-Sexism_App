@@ -13,46 +13,109 @@ struct HeaderView: View {
     @State var text = ""
 
     var body: some View{
-//        HStack{
-//            Image("Logo")
-//                .resizable()
-//                .frame(width: 120.0, height: 120.0)
-//            HStack {
-//                Image(systemName: "magnifyingglass")
-//                TextField("Recherche", text: self.$text)
-//            }
-//            .padding()
-//            .overlay(RoundedRectangle(cornerRadius: 20).stroke(lineWidth: 2).foregroundColor(Color.black))
-//
-//        }
-        VStack(alignment: .leading) {
-            HStack {
-                Image(systemName: "person")
-                    .foregroundColor(.gray)
-                    .imageScale(.large)
-                Text("Profile")
-                    .foregroundColor(.gray)
-                    .font(.headline)
+        VStack() {
+            VStack(alignment: .leading, spacing: 30){
+                Text("CATEGORIE")
+                .foregroundColor(.gray)
+                .font(.headline)
+                HStack {
+                    Image(systemName: "map")
+                        .foregroundColor(.red)
+                        .imageScale(.large)
+                    Text("Dans la rue")
+                        .foregroundColor(.red)
+                        .font(.headline)
+                }
+                HStack {
+                    Image(systemName: "tram.fill")
+                        .foregroundColor(.blue)
+                        .imageScale(.large)
+                    Text("Dans les transports")
+                        .foregroundColor(.blue)
+                        .font(.headline)
+                }
+                HStack {
+                    Image(systemName: "desktopcomputer")
+                        .foregroundColor(.green)
+                        .imageScale(.large)
+                    Text("Au travail")
+                        .foregroundColor(.green)
+                        .font(.headline)
+                }
+                HStack {
+                    Image(systemName: "house.fill")
+                        .foregroundColor(.orange)
+                        .imageScale(.large)
+                    Text("Au domicile")
+                        .foregroundColor(.orange)
+                        .font(.headline)
+                }
             }
             .padding(.top, 100)
-            HStack {
-                Image(systemName: "envelope")
-                    .foregroundColor(.gray)
-                    .imageScale(.large)
-                Text("Messages")
-                    .foregroundColor(.gray)
-                    .font(.headline)
-            }
+            VStack(alignment: .leading, spacing: 30) {
+                Text("PARAMETRE")
+                .foregroundColor(.gray)
+                .font(.headline)
                 .padding(.top, 30)
-            HStack {
-                Image(systemName: "gear")
-                    .foregroundColor(.gray)
-                    .imageScale(.large)
-                Text("Settings")
-                    .foregroundColor(.gray)
-                    .font(.headline)
+                NavigationLink(destination: MyAccountView()){
+                    HStack{
+                        Image(systemName: "person.circle")
+                            .foregroundColor(.gray)
+                            .imageScale(.large)
+                        Text("Mon Compte")
+                            .foregroundColor(.gray)
+                            .font(.headline)
+                    }
+                }
+                HStack {
+                    Image(systemName: "square.and.pencil")
+                        .foregroundColor(.gray)
+                        .imageScale(.large)
+                    Text("Mes remarques")
+                        .foregroundColor(.gray)
+                        .font(.headline)
+                }
+                HStack {
+                    Image(systemName: "envelope")
+                        .foregroundColor(.gray)
+                        .imageScale(.large)
+                    Text("Mes réponses")
+                        .foregroundColor(.gray)
+                        .font(.headline)
+                }
+                HStack {
+                    Image(systemName: "person.circle")
+                        .foregroundColor(.gray)
+                        .imageScale(.large)
+                    Text("Se connecter")
+                        .foregroundColor(.gray)
+                        .font(.headline)
+                }
+                HStack {
+                    Image(systemName: "person.crop.circle.badge.plus")
+                        .foregroundColor(.gray)
+                        .imageScale(.large)
+                    Text("S'inscrire")
+                        .foregroundColor(.gray)
+                        .font(.headline)
+                }
+                HStack {
+                    Image(systemName: "power")
+                        .foregroundColor(.gray)
+                        .imageScale(.large)
+                    Text("Déconnexion")
+                        .foregroundColor(.red)
+                        .font(.headline)
+                }
+                HStack {
+                    Image(systemName: "gear")
+                        .foregroundColor(.gray)
+                        .imageScale(.large)
+                    Text("A propos")
+                        .foregroundColor(.gray)
+                        .font(.headline)
+                }
             }
-            .padding(.top, 30)
             Spacer()
         }
             .padding()

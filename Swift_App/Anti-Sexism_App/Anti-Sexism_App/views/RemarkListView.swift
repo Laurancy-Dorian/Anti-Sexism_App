@@ -15,8 +15,10 @@ struct RemarkListView: View {
     
     init() {
         remarkList = RemarkList()
+
     UITableView.appearance().tableFooterView = UIView()
           UITableView.appearance().separatorStyle = .none
+
     }
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
@@ -37,6 +39,7 @@ struct RemarkListView: View {
                     .frame(width: 70, height: 70)
                     .foregroundColor(Color(red: 153/255, green: 102/255, blue: 255/255))
                     .shadow(color: .gray, radius: 0.2, x: 1, y: 1)
+                    .padding()
             }
         }
     }

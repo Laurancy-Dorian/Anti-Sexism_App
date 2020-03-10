@@ -17,7 +17,7 @@ struct RemarkView: View {
     var remark: Remark // = Remark(idRemark: 1, description: "Une phrase", seen: 15, suffered: 4, user: User(pseudo : "toto", password: "1234"), date: "12/12/2012")
     var body: some View {
 
-        VStack(alignment: .leading, spacing : 5) {
+        VStack(alignment: .leading, spacing: 5) {
             HStack {
                 HStack {
                     Text ("Par " + remark.user.pseudo)

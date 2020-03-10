@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B31C58312417E9AE00B01BCF /* MyAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31C58302417E9AE00B01BCF /* MyAccountView.swift */; };
 		B32DD49A240D32F300BB4579 /* RemarkListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32DD499240D32F300BB4579 /* RemarkListView.swift */; };
 		B32DD49C240D331A00BB4579 /* RemarkList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32DD49B240D331A00BB4579 /* RemarkList.swift */; };
 		B32DD49E240D412300BB4579 /* RemarkContextList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32DD49D240D412300BB4579 /* RemarkContextList.swift */; };
@@ -56,6 +57,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B31C58302417E9AE00B01BCF /* MyAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountView.swift; sourceTree = "<group>"; };
 		B32DD499240D32F300BB4579 /* RemarkListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemarkListView.swift; sourceTree = "<group>"; };
 		B32DD49B240D331A00BB4579 /* RemarkList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemarkList.swift; sourceTree = "<group>"; };
 		B32DD49D240D412300BB4579 /* RemarkContextList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemarkContextList.swift; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 				B3ACA1F9240E904F00E2895B /* AnswerListView.swift */,
 				B3ACA1FB240E913400E2895B /* RemarkPage.swift */,
 				B3C906F3240EA81B006C8A2B /* HomePage.swift */,
+				B31C58302417E9AE00B01BCF /* MyAccountView.swift */,
 			);
 			path = views;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 				B32DD4A0240D415C00BB4579 /* RemarkContext.swift in Sources */,
 				B3ACA1FA240E904F00E2895B /* AnswerListView.swift in Sources */,
 				B3DF2F60240D590F00DCDB19 /* Answer.swift in Sources */,
+				B31C58312417E9AE00B01BCF /* MyAccountView.swift in Sources */,
 				B3F4FE10240CEC47009E48CB /* User.swift in Sources */,
 				B339CA45240972510095CE9B /* LoginView.swift in Sources */,
 				B339CA17240971CF0095CE9B /* ContentView.swift in Sources */,
