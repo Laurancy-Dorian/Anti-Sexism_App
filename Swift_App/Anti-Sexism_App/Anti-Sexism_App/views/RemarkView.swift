@@ -19,14 +19,20 @@ struct RemarkView: View {
 
         VStack(alignment: .leading, spacing : 5) {
             HStack {
-                Text ("Par " + remark.user.pseudo)
-                Spacer()
-                Text (remark.date)
-            }
-            .foregroundColor(.gray)
+                HStack {
+                    Text ("Par " + remark.user.pseudo)
+                                   Spacer()
+                                   Text (remark.date)
+                    
+                }
+                .padding()
+               
+            }.background(Color.red)
+            .foregroundColor(.white)
             HStack {
                 Text (remark.description)
             }
+            .padding()
             HStack () {
                 Button(action: {
                 }) {
@@ -61,12 +67,18 @@ struct RemarkView: View {
                 }
                 .buttonStyle(PlainButtonStyle())
             }
+            .padding(.leading)
+            .padding(.trailing)
             HStack {
                 Spacer()
                 Text("10")
                 Image(systemName: "message")
             }
+            .padding()
         }
-        .padding()
+        
+        .background(Color(red : 240/255, green : 200/255, blue : 200/255))
+        .cornerRadius(25)
     }
+
 }

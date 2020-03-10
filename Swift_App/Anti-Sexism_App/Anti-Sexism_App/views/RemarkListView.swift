@@ -15,17 +15,21 @@ struct RemarkListView: View {
     
     init() {
         remarkList = RemarkList()
+    UITableView.appearance().tableFooterView = UIView()
+          UITableView.appearance().separatorStyle = .none
     }
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
             List{
                 ForEach(self.remarkList.listRemarks) { remark in
-                    NavigationLink(destination: RemarkPage(remark: remark)){
-                        VStack{
-                            RemarkView(remark: remark)
+                    ZStack{
+                        RemarkView(remark: remark)
+                        NavigationLink(destination: RemarkPage(remark: remark)){
+                        ZStack{
+                           EmptyView()
                         }
-                    }
-                }.padding()
+                        }}.buttonStyle(PlainButtonStyle())
+                }
             }
             NavigationLink(destination: AddRemarkView()){
                 Image(systemName: "plus.circle.fill")
