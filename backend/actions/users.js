@@ -28,13 +28,13 @@ users.addUser = (req, res, next) => {
     /* Check the input */
     if (!req.body.pseudo_user || !req.body.password_user) {
         console.log(req)
-        errors.addErrorMessage('40001', "Bad Request - Your request is missing parameters");
+        errors.addErrorMessage('MissingParameter', "Bad Request - Your request is missing parameters");
     }
     if (req.body.pseudo_user && req.body.pseudo_user.length < 4) {
-        errors.addErrorMessage('40002', "Bad Request - Your pseudo length has to be > 3");
+        errors.addErrorMessage('PseudoLengthTooShort', "Bad Request - Your pseudo length has to be > 3");
     }
     if (req.body.password_user && req.body.password_user.length < 5) {
-        errors.addErrorMessage('40003', "Bad Request - Your password length has to be > 4");
+        errors.addErrorMessage('PasswordLengthTooShort', "Bad Request - Your password length has to be > 4");
     }
 
 
@@ -56,7 +56,7 @@ users.addUser = (req, res, next) => {
                     });
                 } else {
                     if (error.code == 'ER_DUP_ENTRY') { /* Database error */
-                        errors.addErrorMessage('40005', "Pseudo already used - " + error.sqlMessage);
+                        errors.addErrorMessage('PseudoAlreadyUsed', "Pseudo already used - " + error.sqlMessage);
                     } else {
                         errors.addErrorMessage('-1', error.sqlMessage);
                     }
@@ -80,7 +80,7 @@ users.getUser = (req, res, next) => {
         if (!error && results.length > 0) {
             res.json(results[0]);
         } else {
-            errors.addErrorMessage('40401 ', 'Error 404 - There is no user with this id');
+            errors.addErrorMessage('UserDoesntExists ', 'Error 404 - There is no user with this id');
             errors.sendErrors(res, 404);
         }
     });

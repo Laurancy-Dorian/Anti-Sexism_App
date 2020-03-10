@@ -32,7 +32,7 @@ auth.getToken = (req, res, next) => {
         /* Forbidden */
         let errors = errorAction();
         res.setHeader('WWW-Authenticate', 'Bearer realm=""')
-        errors.addErrorMessage('40101', 'Unauthorized - Header Authorization is not defined');
+        errors.addErrorMessage('AuthorizationHeaderNotDefined', 'Unauthorized - Header Authorization is not defined');
         errors.sendErrors(res, 401);
     }
 }
@@ -52,7 +52,7 @@ auth.verifyToken = (req, res, next) => {
     jwt.verify(req.token, config.jwtSecret, (err, data) => {
         if (err) {
             res.setHeader('WWW-Authenticate', 'Bearer realm=""')
-            errors.addErrorMessage('40102', 'Unauthorized - Invalid token');
+            errors.addErrorMessage('InvalidJWTToken', 'Unauthorized - Invalid token');
             errors.sendErrors(res, 401);
         }
         else {
@@ -107,12 +107,12 @@ auth.login = (req, res, next) => {
                         });
                     });
                 } else {
-                    errors.addErrorMessage('40007', 'Invalid password');
+                    errors.addErrorMessage('InvalidPassword', 'Invalid password');
                     errors.sendErrors(res, 400);
                 }
             });
         } else {
-            errors.addErrorMessage('40006', 'Invalid username');
+            errors.addErrorMessage('InvalidUsername', 'Invalid username');
             errors.sendErrors(res, 400);
         }
     });
@@ -128,7 +128,7 @@ auth.validateAdmin = (req, res, next) => {
         const where = {pseudo_user: req.dataToken.user.pseudo_user}
         modelUser.read(select, where, (results, err) => {
             if (!results[0].is_admin_user) {
-                errors.addErrorMessage('40300', "Forbidden - You must be admin to reach this ressource");
+                errors.addErrorMessage('NotAnAdmin', "Forbidden - You must be admin to reach this ressource");
                 errors.sendErrors(res, 403)
             } else {
                 next();

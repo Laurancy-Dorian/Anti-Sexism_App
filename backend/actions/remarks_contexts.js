@@ -45,7 +45,7 @@ remarks_contexts.addRemarkContext = (req, res, next) => {
 
     /* Check the input */
     if (!req.body.name_context || !req.body.color_context) {
-        errors.addErrorMessage('40001', "Bad Request - Your request is missing parameters");
+        errors.addErrorMessage('MissingParameters', "Bad Request - Your request is missing parameters");
     }
 
     /* Send errors input if there is any */

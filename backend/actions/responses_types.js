@@ -28,7 +28,7 @@ response_types.readResponsesTypes = (req, res, next) => {
             res.json(results);
         } else {
             let errors = errorHelper();
-            errors.addErrorMessage('40402 ', 'Not found - There is no Response Type with this id');
+            errors.addErrorMessage('NotFound ', 'Not found - There is no Response Type with this id');
             errors.sendErrors(res, 404);
         }
     });
@@ -44,7 +44,7 @@ response_types.addResponsesType = (req, res, next) => {
 
     /* Check the input */
     if (!req.body.name_response_type || !req.body.emoji_response_type) {
-        errors.addErrorMessage('40001', "Bad Request - Your request is missing parameters");
+        errors.addErrorMessage('MissingParameters', "Bad Request - Your request is missing parameters");
     }
 
     /* Send errors input if there is any */
