@@ -27,6 +27,8 @@
 		B3ACA1FA240E904F00E2895B /* AnswerListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3ACA1F9240E904F00E2895B /* AnswerListView.swift */; };
 		B3ACA1FC240E913400E2895B /* RemarkPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3ACA1FB240E913400E2895B /* RemarkPage.swift */; };
 		B3C906F4240EA81B006C8A2B /* HomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C906F3240EA81B006C8A2B /* HomePage.swift */; };
+		B3D8C85124191B0B000A34DD /* AddRemarkPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D8C85024191B0B000A34DD /* AddRemarkPage.swift */; };
+		B3D8C8542419293B000A34DD /* AddAnswerPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3D8C8532419293B000A34DD /* AddAnswerPage.swift */; };
 		B3DF2F5C240D57BE00DCDB19 /* AnswerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DF2F5B240D57BE00DCDB19 /* AnswerType.swift */; };
 		B3DF2F5E240D583100DCDB19 /* AnswerTypeList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DF2F5D240D583100DCDB19 /* AnswerTypeList.swift */; };
 		B3DF2F60240D590F00DCDB19 /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DF2F5F240D590F00DCDB19 /* Answer.swift */; };
@@ -83,6 +85,8 @@
 		B3ACA1F9240E904F00E2895B /* AnswerListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerListView.swift; sourceTree = "<group>"; };
 		B3ACA1FB240E913400E2895B /* RemarkPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemarkPage.swift; sourceTree = "<group>"; };
 		B3C906F3240EA81B006C8A2B /* HomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePage.swift; sourceTree = "<group>"; };
+		B3D8C85024191B0B000A34DD /* AddRemarkPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRemarkPage.swift; sourceTree = "<group>"; };
+		B3D8C8532419293B000A34DD /* AddAnswerPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAnswerPage.swift; sourceTree = "<group>"; };
 		B3DF2F5B240D57BE00DCDB19 /* AnswerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerType.swift; sourceTree = "<group>"; };
 		B3DF2F5D240D583100DCDB19 /* AnswerTypeList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerTypeList.swift; sourceTree = "<group>"; };
 		B3DF2F5F240D590F00DCDB19 /* Answer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
@@ -143,6 +147,7 @@
 		B339CA11240971CF0095CE9B /* Anti-Sexism_App */ = {
 			isa = PBXGroup;
 			children = (
+				B3D8C85224192787000A34DD /* pages */,
 				B3F4FE11240CF00C009E48CB /* api */,
 				B339CA43240972190095CE9B /* views */,
 				B339CA42240972110095CE9B /* models */,
@@ -211,11 +216,20 @@
 				B3FBFF9F240E72D400C63EC1 /* AddAnswerView.swift */,
 				B3737775240E78E100871D52 /* AnswerView.swift */,
 				B3ACA1F9240E904F00E2895B /* AnswerListView.swift */,
-				B3ACA1FB240E913400E2895B /* RemarkPage.swift */,
-				B3C906F3240EA81B006C8A2B /* HomePage.swift */,
 				B31C58302417E9AE00B01BCF /* MyAccountView.swift */,
 			);
 			path = views;
+			sourceTree = "<group>";
+		};
+		B3D8C85224192787000A34DD /* pages */ = {
+			isa = PBXGroup;
+			children = (
+				B3D8C85024191B0B000A34DD /* AddRemarkPage.swift */,
+				B3ACA1FB240E913400E2895B /* RemarkPage.swift */,
+				B3C906F3240EA81B006C8A2B /* HomePage.swift */,
+				B3D8C8532419293B000A34DD /* AddAnswerPage.swift */,
+			);
+			path = pages;
 			sourceTree = "<group>";
 		};
 		B3F4FE11240CF00C009E48CB /* api */ = {
@@ -361,6 +375,7 @@
 				B32DD49A240D32F300BB4579 /* RemarkListView.swift in Sources */,
 				B3737776240E78E100871D52 /* AnswerView.swift in Sources */,
 				B3F4FE15240D02AD009E48CB /* RemarkView.swift in Sources */,
+				B3D8C85124191B0B000A34DD /* AddRemarkPage.swift in Sources */,
 				B3F4FE17240D02D2009E48CB /* Remark.swift in Sources */,
 				B339CA13240971CF0095CE9B /* AppDelegate.swift in Sources */,
 				B3ACA1FC240E913400E2895B /* RemarkPage.swift in Sources */,
@@ -372,6 +387,7 @@
 				B31C58312417E9AE00B01BCF /* MyAccountView.swift in Sources */,
 				B3F4FE10240CEC47009E48CB /* User.swift in Sources */,
 				B339CA45240972510095CE9B /* LoginView.swift in Sources */,
+				B3D8C8542419293B000A34DD /* AddAnswerPage.swift in Sources */,
 				B339CA17240971CF0095CE9B /* ContentView.swift in Sources */,
 				B3DF2F5C240D57BE00DCDB19 /* AnswerType.swift in Sources */,
 				B3FBFF9E240E58DA00C63EC1 /* AddRemarkView.swift in Sources */,

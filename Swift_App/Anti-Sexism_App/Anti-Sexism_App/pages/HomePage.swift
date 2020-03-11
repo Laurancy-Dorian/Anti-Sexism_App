@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct HomePage: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     @State var showMenu = false
     @State var text = ""
@@ -25,7 +26,7 @@ struct HomePage: View {
         return NavigationView {
             GeometryReader { geometry in
                 ZStack(alignment: .trailing) {
-                    MainView(showMenu: self.$showMenu)
+                    HomeContent(showMenu: self.$showMenu)
                         .frame(width: geometry.size.width, height: geometry.size.height)
                         .disabled(self.showMenu ? true : false)
                     if self.showMenu {
@@ -39,11 +40,15 @@ struct HomePage: View {
                 .navigationBarItems(leading: (
                     HStack{
                         //TODO: change navigation link
-                        NavigationLink(destination: HomePage()){
-                            Image("Logo")
-                            .resizable()
-                            .frame(width: 70.0, height: 70.0)
-                            .foregroundColor(.black)
+                        NavigationLink(destination: HomePage().navigationBarBackButtonHidden(false)){
+                            Button(action: {
+                                self.presentationMode.wrappedValue.dismiss()
+                            }){
+                                Image("Logo")
+                                .resizable()
+                                .frame(width: 70.0, height: 70.0)
+                                .foregroundColor(.black)
+                            }
                         }
                         Spacer()
                         HStack {
@@ -68,14 +73,12 @@ struct HomePage: View {
     }
 }
 
-struct MainView: View {
+struct HomeContent: View {
     
     @Binding var showMenu: Bool
     
     var body: some View {
-        VStack{
-            RemarkListView()
-        }
+        RemarkListView()
     }
 }
 

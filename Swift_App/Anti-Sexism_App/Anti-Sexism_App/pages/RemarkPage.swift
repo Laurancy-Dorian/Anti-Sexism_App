@@ -19,7 +19,7 @@ struct RemarkPage: View {
     var body: some View {
         VStack{
             RemarkView(remark: remark).padding()
-            NavigationLink(destination: AddAnswerView()){
+            NavigationLink(destination: AddAnswerPage()){
                 Text("Répondre")
                     .frame(width: 100, height: 25, alignment: .center)
                     .background(Color.green)

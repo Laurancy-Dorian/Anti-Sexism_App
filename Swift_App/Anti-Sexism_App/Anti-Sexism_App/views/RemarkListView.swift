@@ -33,7 +33,7 @@ struct RemarkListView: View {
                         }}.buttonStyle(PlainButtonStyle())
                 }
             }
-            NavigationLink(destination: AddRemarkView()){
+            NavigationLink(destination: AddRemarkPage()){
                 Image(systemName: "plus.circle.fill")
                     .resizable()
                     .frame(width: 70, height: 70)
