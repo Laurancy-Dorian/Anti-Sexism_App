@@ -9,8 +9,7 @@ router.use('/users', require('./users'));
 router.use('/user', require('./user'));
 router.use('/remarks_contexts', require('./remarks_contexts'));
 router.use('/responses_types', require('./responses_types'));
-
-
-
+router.use('/remarks', require('./remarks'));
+router.use('/remarks/:idRemark/responses', require('./responses'))
 
 module.exports = router;

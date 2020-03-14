@@ -40,9 +40,13 @@ app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 
+/* Static files */
+app.use('/apidoc', express.static(path.join(__dirname, 'apidoc')));    // Api Documentation
+
+
 /*  Loads the routes for all resources */
 var routes = require('./routes');
-app.use('/', routes);
+app.use('/api', routes);
 
 
 /* The 404 Route */

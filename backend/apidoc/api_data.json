@@ -62,6 +62,489 @@
     "groupTitle": "Auth"
   },
   {
+    "type": "delete",
+    "url": "/remarks/:idRemark",
+    "title": "Delete a Remark",
+    "description": "<p>Delete the Remark if the user is the owner of this remark or is an admin</p>",
+    "name": "DeleteRemark",
+    "group": "Remarks",
+    "permission": [
+      {
+        "name": "NeedToken",
+        "title": "The json Web token (jwt) is needed",
+        "description": ""
+      }
+    ],
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "Success",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "InvalidJWTToken",
+            "description": "<p>The jwt token is invalid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "AuthorizationHeaderNotDefined",
+            "description": "<p>The Authorization header is not defined</p>"
+          }
+        ],
+        "404": [
+          {
+            "group": "404",
+            "optional": false,
+            "field": "NotFound",
+            "description": "<p>The Remark doesn't exists</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/remarks.js",
+    "groupTitle": "Remarks",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Bearer token : The token is the jwt token given when successfully reached POST /auth</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "delete",
+    "url": "/remarks/:idRemark/seen",
+    "title": "Seen -1",
+    "description": "<p>Decrease the number of &quot;seen&quot; of this Remark by 1</p>",
+    "name": "DeleteSeen",
+    "group": "Remarks",
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "Success",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "404": [
+          {
+            "group": "404",
+            "optional": false,
+            "field": "NotFound",
+            "description": "<p>The Remark doesn't exists</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/remarks.js",
+    "groupTitle": "Remarks"
+  },
+  {
+    "type": "delete",
+    "url": "/remarks/:idRemark/suffered",
+    "title": "Suffered -1",
+    "description": "<p>Decrease the number of &quot;suffered&quot; of this Remark by 1</p>",
+    "name": "DeleteSuffered",
+    "group": "Remarks",
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "Success",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "404": [
+          {
+            "group": "404",
+            "optional": false,
+            "field": "NotFound",
+            "description": "<p>The Remark doesn't exists</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/remarks.js",
+    "groupTitle": "Remarks"
+  },
+  {
+    "type": "get",
+    "url": "/remarks/:idRemark",
+    "title": "Get a Remark",
+    "description": "<p>Get the data of the Remark</p>",
+    "name": "GetRemark",
+    "group": "Remarks",
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "type": "object",
+            "optional": false,
+            "field": "Remark",
+            "description": "<p>The object containing the Remark data</p>"
+          },
+          {
+            "group": "200",
+            "type": "number",
+            "optional": false,
+            "field": "Remark.id_remark",
+            "description": "<p>The id</p>"
+          },
+          {
+            "group": "200",
+            "type": "String",
+            "optional": false,
+            "field": "Remark.description_remark",
+            "description": "<p>The content of the remark</p>"
+          },
+          {
+            "group": "200",
+            "type": "String",
+            "optional": false,
+            "field": "Remark.nb_seen_remark",
+            "description": "<p>The number of users that declared they have seen a situation like this one</p>"
+          },
+          {
+            "group": "200",
+            "type": "String",
+            "optional": false,
+            "field": "Remark.nb_suffered_remark",
+            "description": "<p>The number of users that declared they have suffered a situation like this one</p>"
+          },
+          {
+            "group": "200",
+            "type": "String",
+            "optional": false,
+            "field": "Remark.date_remark",
+            "description": "<p>The date this remark has been posted</p>"
+          },
+          {
+            "group": "200",
+            "type": "String",
+            "optional": false,
+            "field": "Remark.pseudo_user",
+            "description": "<p>The pseudo of the user who posted this remark, null if anonymous</p>"
+          },
+          {
+            "group": "200",
+            "type": "String",
+            "optional": false,
+            "field": "Remark.id_context",
+            "description": "<p>The id of the context of this remark</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "404": [
+          {
+            "group": "404",
+            "optional": false,
+            "field": "NotFound",
+            "description": "<p>The Remark doesn't exists</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/remarks.js",
+    "groupTitle": "Remarks"
+  },
+  {
+    "type": "get",
+    "url": "/remarks",
+    "title": "Get All Remarks",
+    "description": "<p>Get the list of all Remarks</p>",
+    "name": "GetRemarks",
+    "group": "Remarks",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "number[]",
+            "optional": true,
+            "field": "context",
+            "description": "<p>Select only the remarks which have context in this array. Ex /remarks?context=[&quot;1&quot;,&quot;4&quot;]</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": true,
+            "field": "content",
+            "description": "<p>Select the remarks with description that contains this string</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "allowedValues": [
+              "\"date\"",
+              "\"popularity\""
+            ],
+            "optional": true,
+            "field": "sortby",
+            "description": "<p>=date Sort the remarks by the most recent or popularity</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "allowedValues": [
+              "\"ASC\"",
+              "\"DESC\""
+            ],
+            "optional": true,
+            "field": "order",
+            "description": "<p>=DESC the order of the sort</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "type": "object[]",
+            "optional": false,
+            "field": "Remarks",
+            "description": "<p>An array containing the Remarks</p>"
+          },
+          {
+            "group": "200",
+            "type": "number",
+            "optional": false,
+            "field": "Remarks.id_remark",
+            "description": "<p>The id</p>"
+          },
+          {
+            "group": "200",
+            "type": "String",
+            "optional": false,
+            "field": "Remarks.description_remark",
+            "description": "<p>The content of the remark</p>"
+          },
+          {
+            "group": "200",
+            "type": "String",
+            "optional": false,
+            "field": "Remarks.nb_seen_remark",
+            "description": "<p>The number of users that declared they have seen a situation like this one</p>"
+          },
+          {
+            "group": "200",
+            "type": "String",
+            "optional": false,
+            "field": "Remarks.nb_suffered_remark",
+            "description": "<p>The number of users that declared they have suffered a situation like this one</p>"
+          },
+          {
+            "group": "200",
+            "type": "String",
+            "optional": false,
+            "field": "Remarks.date_remark",
+            "description": "<p>The date this remark has been posted</p>"
+          },
+          {
+            "group": "200",
+            "type": "String",
+            "optional": false,
+            "field": "Remarks.pseudo_user",
+            "description": "<p>The pseudo of the user who posted this remark, null if anonymous</p>"
+          },
+          {
+            "group": "200",
+            "type": "String",
+            "optional": false,
+            "field": "Remarks.id_context",
+            "description": "<p>The id of the context of this remark</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/remarks.js",
+    "groupTitle": "Remarks"
+  },
+  {
+    "type": "post",
+    "url": "/remarks",
+    "title": "Add a Remark",
+    "description": "<p>Create a new Remark</p>",
+    "name": "PostRemarks",
+    "group": "Remarks",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": true,
+            "field": "Authorization",
+            "description": "<p>Bearer token : The token of that authentify the user, if it isn't set, then the user will be considered as anonymous</p>"
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "description_remark",
+            "description": "<p>The content of the remark</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id_context",
+            "description": "<p>The id of the context of this remark</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "201": [
+          {
+            "group": "201",
+            "optional": false,
+            "field": "Created",
+            "description": "<p>The Remark has been created</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "400": [
+          {
+            "group": "400",
+            "optional": false,
+            "field": "MissingParameters",
+            "description": "<p>The request is missing parameters</p>"
+          }
+        ],
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "InvalidJWTToken",
+            "description": "<p>The jwt token is invalid</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/remarks.js",
+    "groupTitle": "Remarks"
+  },
+  {
+    "type": "put",
+    "url": "/remarks/:idRemark/seen",
+    "title": "Seen +1",
+    "description": "<p>Increase the number of &quot;seen&quot; of this Remark by 1</p>",
+    "name": "PutSeen",
+    "group": "Remarks",
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "Success",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "404": [
+          {
+            "group": "404",
+            "optional": false,
+            "field": "NotFound",
+            "description": "<p>The Remark doesn't exists</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/remarks.js",
+    "groupTitle": "Remarks"
+  },
+  {
+    "type": "put",
+    "url": "/remarks/:idRemark/suffered",
+    "title": "Suffered +1",
+    "description": "<p>Increase the number of &quot;suffered&quot; of this Remark by 1</p>",
+    "name": "PutSuffered",
+    "group": "Remarks",
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "Success",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "404": [
+          {
+            "group": "404",
+            "optional": false,
+            "field": "NotFound",
+            "description": "<p>The Remark doesn't exists</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/remarks.js",
+    "groupTitle": "Remarks"
+  },
+  {
     "type": "get",
     "url": "/remarks_contexts/:idRemarksContext",
     "title": "Get a Remarks Context",
@@ -256,6 +739,374 @@
         ]
       }
     }
+  },
+  {
+    "type": "delete",
+    "url": "/remarks/:idRemark/responses/:idResponse",
+    "title": "Delete a Response",
+    "description": "<p>Delete the Reponse if the user is the owner of this Reponse or is an admin</p>",
+    "name": "DeleteResponse",
+    "group": "Responses",
+    "permission": [
+      {
+        "name": "NeedToken",
+        "title": "The json Web token (jwt) is needed",
+        "description": ""
+      }
+    ],
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "Success",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "InvalidJWTToken",
+            "description": "<p>The jwt token is invalid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "AuthorizationHeaderNotDefined",
+            "description": "<p>The Authorization header is not defined</p>"
+          }
+        ],
+        "404": [
+          {
+            "group": "404",
+            "optional": false,
+            "field": "NotFound",
+            "description": "<p>The Response doesn't exists</p>"
+          },
+          {
+            "group": "404",
+            "optional": false,
+            "field": "RemarkNotFound",
+            "description": "<p>The Remark doesn't exists</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/responses.js",
+    "groupTitle": "Responses",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Bearer token : The token is the jwt token given when successfully reached POST /auth</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "get",
+    "url": "/remarks/:idRemark/responses/:idResponse",
+    "title": "Get a Response",
+    "description": "<p>Get the data of the Reponse</p>",
+    "name": "GetResponse",
+    "group": "Responses",
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "type": "object",
+            "optional": false,
+            "field": "Response",
+            "description": "<p>An object containing the Response data</p>"
+          },
+          {
+            "group": "200",
+            "type": "number",
+            "optional": false,
+            "field": "Response.id_response",
+            "description": "<p>The id</p>"
+          },
+          {
+            "group": "200",
+            "type": "String",
+            "optional": false,
+            "field": "Response.description_response",
+            "description": "<p>The content of the Response</p>"
+          },
+          {
+            "group": "200",
+            "type": "String",
+            "optional": false,
+            "field": "Response.nb_likes_response",
+            "description": "<p>The number of users that liked this Response</p>"
+          },
+          {
+            "group": "200",
+            "type": "String",
+            "optional": false,
+            "field": "Response.nb_dislikes_response",
+            "description": "<p>The number of users that disliked this Response</p>"
+          },
+          {
+            "group": "200",
+            "type": "String",
+            "optional": false,
+            "field": "Response.date_remsponse",
+            "description": "<p>The date this response has been posted</p>"
+          },
+          {
+            "group": "200",
+            "type": "String",
+            "optional": false,
+            "field": "Response.pseudo_user",
+            "description": "<p>The pseudo of the user who posted this response, null if anonymous</p>"
+          },
+          {
+            "group": "200",
+            "type": "String",
+            "optional": false,
+            "field": "Response.id_responses_type",
+            "description": "<p>The id of the type of this response</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "404": [
+          {
+            "group": "404",
+            "optional": false,
+            "field": "NotFound",
+            "description": "<p>The Reponse doesn't exists</p>"
+          },
+          {
+            "group": "404",
+            "optional": false,
+            "field": "RemarkNotFound",
+            "description": "<p>The Remark doesn't exists</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/responses.js",
+    "groupTitle": "Responses"
+  },
+  {
+    "type": "get",
+    "url": "/remarks/:idRemark/responses",
+    "title": "Get All Responses for a Remark",
+    "description": "<p>Get the list of all Responses for this Remark</p>",
+    "name": "GetResponses",
+    "group": "Responses",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "number[]",
+            "optional": true,
+            "field": "type",
+            "description": "<p>Select only the Responses which have type in this array. Ex /remarks/1/Responses?type=[&quot;1&quot;,&quot;3&quot;]</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "allowedValues": [
+              "\"date\"",
+              "\"popularity\""
+            ],
+            "optional": true,
+            "field": "sortby",
+            "description": "<p>=date Sort the remarks by the most recent or popular</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "string",
+            "allowedValues": [
+              "\"ASC\"",
+              "\"DESC\""
+            ],
+            "optional": true,
+            "field": "order",
+            "description": "<p>=DESC the order of the sort</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "type": "object[]",
+            "optional": false,
+            "field": "Responses",
+            "description": "<p>An array containing the Responses</p>"
+          },
+          {
+            "group": "200",
+            "type": "number",
+            "optional": false,
+            "field": "Responses.id_response",
+            "description": "<p>The id</p>"
+          },
+          {
+            "group": "200",
+            "type": "String",
+            "optional": false,
+            "field": "Responses.description_response",
+            "description": "<p>The content of the Response</p>"
+          },
+          {
+            "group": "200",
+            "type": "String",
+            "optional": false,
+            "field": "Responses.nb_likes_response",
+            "description": "<p>The number of users that liked this Response</p>"
+          },
+          {
+            "group": "200",
+            "type": "String",
+            "optional": false,
+            "field": "Responses.nb_dislikes_response",
+            "description": "<p>The number of users that disliked this Response</p>"
+          },
+          {
+            "group": "200",
+            "type": "String",
+            "optional": false,
+            "field": "Responses.date_remsponse",
+            "description": "<p>The date this response has been posted</p>"
+          },
+          {
+            "group": "200",
+            "type": "String",
+            "optional": false,
+            "field": "Responses.pseudo_user",
+            "description": "<p>The pseudo of the user who posted this response, null if anonymous</p>"
+          },
+          {
+            "group": "200",
+            "type": "String",
+            "optional": false,
+            "field": "Responses.id_responses_type",
+            "description": "<p>The id of the type of this response</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/responses.js",
+    "groupTitle": "Responses",
+    "error": {
+      "fields": {
+        "404": [
+          {
+            "group": "404",
+            "optional": false,
+            "field": "RemarkNotFound",
+            "description": "<p>The Remark doesn't exists</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "post",
+    "url": "/remarks/:idRemark/responses",
+    "title": "Add a Reponse",
+    "description": "<p>Create a new Reponse</p>",
+    "name": "PostResponse",
+    "group": "Responses",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": true,
+            "field": "Authorization",
+            "description": "<p>Bearer token : The token of that authentify the user, if it isn't set, then the user will be considered as anonymous</p>"
+          }
+        ]
+      }
+    },
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "description_remark",
+            "description": "<p>The content of the remark</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": false,
+            "field": "id_response_type",
+            "description": "<p>The id of the Response Type of this Reponse</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "fields": {
+        "201": [
+          {
+            "group": "201",
+            "optional": false,
+            "field": "Created",
+            "description": "<p>The Response has been created</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "400": [
+          {
+            "group": "400",
+            "optional": false,
+            "field": "MissingParameters",
+            "description": "<p>The request is missing parameters</p>"
+          }
+        ],
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "InvalidJWTToken",
+            "description": "<p>The jwt token is invalid</p>"
+          }
+        ],
+        "404": [
+          {
+            "group": "404",
+            "optional": false,
+            "field": "RemarkNotFound",
+            "description": "<p>The Remark doesn't exists</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/responses.js",
+    "groupTitle": "Responses"
   },
   {
     "type": "get",
