@@ -19,8 +19,8 @@ router.route('/')
      * @apiGroup Responses
      * 
      * @apiParam {number[]} [type] Select only the Responses which have type in this array. Ex /remarks/1/Responses?type=["1","3"]
-     * @apiParam {string="date","popularity"} [sortby] =date Sort the remarks by the most recent or popular
-     * @apiParam {string="ASC","DESC"} [order] =DESC the order of the sort
+     * @apiParam {string="date","popularity"} [sortby=date] Sort the remarks by the most recent or popular
+     * @apiParam {string="ASC","DESC"} [order=DESC] the order of the sort
      * 
      * @apiSuccess (200) {object[]} Responses An array containing the Responses 
      * @apiSuccess (200) {number} Responses.id_response The id

@@ -317,7 +317,8 @@ define({ "api": [
             ],
             "optional": true,
             "field": "sortby",
-            "description": "<p>=date Sort the remarks by the most recent or popularity</p>"
+            "defaultValue": "date",
+            "description": "<p>Sort the remarks by the most recent or popularity</p>"
           },
           {
             "group": "Parameter",
@@ -328,7 +329,8 @@ define({ "api": [
             ],
             "optional": true,
             "field": "order",
-            "description": "<p>=DESC the order of the sort</p>"
+            "defaultValue": "DESC",
+            "description": "<p>the order of the sort</p>"
           }
         ]
       }
@@ -931,7 +933,8 @@ define({ "api": [
             ],
             "optional": true,
             "field": "sortby",
-            "description": "<p>=date Sort the remarks by the most recent or popular</p>"
+            "defaultValue": "date",
+            "description": "<p>Sort the remarks by the most recent or popular</p>"
           },
           {
             "group": "Parameter",
@@ -942,7 +945,8 @@ define({ "api": [
             ],
             "optional": true,
             "field": "order",
-            "description": "<p>=DESC the order of the sort</p>"
+            "defaultValue": "DESC",
+            "description": "<p>the order of the sort</p>"
           }
         ]
       }
