@@ -4,6 +4,7 @@ const actions = require (appRoot + '/actions/responses');
 const auth = require (appRoot + '/actions/auth');
 
 
+
  /**
  * @apiDefine RemarkNotFound 
  * @apiError (404) RemarkNotFound The Remark doesn't exists
@@ -44,7 +45,7 @@ router.route('/')
      * 
      * @apiHeader [Authorization] Bearer token : The token of that authentify the user, if it isn't set, then the user will be considered as anonymous
      * 
-     * @apiParam {String} description_remark The content of the remark
+     * @apiParam {String} description_response The content of the response
      * @apiParam {String} id_response_type The id of the Response Type of this Reponse
      *
      * @apiSuccess (201) Created The Response has been created
@@ -98,5 +99,61 @@ router.route('/:idResponse')
     .delete(actions.deleteResponse)
     
     
+
+router.route('/:idResponse/like')
+
+    /**
+     * @api {put} /remarks/:idRemark/responses/:idResponse/like Like a Response
+     * @apiDescription Increase the number of "like" of this Response by 1
+     * 
+     * @apiName Putlike
+     * @apiGroup Responses 
+     * 
+     * @apiSuccess (200) Success
+     * @apiUse RemarkNotFound
+     * @apiError (404) NotFound The Response doesn't exists
+     */
+    .put(actions.like)
+
+
+    /**
+     * @api {delete} /remarks/:idRemark/responses/:idResponse/like UnLike a Response
+     * @apiDescription Decrease the number of "like" of this Response by 1
+     * 
+     * @apiName Deletelike
+     * @apiGroup Responses 
+     * 
+     * @apiSuccess (200) Success
+     * @apiUse RemarkNotFound
+     * @apiError (404) NotFound The Response doesn't exists
+     */
+    .delete(actions.unlike)
+
+router.route('/:idResponse/dislike')
+    /**
+     * @api {put} /remarks/:idRemark/responses/:idResponse/dislike Dislike a Response
+     * @apiDescription Increase the number of "dislike" of this Response by 1
+     * 
+     * @apiName PutDislike
+     * @apiGroup Responses 
+     * 
+     * @apiSuccess (200) Success
+     * @apiUse RemarkNotFound
+     * @apiError (404) NotFound The Response doesn't exists
+     */
+    .put(actions.dislike)
+
+    /**
+     * @api {delete} /remarks/:idRemark/responses/:idResponse/like UnDislike a Response
+     * @apiDescription Decrease the number of "dislike" of this Response by 1
+     * 
+     * @apiName DeleteDislike
+     * @apiGroup Responses 
+     * 
+     * @apiSuccess (200) Success
+     * @apiUse RemarkNotFound
+     * @apiError (404) NotFound The Response doesn't exists
+     */
+    .delete(actions.undislike)
 
 module.exports = router;

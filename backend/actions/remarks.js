@@ -4,17 +4,18 @@ const model = require(appRoot + '/db/models/Model')('remarks');
 /* Loads helpers and libraries */
 const errorAction = require(appRoot + '/helpers/errors');
 const util = require(appRoot + '/helpers/util');
-const remarks_contexts = {};
+
+const remarks = {};
 
 
-remarks_contexts.listRemarks = (req, res, next) => {
+remarks.listRemarks = (req, res, next) => {
     const sql = 'SELECT * FROM remarks';
     pool.query(sql, (errors, results) => {
         res.json(results);
     });
 }
 
-remarks_contexts.readRemark = (req, res, next) => {
+remarks.readRemark = (req, res, next) => {
     const where = {"id_remark" : req.params.idRemark}
     model.read(['*'], where, (results, error) => {
         if (!error && results != 0) {
@@ -28,7 +29,7 @@ remarks_contexts.readRemark = (req, res, next) => {
 
 }
 
-remarks_contexts.addRemark = (req, res, next) => {
+remarks.addRemark = (req, res, next) => {
     let errors = errorAction();
 
     /* Check the input */
@@ -73,25 +74,25 @@ remarks_contexts.addRemark = (req, res, next) => {
     }
 }
 
-remarks_contexts.deleteRemark = (req, res, next) => {
+remarks.deleteRemark = (req, res, next) => {
 
 }
 
-remarks_contexts.addSeen = (req, res, next) => {
+remarks.addSeen = (req, res, next) => {
     updateSeenSuffered(req.params.idRemark, "seen", 1, res)
 }
 
-remarks_contexts.removeSeen = (req, res, next) => {
+remarks.removeSeen = (req, res, next) => {
     updateSeenSuffered(req.params.idRemark, "seen", -1, res)
 
 }
 
-remarks_contexts.addSuffered = (req, res, next) => {
+remarks.addSuffered = (req, res, next) => {
     updateSeenSuffered(req.params.idRemark, "suffered", 1, res)
 
 }
 
-remarks_contexts.removeSuffered = (req, res, next) => {
+remarks.removeSuffered = (req, res, next) => {
     updateSeenSuffered(req.params.idRemark, "suffered", -1, res)
 }
 
@@ -109,7 +110,7 @@ const updateSeenSuffered = (idRemark, field, value, res) => {
 
         if (!error && results != 0) {
             results = JSON.parse(JSON.stringify(results[0]))
-            console.log(results)
+
             if (field == "seen") {
                 let val =  results.nb_seen_remark + value
                 if (val < 0) {
@@ -143,9 +144,8 @@ const updateSeenSuffered = (idRemark, field, value, res) => {
         }
         
     });
-
     
 }
 
 
-module.exports = remarks_contexts;
+module.exports = remarks;

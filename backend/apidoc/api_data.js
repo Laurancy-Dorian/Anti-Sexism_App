@@ -744,6 +744,47 @@ define({ "api": [
   },
   {
     "type": "delete",
+    "url": "/remarks/:idRemark/responses/:idResponse/like",
+    "title": "UnDislike a Response",
+    "description": "<p>Decrease the number of &quot;dislike&quot; of this Response by 1</p>",
+    "name": "DeleteDislike",
+    "group": "Responses",
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "Success",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "404": [
+          {
+            "group": "404",
+            "optional": false,
+            "field": "NotFound",
+            "description": "<p>The Response doesn't exists</p>"
+          },
+          {
+            "group": "404",
+            "optional": false,
+            "field": "RemarkNotFound",
+            "description": "<p>The Remark doesn't exists</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/responses.js",
+    "groupTitle": "Responses"
+  },
+  {
+    "type": "delete",
     "url": "/remarks/:idRemark/responses/:idResponse",
     "title": "Delete a Response",
     "description": "<p>Delete the Reponse if the user is the owner of this Reponse or is an admin</p>",
@@ -815,6 +856,47 @@ define({ "api": [
         ]
       }
     }
+  },
+  {
+    "type": "delete",
+    "url": "/remarks/:idRemark/responses/:idResponse/like",
+    "title": "UnLike a Response",
+    "description": "<p>Decrease the number of &quot;like&quot; of this Response by 1</p>",
+    "name": "Deletelike",
+    "group": "Responses",
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "Success",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "404": [
+          {
+            "group": "404",
+            "optional": false,
+            "field": "NotFound",
+            "description": "<p>The Response doesn't exists</p>"
+          },
+          {
+            "group": "404",
+            "optional": false,
+            "field": "RemarkNotFound",
+            "description": "<p>The Remark doesn't exists</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/responses.js",
+    "groupTitle": "Responses"
   },
   {
     "type": "get",
@@ -1055,8 +1137,8 @@ define({ "api": [
             "group": "Parameter",
             "type": "String",
             "optional": false,
-            "field": "description_remark",
-            "description": "<p>The content of the remark</p>"
+            "field": "description_response",
+            "description": "<p>The content of the response</p>"
           },
           {
             "group": "Parameter",
@@ -1099,6 +1181,88 @@ define({ "api": [
           }
         ],
         "404": [
+          {
+            "group": "404",
+            "optional": false,
+            "field": "RemarkNotFound",
+            "description": "<p>The Remark doesn't exists</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/responses.js",
+    "groupTitle": "Responses"
+  },
+  {
+    "type": "put",
+    "url": "/remarks/:idRemark/responses/:idResponse/dislike",
+    "title": "Dislike a Response",
+    "description": "<p>Increase the number of &quot;dislike&quot; of this Response by 1</p>",
+    "name": "PutDislike",
+    "group": "Responses",
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "Success",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "404": [
+          {
+            "group": "404",
+            "optional": false,
+            "field": "NotFound",
+            "description": "<p>The Response doesn't exists</p>"
+          },
+          {
+            "group": "404",
+            "optional": false,
+            "field": "RemarkNotFound",
+            "description": "<p>The Remark doesn't exists</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/responses.js",
+    "groupTitle": "Responses"
+  },
+  {
+    "type": "put",
+    "url": "/remarks/:idRemark/responses/:idResponse/like",
+    "title": "Like a Response",
+    "description": "<p>Increase the number of &quot;like&quot; of this Response by 1</p>",
+    "name": "Putlike",
+    "group": "Responses",
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "optional": false,
+            "field": "Success",
+            "description": ""
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "404": [
+          {
+            "group": "404",
+            "optional": false,
+            "field": "NotFound",
+            "description": "<p>The Response doesn't exists</p>"
+          },
           {
             "group": "404",
             "optional": false,
@@ -1403,7 +1567,7 @@ define({ "api": [
             "type": "String",
             "size": "4..",
             "optional": false,
-            "field": "pseudoUser",
+            "field": "pseudo_user",
             "description": "<p>User unique username.</p>"
           },
           {
@@ -1411,7 +1575,7 @@ define({ "api": [
             "type": "String",
             "size": "5..",
             "optional": false,
-            "field": "passwordUser",
+            "field": "password_user",
             "description": "<p>User password.</p>"
           }
         ]
