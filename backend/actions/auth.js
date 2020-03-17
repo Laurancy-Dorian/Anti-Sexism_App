@@ -30,6 +30,7 @@ auth.getToken = (req, res, next) => {
         next();
     } else {
         if (req.tokenNotNeeded) {
+            req.token = null
             next()
         } else {
             /* Forbidden */
@@ -51,19 +52,21 @@ auth.getToken = (req, res, next) => {
  */
 auth.verifyToken = (req, res, next) => {
     let errors = errorAction();
-    if (!req.token) {
+    if (req.token == null) {
         next(undefined)
+    } else {
+        jwt.verify(req.token, config.jwtSecret, (err, data) => {
+            if (err) {
+                res.setHeader('WWW-Authenticate', 'Bearer realm=""')
+                errors.addErrorMessage('InvalidJWTToken', 'Unauthorized - Invalid token');
+                errors.sendErrors(res, 401);
+            }
+            else {
+                next(data);
+            }
+        });
     }
-    jwt.verify(req.token, config.jwtSecret, (err, data) => {
-        if (err) {
-            res.setHeader('WWW-Authenticate', 'Bearer realm=""')
-            errors.addErrorMessage('InvalidJWTToken', 'Unauthorized - Invalid token');
-            errors.sendErrors(res, 401);
-        }
-        else {
-            next(data);
-        }
-    });
+
 }
 
 /**
@@ -73,6 +76,7 @@ auth.verifyToken = (req, res, next) => {
  */
 auth.validateToken = (req, res, next) => {
     auth.getToken(req, res, () => {
+
         auth.verifyToken(req, res, (data) => {
             req.dataToken = data;
             next();

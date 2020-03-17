@@ -28,8 +28,8 @@ router.route('/')
      * @apiName PostUsers
      * @apiGroup Users
      *
-     * @apiParam {String{4..}} pseudoUser User unique username.
-     * @apiParam {String{5..}} passwordUser User password.
+     * @apiParam {String{4..}} pseudo_user User unique username.
+     * @apiParam {String{5..}} password_user User password.
      *
      * @apiSuccess (201) {String} pseudo_user The pseudo of the user.
      * @apiError (400) MissingParameter The user doesn't exists

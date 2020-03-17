@@ -3,15 +3,28 @@ const model = require(appRoot + '/db/models/Model')('remarks');
 
 /* Loads helpers and libraries */
 const errorAction = require(appRoot + '/helpers/errors');
-const util = require (appRoot + '/helpers/util');
+const util = require(appRoot + '/helpers/util');
 const remarks_contexts = {};
 
 
 remarks_contexts.listRemarks = (req, res, next) => {
-
+    const sql = 'SELECT * FROM remarks';
+    pool.query(sql, (errors, results) => {
+        res.json(results);
+    });
 }
 
 remarks_contexts.readRemark = (req, res, next) => {
+    const where = {"id_remark" : req.params.idRemark}
+    model.read(['*'], where, (results, error) => {
+        if (!error && results != 0) {
+            res.json(results);
+        } else {
+            let errors = errorHelper();
+            errors.addErrorMessage('NotFound', 'Not found - There is no Remark with this id');
+            errors.sendErrors(res, 404);
+        }
+    });
 
 }
 
@@ -27,20 +40,36 @@ remarks_contexts.addRemark = (req, res, next) => {
     if (errors.defined()) {
         errors.sendErrors(res, 400);
     } else {
-        req.tokenNotNeeded = true;
 
-        
-        //TODO require auth, check et decoder le token s'il existe, et inserer NULL ou le pseudo de l'utilisateur
-        
-        data = {
-            "description_remark" : req.body.description_remark,
-            "nb_seen_remark" : 0,
-            "nb_suffered_remark" : 0,
-            "date_remark" : util.mysqlNow(),
-            "id_context" :  req.body.id_context
-        }
-        
-        
+        /* Check the user */
+        req.tokenNotNeeded = true;
+        const auth = require(appRoot + '/actions/auth');
+    
+        auth.validateToken(req, res, () => {
+            const pseudo = req.dataToken ? req.dataToken.user.pseudo_user : null;
+
+            data = {
+                "description_remark": req.body.description_remark,
+                "nb_seen_remark": 0,
+                "nb_suffered_remark": 0,
+                "date_remark": util.mysqlNow(),
+                "id_context": req.body.id_context,
+                "pseudo_user" : pseudo 
+            }
+
+            /* Creates the remark context */
+            model.create(data, {}, (results, error) => {
+                if (!error && results.affectedRows != 0) { /* Success */
+                    res.status(201);
+                    res.json(data);
+                } else {
+                    errors.addErrorMessage('-1', error.sqlMessage);
+                    errors.sendErrors(res, 409);
+                }
+            });
+
+
+        })
     }
 }
 
@@ -49,18 +78,74 @@ remarks_contexts.deleteRemark = (req, res, next) => {
 }
 
 remarks_contexts.addSeen = (req, res, next) => {
-
+    updateSeenSuffered(req.params.idRemark, "seen", 1, res)
 }
 
 remarks_contexts.removeSeen = (req, res, next) => {
+    updateSeenSuffered(req.params.idRemark, "seen", -1, res)
 
 }
 
 remarks_contexts.addSuffered = (req, res, next) => {
+    updateSeenSuffered(req.params.idRemark, "suffered", 1, res)
 
 }
 
 remarks_contexts.removeSuffered = (req, res, next) => {
-
+    updateSeenSuffered(req.params.idRemark, "suffered", -1, res)
 }
+
+/**
+ * Update the fields Seen or suffered by adding the value in parameter
+ * @param {number} id        The id of the remark to update
+ * @param {String} field     "seen" of "suffered"
+ * @param {number} value     The value to add (can be a negative number)
+ * @param {*} cb             Callback method
+ */
+const updateSeenSuffered = (idRemark, field, value, res) => {
+    let data = {}
+
+    model.read(['nb_seen_remark', 'nb_suffered_remark'], {"id_remark" : idRemark}, (results, error) => {
+
+        if (!error && results != 0) {
+            results = JSON.parse(JSON.stringify(results[0]))
+            console.log(results)
+            if (field == "seen") {
+                let val =  results.nb_seen_remark + value
+                if (val < 0) {
+                    val = 0
+                }
+                data = { "nb_seen_remark" : val}
+            } else {
+                let val =  results.nb_suffered_remark + value
+                if (val < 0) {
+                    val = 0
+                }
+                data = { "nb_suffered_remark" :  val }
+            }
+            
+        
+            model.update(data, {"id_remark" : idRemark}, (results, error) => {
+                if (!error && results.affectedRows != 0) { /* Success */
+                    res.status(200);
+                    res.end();
+                } else {
+                    let errors = errorAction();
+                    errors.addErrorMessage('-1', error.sqlMessage);
+                    errors.sendErrors(res, 409);
+                }
+            });
+
+        } else {
+            let errors = errorHelper();
+            errors.addErrorMessage('NotFound', 'Not found - There is no Remark with this id');
+            errors.sendErrors(res, 404);
+        }
+        
+    });
+
+    
+}
+
+
 module.exports = remarks_contexts;

@@ -25,7 +25,7 @@ CREATE TABLE remarks(
     nb_seen_remark INTEGER,
     nb_suffered_remark INTEGER,
     date_remark DATETIME,
-    pseudo_user VARCHAR(128) NOT NULL,
+    pseudo_user VARCHAR(128),
     id_context INTEGER NOT NULL,
     CONSTRAINT pk_remarks PRIMARY KEY (id_remark),
     CONSTRAINT fk_remarks_users FOREIGN KEY (pseudo_user) REFERENCES users(pseudo_user),
