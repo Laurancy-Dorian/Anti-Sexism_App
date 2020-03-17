@@ -15,4 +15,21 @@ util.toTitleCase = (str) => {
 
 }
 
+/**
+ * Convert a JS Date to a Mysql DATETIME formated string
+ */
+util.jsDateToDatetime = (date) => {
+    return date.getUTCFullYear() + '-' +
+    ('00' + (date.getUTCMonth()+1)).slice(-2) + '-' +
+    ('00' + date.getUTCDate()).slice(-2) + ' ' + 
+    ('00' + date.getUTCHours()).slice(-2) + ':' + 
+    ('00' + date.getUTCMinutes()).slice(-2) + ':' + 
+    ('00' + date.getUTCSeconds()).slice(-2);
+}
+
+util.mysqlNow = () => {
+    return util.jsDateToDatetime(new Date(Date.now()))
+}
+
+
 module.exports = util;

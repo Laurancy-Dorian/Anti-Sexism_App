@@ -29,11 +29,16 @@ auth.getToken = (req, res, next) => {
 
         next();
     } else {
-        /* Forbidden */
-        let errors = errorAction();
-        res.setHeader('WWW-Authenticate', 'Bearer realm=""')
-        errors.addErrorMessage('AuthorizationHeaderNotDefined', 'Unauthorized - Header Authorization is not defined');
-        errors.sendErrors(res, 401);
+        if (req.tokenNotNeeded) {
+            next()
+        } else {
+            /* Forbidden */
+            let errors = errorAction();
+            res.setHeader('WWW-Authenticate', 'Bearer realm=""')
+            errors.addErrorMessage('AuthorizationHeaderNotDefined', 'Unauthorized - Header Authorization is not defined');
+            errors.sendErrors(res, 401);
+        }
+
     }
 }
 
@@ -47,7 +52,7 @@ auth.getToken = (req, res, next) => {
 auth.verifyToken = (req, res, next) => {
     let errors = errorAction();
     if (!req.token) {
-        console.log("Inaccessible Token : call auth.getToken before");
+        next(undefined)
     }
     jwt.verify(req.token, config.jwtSecret, (err, data) => {
         if (err) {
