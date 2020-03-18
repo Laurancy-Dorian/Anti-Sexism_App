@@ -41,8 +41,11 @@ struct AddRemarkView: View {
                     Text("Rester anonyme")
                 }
             Spacer()
-            Button(action: {}){
+            Button(action: {
+
+            }){
                 Text("Soumettre")
+                
             }
         }
     }
