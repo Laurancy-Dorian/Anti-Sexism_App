@@ -10,20 +10,16 @@ import SwiftUI
 
 struct RemarkListView: View {
     
-    var remarkList : RemarkList
-    
+    @ObservedObject var remarkManager = RemarkManager()
     
     init() {
-        remarkList = RemarkList()
-
-    UITableView.appearance().tableFooterView = UIView()
-          UITableView.appearance().separatorStyle = .none
-
+        UITableView.appearance().tableFooterView = UIView()
+        UITableView.appearance().separatorStyle = .none
     }
+    
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
-            List{
-                ForEach(self.remarkList.listRemarks) { remark in
+            List(remarkManager.remarkList.results, id: \.id_remark){ remark in
                     ZStack{
                         RemarkView(remark: remark)
                         NavigationLink(destination: RemarkPage(remark: remark)){
@@ -31,7 +27,6 @@ struct RemarkListView: View {
                            EmptyView()
                         }
                         }}.buttonStyle(PlainButtonStyle())
-                }
             }
             NavigationLink(destination: AddRemarkPage()){
                 Image(systemName: "plus.circle.fill")
@@ -42,11 +37,5 @@ struct RemarkListView: View {
                     .padding()
             }
         }
-    }
-}
-
-struct RemarkListView_Previews: PreviewProvider {
-    static var previews: some View {
-        RemarkListView()
     }
 }

@@ -8,15 +8,66 @@
 
 import Foundation
 
-class AnswerList {
+struct AnswerList: Decodable {
     
-    @Published var listAnswers : [Answer] = []
+    var results : [Answer] = []
+   
+    init(results : [Answer]) {
+        self.results = results
+    }
+}
+
+struct Answer: Decodable {
+    var id_response : Int = 0
+    var description_response : String = ""
+    var nb_likes_response : Int = 0
+    var nb_dislikes_response : Int = 0
+    var date_response : String = ""
+    var pseudo_user : String = ""
+    var id_remark : Int = 0
+    var id_response_type : Int = 0
     
-    init(){
-        listAnswers.append(Answer(idAnswer: 1, description: "Une réponse", like: 15, dislike: 4, user: User(pseudo : "dodo", password: "1234"), date: "12/12/2012", type: AnswerType(idAnswerType: 1, nom: "Humour", emoji: "smile")))
-        listAnswers.append(Answer(idAnswer: 2, description: "Une deuxième réponse", like: 5, dislike: 6, user: User(pseudo : "dada", password: "1234"), date: "12/12/2012", type : AnswerType(idAnswerType: 1, nom: "Humour", emoji: "smile")))
-        listAnswers.append(Answer(idAnswer: 3, description: "Une troisième réponse", like: 6, dislike: 8, user: User(pseudo : "didi", password: "1234"), date: "12/12/2012", type : AnswerType(idAnswerType: 1, nom: "Humour", emoji: "smile")))
-        listAnswers.append(Answer(idAnswer: 4, description: "Une sentence réponse", like: 29, dislike: 1, user: User(pseudo : "dudu", password: "1234"), date: "12/12/2012", type : AnswerType(idAnswerType: 1, nom: "Humour", emoji: "smile")))
-        listAnswers.append(Answer(idAnswer: 5, description: "Une dernière réponse", like: 11, dislike: 8, user: User(pseudo : "dodo", password: "1234"), date: "12/12/2012", type : AnswerType(idAnswerType: 1, nom: "Humour", emoji: "smile")))
+    enum CodingKeys: Any, CodingKey {
+        case id_response
+        case description_response
+        case nb_likes_response
+        case nb_dislikes_response
+        case date_response
+        case pseudo_user
+        case id_remark
+        case id_response_type
+    }
+    
+    init(from decoder: Decoder) throws {
+        do {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            if let stringProperty = try? container.decode(String.self, forKey: .description_response) {
+                description_response = stringProperty
+            }
+            if let stringProperty = try? container.decode(String.self, forKey: .date_response) {
+                date_response = stringProperty
+            }
+            if let stringProperty = try? container.decode(String.self, forKey: .pseudo_user) {
+                pseudo_user = stringProperty
+            }
+            if let intProperty = try? container.decode(Int.self, forKey: .id_response) {
+                id_response = intProperty
+            }
+            if let intProperty = try? container.decode(Int.self, forKey: .nb_likes_response) {
+                nb_likes_response = intProperty
+            }
+            if let intProperty = try? container.decode(Int.self, forKey: .nb_dislikes_response) {
+                nb_dislikes_response = intProperty
+            }
+            if let intProperty = try? container.decode(Int.self, forKey: .id_remark) {
+                id_remark = intProperty
+            }
+            if let intProperty = try? container.decode(Int.self, forKey: .id_response_type) {
+                id_response_type = intProperty
+            }
+            else {
+                throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: container.codingPath, debugDescription: "Not a JSON"))
+            }
+        }
     }
 }

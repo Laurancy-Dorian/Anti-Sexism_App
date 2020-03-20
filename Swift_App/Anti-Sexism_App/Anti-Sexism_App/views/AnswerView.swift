@@ -10,22 +10,19 @@ import SwiftUI
 
 struct AnswerView: View {
     
-    init(answer: Answer){
-        self.answer = answer
-    }
-    
     var answer: Answer
 
     var body: some View {
-        VStack(alignment: .leading, spacing : 5) {
+        VStack(spacing : 5) {
                 HStack {
-                    Text ("Par " + answer.user.pseudo)
+                    if (answer.pseudo_user == "") { Text("Poste Anonyme")}
+                    else { Text ("Par " + (answer.pseudo_user))}
                     Spacer()
-                    Text (answer.date)
+                    Text (answer.date_response.components(separatedBy: "T")[0])
                 }
                 .foregroundColor(.gray)
                 HStack {
-                    Text (answer.description)
+                    Text (answer.description_response)
                 }
                 HStack () {
                     Button(action: {
@@ -33,7 +30,7 @@ struct AnswerView: View {
                         HStack (spacing : 0) {
                             Text("Pertinent")
                             Spacer()
-                            Text (String(answer.like))
+                            Text (String(answer.nb_likes_response))
                         }
                         .font(.headline)
                         .foregroundColor(.white)
@@ -49,7 +46,7 @@ struct AnswerView: View {
                         HStack (spacing : 0) {
                             Text("Pas Pertinent")
                             Spacer()
-                            Text (String(answer.dislike))
+                            Text (String(answer.nb_dislikes_response))
                         }
                         .buttonStyle(PlainButtonStyle())
                         .font(.headline)

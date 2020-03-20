@@ -10,11 +10,11 @@ import SwiftUI
 
 struct RemarkPage: View {
     
+    var remark: Remark
+    
     init(remark: Remark){
         self.remark = remark
     }
-    
-    var remark: Remark
     
     var body: some View {
         VStack{
@@ -25,7 +25,7 @@ struct RemarkPage: View {
                     .background(Color.green)
                     .cornerRadius(20)
             }
-            AnswerListView()
+            AnswerListView(idRemark: remark.id_remark)
         }
     }
 }

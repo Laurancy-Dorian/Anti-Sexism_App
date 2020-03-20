@@ -8,15 +8,70 @@
 
 import Foundation
 
-class RemarkList {
+struct RemarkList: Decodable{
+    var results: [Remark]
     
-    @Published var listRemarks : [Remark] = []
+    init(results : [Remark]) {
+        self.results = results
+    }
+}
+
+struct Remark: Decodable {
+    var id_remark : Int = 0
+    var description_remark : String = ""
+    var nb_seen_remark : Int = 0
+    var nb_suffered_remark : Int = 0
+    var date_remark : String = ""
+    var pseudo_user : String = ""
+    var id_context : Int = 0
     
-    init(){
-        listRemarks.append(Remark(idRemark: 1, description: "Une phrase", seen: 15, suffered: 4, user: User(pseudo : "toto", password: "1234"), date: "12/12/2012", context: RemarkContext(idRemarkContext: 1, nom: "Dans la rue", couleur: 1)))
-        listRemarks.append(Remark(idRemark: 2, description: "Une deuxième", seen: 5, suffered: 6, user: User(pseudo : "tata", password: "1234"), date: "12/12/2012", context : RemarkContext(idRemarkContext: 1, nom: "Dans la rue", couleur: 1)))
-        listRemarks.append(Remark(idRemark: 3, description: "Une troisième", seen: 6, suffered: 8, user: User(pseudo : "titi", password: "1234"), date: "12/12/2012", context : RemarkContext(idRemarkContext: 1, nom: "Dans la rue", couleur: 1)))
-        listRemarks.append(Remark(idRemark: 4, description: "Une sentence", seen: 29, suffered: 1, user: User(pseudo : "tutu", password: "1234"), date: "12/12/2012", context : RemarkContext(idRemarkContext: 1, nom: "Dans la rue", couleur: 1)))
-        listRemarks.append(Remark(idRemark: 5, description: "Une dernière", seen: 11, suffered: 8, user: User(pseudo : "toto", password: "1234"), date: "12/12/2012", context : RemarkContext(idRemarkContext: 1, nom: "Dans la rue", couleur: 1)))
+    //init (id_remark : Int, description_remark : String, nb_seen_remark : Int, nb_suffered_remark : Int, pseudo_user : String, date : String, id_context : Int) {
+        //self.id_remark = id_remark
+        //self.description_remark = description_remark
+        //self.nb_seen_remark = nb_seen_remark
+        //self.nb_suffered_remark = nb_suffered_remark
+        //self.pseudo_user = pseudo_user
+        //self.date = date
+        //self.id_context = id_context
+    //}
+    
+    enum CodingKeys: Any, CodingKey {
+        case id_remark
+        case description_remark
+        case nb_seen_remark
+        case nb_suffered_remark
+        case date_remark
+        case pseudo_user
+        case id_context
+    }
+    
+    init(from decoder: Decoder) throws {
+        do {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            if let stringProperty = try? container.decode(String.self, forKey: .description_remark) {
+                description_remark = stringProperty
+            }
+            if let stringProperty = try? container.decode(String.self, forKey: .date_remark) {
+                date_remark = stringProperty
+            }
+            if let stringProperty = try? container.decode(String.self, forKey: .pseudo_user) {
+                pseudo_user = stringProperty
+            }
+            if let intProperty = try? container.decode(Int.self, forKey: .id_remark) {
+                id_remark = intProperty
+            }
+            if let intProperty = try? container.decode(Int.self, forKey: .nb_seen_remark) {
+                nb_seen_remark = intProperty
+            }
+            if let intProperty = try? container.decode(Int.self, forKey: .nb_suffered_remark) {
+                nb_suffered_remark = intProperty
+            }
+            if let intProperty = try? container.decode(Int.self, forKey: .id_context) {
+                id_context = intProperty
+            }
+            else {
+                throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: container.codingPath, debugDescription: "Not a JSON"))
+            }
+        }
     }
 }

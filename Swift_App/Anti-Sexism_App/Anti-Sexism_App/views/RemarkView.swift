@@ -10,27 +10,24 @@ import SwiftUI
 
 struct RemarkView: View {
     
-    init(remark: Remark){
-        self.remark = remark
-    }
+    var remark: Remark
     
-    var remark: Remark // = Remark(idRemark: 1, description: "Une phrase", seen: 15, suffered: 4, user: User(pseudo : "toto", password: "1234"), date: "12/12/2012")
     var body: some View {
 
-        VStack(alignment: .leading, spacing: 5) {
+        VStack(spacing: 5) {
             HStack {
                 HStack {
-                    Text ("Par " + remark.user.pseudo)
-                                   Spacer()
-                                   Text (remark.date)
-                    
+                    if (remark.pseudo_user == "") { Text("Poste Anonyme")}
+                    else { Text ("Par " + (remark.pseudo_user))}
+                    Spacer()
+                    Text (remark.date_remark.components(separatedBy: "T")[0])
                 }
                 .padding()
                
             }.background(Color.red)
             .foregroundColor(.white)
             HStack {
-                Text (remark.description)
+                Text (remark.description_remark)
             }
             .padding()
             HStack () {
@@ -39,7 +36,7 @@ struct RemarkView: View {
                     HStack (spacing : 0) {
                         Text("Déja Entendu")
                         Spacer()
-                        Text (String(remark.seen))
+                        Text (String(remark.nb_seen_remark))
                     }
                     .font(.headline)
                     .foregroundColor(.white)
@@ -55,7 +52,7 @@ struct RemarkView: View {
                     HStack (spacing : 0) {
                         Text("Déja Subi")
                         Spacer()
-                        Text (String(remark.suffered))
+                        Text (String(remark.nb_suffered_remark))
                     }
                     .buttonStyle(PlainButtonStyle())
                     .font(.headline)

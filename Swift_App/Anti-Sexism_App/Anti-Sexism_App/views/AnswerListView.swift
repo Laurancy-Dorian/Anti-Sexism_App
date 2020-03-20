@@ -10,19 +10,17 @@ import SwiftUI
 
 struct AnswerListView: View {
     
-    var answerList : AnswerList
+    var idRemark : Int
+    @ObservedObject var answerManager : AnswerManager
     
-    init() {
-        answerList = AnswerList()
+    init(idRemark : Int){
+        self.idRemark = idRemark
+         answerManager = AnswerManager(idRemark: idRemark)
     }
     
     var body: some View {
-        List{
-            ForEach(self.answerList.listAnswers) { answer in
-                    VStack{
-                        AnswerView(answer: answer)
-                    }
-            }.padding()
+        List(answerManager.answerList.results, id: \.id_response){ answer in
+            AnswerView(answer: answer)
         }
     }
 }
