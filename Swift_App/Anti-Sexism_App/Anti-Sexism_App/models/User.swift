@@ -9,11 +9,11 @@
 import Foundation
 
 class User {
-    var pseudo : String = ""
-    var password : String = ""
+    var pseudo_user : String = ""
+    var password_user : String = ""
     
     init(pseudo : String, password : String) {
-        self.pseudo = pseudo
-        self.password = password
+        self.pseudo_user = pseudo
+        self.password_user = password
     }
 }

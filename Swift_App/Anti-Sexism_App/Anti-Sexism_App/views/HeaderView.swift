@@ -27,27 +27,27 @@ struct HeaderView: View {
                         .font(.headline)
                 }
                 HStack {
-                    Image(systemName: "tram.fill")
+                    Image(systemName: "desktopcomputer")
                         .foregroundColor(.blue)
                         .imageScale(.large)
-                    Text("Dans les transports")
+                    Text("Au travail")
                         .foregroundColor(.blue)
                         .font(.headline)
                 }
                 HStack {
-                    Image(systemName: "desktopcomputer")
-                        .foregroundColor(.green)
+                    Image(systemName: "tram.fill")
+                        .foregroundColor(.orange)
                         .imageScale(.large)
-                    Text("Au travail")
-                        .foregroundColor(.green)
+                    Text("Dans les transports")
+                        .foregroundColor(.orange)
                         .font(.headline)
                 }
                 HStack {
                     Image(systemName: "house.fill")
-                        .foregroundColor(.orange)
+                        .foregroundColor(.green)
                         .imageScale(.large)
                     Text("Au domicile")
-                        .foregroundColor(.orange)
+                        .foregroundColor(.green)
                         .font(.headline)
                 }
             }

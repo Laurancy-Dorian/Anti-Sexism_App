@@ -56,6 +56,7 @@ struct AnswerView: View {
                         .background(Color.red)
                         .cornerRadius(15)
                     }
+                    .buttonStyle(PlainButtonStyle())
                 }
             }
             .padding()

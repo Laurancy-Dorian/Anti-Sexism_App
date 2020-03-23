@@ -50,9 +50,3 @@ struct AddRemarkView: View {
         }
     }
 }
-
-struct AddRemarkView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddRemarkView()
-    }
-}

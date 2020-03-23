@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		B31C58312417E9AE00B01BCF /* MyAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31C58302417E9AE00B01BCF /* MyAccountView.swift */; };
+		B327FC45242796E900AE1951 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B327FC44242796E900AE1951 /* UserManager.swift */; };
 		B32DD49A240D32F300BB4579 /* RemarkListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32DD499240D32F300BB4579 /* RemarkListView.swift */; };
 		B32DD49E240D412300BB4579 /* RemarkContextList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32DD49D240D412300BB4579 /* RemarkContextList.swift */; };
 		B32DD4A0240D415C00BB4579 /* RemarkContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32DD49F240D415C00BB4579 /* RemarkContext.swift */; };
@@ -60,6 +61,7 @@
 
 /* Begin PBXFileReference section */
 		B31C58302417E9AE00B01BCF /* MyAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountView.swift; sourceTree = "<group>"; };
+		B327FC44242796E900AE1951 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		B32DD499240D32F300BB4579 /* RemarkListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemarkListView.swift; sourceTree = "<group>"; };
 		B32DD49D240D412300BB4579 /* RemarkContextList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemarkContextList.swift; sourceTree = "<group>"; };
 		B32DD49F240D415C00BB4579 /* RemarkContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemarkContext.swift; sourceTree = "<group>"; };
@@ -124,6 +126,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B327FC472427A10500AE1951 /* services */ = {
+			isa = PBXGroup;
+			children = (
+				B3650DAE24250A8500C3E844 /* RemarkManager.swift */,
+				B3749E402425357900AD7E99 /* AnswerManager.swift */,
+				B327FC44242796E900AE1951 /* UserManager.swift */,
+			);
+			path = services;
+			sourceTree = "<group>";
+		};
 		B339CA06240971CF0095CE9B = {
 			isa = PBXGroup;
 			children = (
@@ -147,10 +159,11 @@
 		B339CA11240971CF0095CE9B /* Anti-Sexism_App */ = {
 			isa = PBXGroup;
 			children = (
-				B3D8C85224192787000A34DD /* pages */,
 				B3F4FE11240CF00C009E48CB /* api */,
 				B339CA43240972190095CE9B /* views */,
+				B3D8C85224192787000A34DD /* pages */,
 				B339CA42240972110095CE9B /* models */,
+				B327FC472427A10500AE1951 /* services */,
 				B339CA12240971CF0095CE9B /* AppDelegate.swift */,
 				B339CA14240971CF0095CE9B /* SceneDelegate.swift */,
 				B339CA16240971CF0095CE9B /* ContentView.swift */,
@@ -198,8 +211,6 @@
 				B3DF2F5B240D57BE00DCDB19 /* AnswerType.swift */,
 				B3DF2F5D240D583100DCDB19 /* AnswerTypeList.swift */,
 				B3DF2F61240D599F00DCDB19 /* AnswerList.swift */,
-				B3650DAE24250A8500C3E844 /* RemarkManager.swift */,
-				B3749E402425357900AD7E99 /* AnswerManager.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -380,6 +391,7 @@
 				B3ACA1FC240E913400E2895B /* RemarkPage.swift in Sources */,
 				B3749E412425357900AD7E99 /* AnswerManager.swift in Sources */,
 				B3C906F4240EA81B006C8A2B /* HomePage.swift in Sources */,
+				B327FC45242796E900AE1951 /* UserManager.swift in Sources */,
 				B339CA15240971CF0095CE9B /* SceneDelegate.swift in Sources */,
 				B3650DAF24250A8500C3E844 /* RemarkManager.swift in Sources */,
 				B32DD4A0240D415C00BB4579 /* RemarkContext.swift in Sources */,

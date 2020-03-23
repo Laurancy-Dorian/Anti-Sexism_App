@@ -45,9 +45,3 @@ struct AddAnswerView: View {
         }
     }
 }
-
-struct AddAnswerView_Previews: PreviewProvider {
-    static var previews: some View {
-        AddAnswerView()
-    }
-}
