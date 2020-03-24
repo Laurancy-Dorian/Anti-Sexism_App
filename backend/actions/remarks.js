@@ -99,9 +99,9 @@ remarks.deleteRemark = (req, res, next) => {
 
     modelResponses = require(appRoot + '/db/models/Model')("responses")
     modelResponses.delete(where, (results, error) => {
-        if (!error && results.affectedRows != 0) { /* Successfully deleted responses */
+        if (!error) { /* Successfully deleted responses */
             model.delete(where, (results, error) => {
-                if (!error && results.affectedRows != 0) { /* Success remark */
+                if (!error) { /* Success remark */
                     res.sendStatus(200)
                 } else {
                     errors.addErrorMessage('-1', error.sqlMessage);
