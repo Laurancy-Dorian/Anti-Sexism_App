@@ -320,7 +320,7 @@ define({ "api": [
             "type": "number[]",
             "optional": true,
             "field": "context",
-            "description": "<p>Select only the remarks which have context in this array. Ex /remarks?context=[&quot;1&quot;,&quot;4&quot;]</p>"
+            "description": "<p>Select only the remarks which have context in this array. Ex /remarks?context=[1,4]</p>"
           },
           {
             "group": "Parameter",
@@ -1267,7 +1267,7 @@ define({ "api": [
             "type": "number[]",
             "optional": true,
             "field": "type",
-            "description": "<p>Select only the Responses which have type in this array. Ex /remarks/1/Responses?type=[&quot;1&quot;,&quot;3&quot;]</p>"
+            "description": "<p>Select only the Responses which have type in this array. Ex /remarks/1/Responses?type=[1,3]</p>"
           },
           {
             "group": "Parameter",
