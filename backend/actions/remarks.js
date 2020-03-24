@@ -3,15 +3,32 @@ const model = require(appRoot + '/db/models/Model')('remarks');
 
 /* Loads helpers and libraries */
 const errorAction = require(appRoot + '/helpers/errors');
+const errorHelper = require(appRoot + '/helpers/errors');
 const util = require(appRoot + '/helpers/util');
 
 const remarks = {};
 
 
 remarks.listRemarks = (req, res, next) => {
-    const sql = 'SELECT * FROM remarks';
-    pool.query(sql, (errors, results) => {
-        res.json(results);
+    let where = {
+        'description_remark': "%" + (req.query.content ? req.query.content : "") + "%",
+    }
+
+    try {
+        context = JSON.parse(req.query.context)
+        where.id_context = context
+    } catch (error) {}
+    
+    model.readOrdered(['*'], where, {
+        "date_remark" : req.query.order == "ASC" || req.query.order == "DESC" ? req.query.order : "DESC"
+    }, (results, error) => {
+        if (!error) {
+            res.json(results);
+        } else {
+            let errors = errorHelper();
+            errors.addErrorMessage('-1', error.sqlMessage);
+            errors.sendErrors(res, 404);
+        }
     });
 }
 
@@ -77,6 +94,26 @@ remarks.addRemark = (req, res, next) => {
 }
 
 remarks.deleteRemark = (req, res, next) => {
+    let errors = errorAction();
+    const where = {"id_remark" : req.params.idRemark}
+
+    modelResponses = require(appRoot + '/db/models/Model')("responses")
+    modelResponses.delete(where, (results, error) => {
+        if (!error && results.affectedRows != 0) { /* Successfully deleted responses */
+            model.delete(where, (results, error) => {
+                if (!error && results.affectedRows != 0) { /* Success remark */
+                    res.sendStatus(200)
+                } else {
+                    errors.addErrorMessage('-1', error.sqlMessage);
+                    errors.sendErrors(res, 409);
+                }
+            })
+        } else {
+            errors.addErrorMessage('-1', error.sqlMessage);
+            errors.sendErrors(res, 409);
+        }
+    })
+    
 
 }
 

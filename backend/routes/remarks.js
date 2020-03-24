@@ -15,7 +15,7 @@ router.route('/')
      * @apiName GetRemarks
      * @apiGroup Remarks
      * 
-     * @apiParam {number[]} [context] Select only the remarks which have context in this array. Ex /remarks?context=["1","4"]
+     * @apiParam {number[]} [context] Select only the remarks which have context in this array. Ex /remarks?context=[1,4]
      * @apiParam {string} [content] Select the remarks with description that contains this string
      * @apiParam {string="date","popularity"} [sortby=date] Sort the remarks by the most recent or popularity
      * @apiParam {string="ASC","DESC"} [order=DESC] the order of the sort

@@ -110,6 +110,8 @@ remarks_contexts.updateRemarkContext = (req, res, next) => {
 }
 
 remarks_contexts.deleteRemarkContext = (req, res, next) => {
+    let errors = errorAction();
+
     const where = {"id_context" : req.params.idRemarkContext}
     model.delete(where, (results, error) => {
         if (!error && results.affectedRows != 0) { /* Success */

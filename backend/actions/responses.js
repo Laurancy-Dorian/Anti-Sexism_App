@@ -3,13 +3,34 @@ const model = require(appRoot + '/db/models/Model')('responses');
 
 /* Loads helpers and libraries */
 const errorAction = require(appRoot + '/helpers/errors');
+const errorHelper = require(appRoot + '/helpers/errors');
+
 const util = require(appRoot + '/helpers/util');
 
 const responses = {};
 
 responses.listResponses = (req, res, next) => {
-    model.read(['*'], {"id_remark" : req.idRemark}, (results, error) => {
-        res.json(results);
+    let errors = errorHelper();
+
+    let where = {
+        "id_remark" : req.idRemark,
+    }
+
+    try {
+        type = JSON.parse(req.query.type)
+        where.id_response_type = type
+    } catch (error) {}
+    
+    model.readOrdered(['*'], where, {
+        "date_response" : req.query.order == "ASC" || req.query.order == "DESC" ? req.query.order : "DESC"
+    }, (results, error) => {
+        if (!error) {
+            res.json(results);
+        } else {
+            let errors = errorHelper();
+            errors.addErrorMessage('-1', error.sqlMessage);
+            errors.sendErrors(res, 404);
+        }
     });
 }
 

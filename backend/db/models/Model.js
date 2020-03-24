@@ -20,10 +20,29 @@ const formatWhere = (where, next) => {
     let whereValues = [];
     let whereSql = ' ';
     let and = 'WHERE ';
+    let or = '';
     for (let key in where) {
-        whereSql += and + key + ' = ?';
-        whereValues.push(where[key]);
+        
+        if (Array.isArray(where[key])) {
+            if (where[key].length > 0) {
+                whereSql += and + ' ( '
+                where[key].forEach(element => {
+                    whereSql += or + key + ' LIKE ?';
+                    whereValues.push(element);
+                    or = ' OR '
+                })
+                whereSql += ' ) '
+            }
+
+            
+        } else {
+            whereSql += and + key + ' LIKE ?';
+            whereValues.push(where[key]);
+        }
+
         and = ' AND ';
+
+
     }
     next(whereSql, whereValues);
 }
@@ -128,11 +147,59 @@ module.exports = (table) => {
                 sql = 'SELECT ' + select.join(', ') + ' FROM ' + table + whereSql;
             }
 
+
             pool.query(sql, values, (error, results, fields) => {
                 next(results, error);
             });
         });
     };
+
+    /**
+     * Reads the rows in table, according to the where parameter.
+     *
+     * @param select    an array of string representing the fields you want to select
+     *          example : ['id_user', 'name_user'] will create "SELECT id_user, name_user FROM ...'
+     *
+     *
+     * @param where     an object on the form (example) :  {field1: value1, field2: value2}
+     *                      where field is an attribute/field of the table and value is its value.
+     *          this example will give : " ... WHERE field1 = value1 AND field2 = value2"
+     *
+     *   ===>  give an empty object {} if you don't want a WHERE clause
+     * 
+     * @param orderby an object of fields you want to order by ex: {"date" : "ASC", "id" : "DESC"}
+     *
+
+     * @param next   the callback function when the query is done : (res, err) => {};
+     *                  if  err is NOT empty, this means the query failed.
+     */
+    model.readOrdered = (select, where, orderby, next) => {
+        formatWhere(where, (whereSql, values) => {
+            let sql = "";
+            if (select.length == 0) {
+                sql = 'SELECT * FROM ' + table + whereSql;
+            } else {
+                sql = 'SELECT ' + select.join(', ') + ' FROM ' + table + whereSql;
+            }
+            if (Object.keys(orderby).length > 0) {
+                sql += " ORDER BY "
+                let virgule = ""
+                Object.keys(orderby).forEach (key => {
+                    sql += virgule + key + " " + orderby[key]
+                    virgule = ", "
+                })
+            }
+            
+
+            console.log(sql)
+            console.log(values)
+            pool.query(sql, values, (error, results, fields) => {
+                next(results, error);
+            });
+        });
+    };
+
+
 
     /**
      * Insert the rows in table, according to where parameter.
