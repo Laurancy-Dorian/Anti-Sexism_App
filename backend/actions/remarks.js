@@ -48,7 +48,8 @@ remarks.addRemark = (req, res, next) => {
     
         auth.validateToken(req, res, () => {
             const pseudo = req.dataToken ? req.dataToken.user.pseudo_user : null;
-
+            
+            
             data = {
                 "description_remark": req.body.description_remark,
                 "nb_seen_remark": 0,
@@ -62,6 +63,7 @@ remarks.addRemark = (req, res, next) => {
             model.create(data, {}, (results, error) => {
                 if (!error && results.affectedRows != 0) { /* Success */
                     res.status(201);
+                    data.id_remark = results.insertId
                     res.json(data);
                 } else {
                     errors.addErrorMessage('-1', error.sqlMessage);

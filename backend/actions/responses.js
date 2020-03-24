@@ -60,6 +60,7 @@ responses.addResponse = (req, res, next) => {
             model.create(data, {}, (results, error) => {
                 if (!error && results.affectedRows != 0) { /* Success */
                     res.status(201);
+                    data.id_response = results.insertId
                     res.json(data);
                 } else {
                     errors.addErrorMessage('-1', error.sqlMessage);

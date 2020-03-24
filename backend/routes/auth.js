@@ -32,6 +32,9 @@ var authActions = require (appRoot + '/actions/auth');
  * @apiParam {String} password_user User password
  *
  * @apiSuccess {String} token The jwt token.
+ * @apiSuccess {object} user The user data
+ * @apiSuccess {String} user.pseudo_user The user pseudo
+ * @apiSuccess {boolean} user.is_admin_user true if the user is admin
  * @apiError (400) InvalidUsername The username of the user is invalid
  * @apiError (400) InvalidPassword The password of the user is invalid
  */

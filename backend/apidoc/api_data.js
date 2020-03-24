@@ -35,6 +35,27 @@ define({ "api": [
             "optional": false,
             "field": "token",
             "description": "<p>The jwt token.</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "object",
+            "optional": false,
+            "field": "user",
+            "description": "<p>The user data</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "String",
+            "optional": false,
+            "field": "user.pseudo_user",
+            "description": "<p>The user pseudo</p>"
+          },
+          {
+            "group": "Success 200",
+            "type": "boolean",
+            "optional": false,
+            "field": "user.is_admin_user",
+            "description": "<p>true if the user is admin</p>"
           }
         ]
       }
@@ -445,9 +466,59 @@ define({ "api": [
         "201": [
           {
             "group": "201",
+            "type": "object",
             "optional": false,
-            "field": "Created",
-            "description": "<p>The Remark has been created</p>"
+            "field": "Remark",
+            "description": "<p>The object containing the Remark data</p>"
+          },
+          {
+            "group": "201",
+            "type": "number",
+            "optional": false,
+            "field": "Remark.id_remark",
+            "description": "<p>The id</p>"
+          },
+          {
+            "group": "201",
+            "type": "String",
+            "optional": false,
+            "field": "Remark.description_remark",
+            "description": "<p>The content of the remark</p>"
+          },
+          {
+            "group": "201",
+            "type": "String",
+            "optional": false,
+            "field": "Remark.nb_seen_remark",
+            "description": "<p>The number of users that declared they have seen a situation like this one</p>"
+          },
+          {
+            "group": "201",
+            "type": "String",
+            "optional": false,
+            "field": "Remark.nb_suffered_remark",
+            "description": "<p>The number of users that declared they have suffered a situation like this one</p>"
+          },
+          {
+            "group": "201",
+            "type": "String",
+            "optional": false,
+            "field": "Remark.date_remark",
+            "description": "<p>The date this remark has been posted</p>"
+          },
+          {
+            "group": "201",
+            "type": "String",
+            "optional": false,
+            "field": "Remark.pseudo_user",
+            "description": "<p>The pseudo of the user who posted this remark, null if anonymous</p>"
+          },
+          {
+            "group": "201",
+            "type": "String",
+            "optional": false,
+            "field": "Remark.id_context",
+            "description": "<p>The id of the context of this remark</p>"
           }
         ]
       }
@@ -547,6 +618,75 @@ define({ "api": [
     "groupTitle": "Remarks"
   },
   {
+    "type": "delete",
+    "url": "/remarks_contexts/:idRemarksContext",
+    "title": "Delete a Remarks Context",
+    "description": "<p>Delete the Remark Context</p>",
+    "name": "DeleteRemarksContext",
+    "group": "Remarks_Contexts",
+    "permission": [
+      {
+        "name": "MustBeAdmin",
+        "title": "The user must be admin to reach this ressource",
+        "description": ""
+      },
+      {
+        "name": "NeedToken",
+        "title": "The json Web token (jwt) is needed",
+        "description": ""
+      }
+    ],
+    "error": {
+      "fields": {
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "InvalidJWTToken",
+            "description": "<p>The jwt token is invalid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "AuthorizationHeaderNotDefined",
+            "description": "<p>The Authorization header is not defined</p>"
+          }
+        ],
+        "403": [
+          {
+            "group": "403",
+            "optional": false,
+            "field": "NotAnAdmin",
+            "description": "<p>The user is authentified but is not an admin, they may not access this ressource</p>"
+          }
+        ],
+        "404": [
+          {
+            "group": "404",
+            "optional": false,
+            "field": "NotFound",
+            "description": "<p>The Remark Context doesn't exists</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/remarks_contexts.js",
+    "groupTitle": "Remarks_Contexts",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Bearer token : The token is the jwt token given when successfully reached POST /auth</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "get",
     "url": "/remarks_contexts/:idRemarksContext",
     "title": "Get a Remarks Context",
@@ -629,7 +769,7 @@ define({ "api": [
           },
           {
             "group": "200",
-            "type": "integer",
+            "type": "string",
             "optional": false,
             "field": "RemarksContexts.color_context",
             "description": "<p>The color associated</p>"
@@ -640,6 +780,129 @@ define({ "api": [
     "version": "0.0.0",
     "filename": "routes/remarks_contexts.js",
     "groupTitle": "Remarks_Contexts"
+  },
+  {
+    "type": "patch",
+    "url": "/remarks_contexts/:idRemarksContext",
+    "title": "Update a Remarks Context",
+    "description": "<p>Update the data of the Remark Context</p>",
+    "name": "PatchRemarksContext",
+    "group": "Remarks_Contexts",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "name_context",
+            "description": "<p>The name of the Remarks Context.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "color_context",
+            "description": "<p>The color of the Remarks Context in hex format.</p>"
+          }
+        ]
+      }
+    },
+    "permission": [
+      {
+        "name": "MustBeAdmin",
+        "title": "The user must be admin to reach this ressource",
+        "description": ""
+      },
+      {
+        "name": "NeedToken",
+        "title": "The json Web token (jwt) is needed",
+        "description": ""
+      }
+    ],
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "type": "object",
+            "optional": false,
+            "field": "RemarksContext",
+            "description": "<p>the Remarks Contexts</p>"
+          },
+          {
+            "group": "200",
+            "type": "integer",
+            "optional": false,
+            "field": "RemarksContext.id_context",
+            "description": "<p>The id</p>"
+          },
+          {
+            "group": "200",
+            "type": "String",
+            "optional": false,
+            "field": "RemarksContext.name_context",
+            "description": "<p>The name</p>"
+          },
+          {
+            "group": "200",
+            "type": "string",
+            "optional": false,
+            "field": "RemarksContext.color_context",
+            "description": "<p>The color associated</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "InvalidJWTToken",
+            "description": "<p>The jwt token is invalid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "AuthorizationHeaderNotDefined",
+            "description": "<p>The Authorization header is not defined</p>"
+          }
+        ],
+        "403": [
+          {
+            "group": "403",
+            "optional": false,
+            "field": "NotAnAdmin",
+            "description": "<p>The user is authentified but is not an admin, they may not access this ressource</p>"
+          }
+        ],
+        "404": [
+          {
+            "group": "404",
+            "optional": false,
+            "field": "NotFound",
+            "description": "<p>The Remark Context doesn't exists</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/remarks_contexts.js",
+    "groupTitle": "Remarks_Contexts",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Bearer token : The token is the jwt token given when successfully reached POST /auth</p>"
+          }
+        ]
+      }
+    }
   },
   {
     "type": "post",
@@ -672,10 +935,10 @@ define({ "api": [
           },
           {
             "group": "Parameter",
-            "type": "integer",
+            "type": "String",
             "optional": false,
             "field": "color_context",
-            "description": "<p>The color of the Remarks Context.</p>"
+            "description": "<p>The color of the Remarks Context in hex format.</p>"
           }
         ]
       }
@@ -744,7 +1007,7 @@ define({ "api": [
   },
   {
     "type": "delete",
-    "url": "/remarks/:idRemark/responses/:idResponse/like",
+    "url": "/remarks/:idRemark/responses/:idResponse/dislike",
     "title": "UnDislike a Response",
     "description": "<p>Decrease the number of &quot;dislike&quot; of this Response by 1</p>",
     "name": "DeleteDislike",
@@ -1155,9 +1418,59 @@ define({ "api": [
         "201": [
           {
             "group": "201",
+            "type": "object",
             "optional": false,
-            "field": "Created",
-            "description": "<p>The Response has been created</p>"
+            "field": "Response",
+            "description": "<p>An object containing the Response data</p>"
+          },
+          {
+            "group": "201",
+            "type": "number",
+            "optional": false,
+            "field": "Response.id_response",
+            "description": "<p>The id</p>"
+          },
+          {
+            "group": "201",
+            "type": "String",
+            "optional": false,
+            "field": "Response.description_response",
+            "description": "<p>The content of the Response</p>"
+          },
+          {
+            "group": "201",
+            "type": "String",
+            "optional": false,
+            "field": "Response.nb_likes_response",
+            "description": "<p>The number of users that liked this Response</p>"
+          },
+          {
+            "group": "201",
+            "type": "String",
+            "optional": false,
+            "field": "Response.nb_dislikes_response",
+            "description": "<p>The number of users that disliked this Response</p>"
+          },
+          {
+            "group": "201",
+            "type": "String",
+            "optional": false,
+            "field": "Response.date_remsponse",
+            "description": "<p>The date this response has been posted</p>"
+          },
+          {
+            "group": "201",
+            "type": "String",
+            "optional": false,
+            "field": "Response.pseudo_user",
+            "description": "<p>The pseudo of the user who posted this response, null if anonymous</p>"
+          },
+          {
+            "group": "201",
+            "type": "String",
+            "optional": false,
+            "field": "Response.id_responses_type",
+            "description": "<p>The id of the type of this response</p>"
           }
         ]
       }
@@ -1277,6 +1590,75 @@ define({ "api": [
     "groupTitle": "Responses"
   },
   {
+    "type": "delete",
+    "url": "/responses_types/:idResponseType",
+    "title": "Delete a Responses Type",
+    "description": "<p>Delete the Remark Context</p>",
+    "name": "DeleteResponsesType",
+    "group": "Responses_Types",
+    "permission": [
+      {
+        "name": "MustBeAdmin",
+        "title": "The user must be admin to reach this ressource",
+        "description": ""
+      },
+      {
+        "name": "NeedToken",
+        "title": "The json Web token (jwt) is needed",
+        "description": ""
+      }
+    ],
+    "error": {
+      "fields": {
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "InvalidJWTToken",
+            "description": "<p>The jwt token is invalid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "AuthorizationHeaderNotDefined",
+            "description": "<p>The Authorization header is not defined</p>"
+          }
+        ],
+        "403": [
+          {
+            "group": "403",
+            "optional": false,
+            "field": "NotAnAdmin",
+            "description": "<p>The user is authentified but is not an admin, they may not access this ressource</p>"
+          }
+        ],
+        "404": [
+          {
+            "group": "404",
+            "optional": false,
+            "field": "NotFound",
+            "description": "<p>The Responses Type doesn't exists</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/responses_types.js",
+    "groupTitle": "Responses_Types",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Bearer token : The token is the jwt token given when successfully reached POST /auth</p>"
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "get",
     "url": "/responses_types/:idResponseType",
     "title": "Get a Responses Type",
@@ -1288,23 +1670,30 @@ define({ "api": [
         "200": [
           {
             "group": "200",
+            "type": "object",
+            "optional": false,
+            "field": "ReponseType",
+            "description": "<p>the Response Type</p>"
+          },
+          {
+            "group": "200",
             "type": "integer",
             "optional": false,
-            "field": "id_response_type",
+            "field": "ReponseType.id_response_type",
             "description": "<p>The id</p>"
           },
           {
             "group": "200",
             "type": "String",
             "optional": false,
-            "field": "name_response_type",
+            "field": "ReponseType.name_response_type",
             "description": "<p>The name</p>"
           },
           {
             "group": "200",
             "type": "String",
             "optional": false,
-            "field": "emoji_response_type",
+            "field": "ReponseType.emoji_response_type",
             "description": "<p>The emoji associated</p>"
           }
         ]
@@ -1370,6 +1759,129 @@ define({ "api": [
     "version": "0.0.0",
     "filename": "routes/responses_types.js",
     "groupTitle": "Responses_Types"
+  },
+  {
+    "type": "patch",
+    "url": "/responses_types/:idResponseType",
+    "title": "Update a Responses Type",
+    "description": "<p>Update the data of the Remark Context</p>",
+    "name": "PatchResponsesType",
+    "group": "Responses_Types",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "name_response_type",
+            "description": "<p>The name of the Responses Type.</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "String",
+            "optional": true,
+            "field": "emoji_response_type",
+            "description": "<p>The emoji associated with this responses type.</p>"
+          }
+        ]
+      }
+    },
+    "permission": [
+      {
+        "name": "MustBeAdmin",
+        "title": "The user must be admin to reach this ressource",
+        "description": ""
+      },
+      {
+        "name": "NeedToken",
+        "title": "The json Web token (jwt) is needed",
+        "description": ""
+      }
+    ],
+    "success": {
+      "fields": {
+        "200": [
+          {
+            "group": "200",
+            "type": "object",
+            "optional": false,
+            "field": "ReponseType",
+            "description": "<p>the Response Type</p>"
+          },
+          {
+            "group": "200",
+            "type": "integer",
+            "optional": false,
+            "field": "ReponseType.id_response_type",
+            "description": "<p>The id</p>"
+          },
+          {
+            "group": "200",
+            "type": "String",
+            "optional": false,
+            "field": "ReponseType.name_response_type",
+            "description": "<p>The name</p>"
+          },
+          {
+            "group": "200",
+            "type": "String",
+            "optional": false,
+            "field": "ReponseType.emoji_response_type",
+            "description": "<p>The emoji associated</p>"
+          }
+        ]
+      }
+    },
+    "error": {
+      "fields": {
+        "401": [
+          {
+            "group": "401",
+            "optional": false,
+            "field": "InvalidJWTToken",
+            "description": "<p>The jwt token is invalid</p>"
+          },
+          {
+            "group": "401",
+            "optional": false,
+            "field": "AuthorizationHeaderNotDefined",
+            "description": "<p>The Authorization header is not defined</p>"
+          }
+        ],
+        "403": [
+          {
+            "group": "403",
+            "optional": false,
+            "field": "NotAnAdmin",
+            "description": "<p>The user is authentified but is not an admin, they may not access this ressource</p>"
+          }
+        ],
+        "404": [
+          {
+            "group": "404",
+            "optional": false,
+            "field": "NotFound",
+            "description": "<p>The Responses Type doesn't exists</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "routes/responses_types.js",
+    "groupTitle": "Responses_Types",
+    "header": {
+      "fields": {
+        "Header": [
+          {
+            "group": "Header",
+            "optional": false,
+            "field": "Authorization",
+            "description": "<p>Bearer token : The token is the jwt token given when successfully reached POST /auth</p>"
+          }
+        ]
+      }
+    }
   },
   {
     "type": "post",

@@ -48,7 +48,15 @@ router.route('/')
      * @apiParam {String} description_response The content of the response
      * @apiParam {String} id_response_type The id of the Response Type of this Reponse
      *
-     * @apiSuccess (201) Created The Response has been created
+     * @apiSuccess (201) {object} Response An object containing the Response data 
+     * @apiSuccess (201) {number} Response.id_response The id
+     * @apiSuccess (201) {String} Response.description_response The content of the Response
+     * @apiSuccess (201) {String} Response.nb_likes_response The number of users that liked this Response
+     * @apiSuccess (201) {String} Response.nb_dislikes_response The number of users that disliked this Response
+     * @apiSuccess (201) {String} Response.date_remsponse The date this response has been posted
+     * @apiSuccess (201) {String} Response.pseudo_user The pseudo of the user who posted this response, null if anonymous
+     * @apiSuccess (201) {String} Response.id_responses_type The id of the type of this response
+     * 
      * @apiError (400) MissingParameters The request is missing parameters
      * @apiError (401) InvalidJWTToken The jwt token is invalid
      * 
@@ -144,7 +152,7 @@ router.route('/:idResponse/dislike')
     .put(actions.dislike)
 
     /**
-     * @api {delete} /remarks/:idRemark/responses/:idResponse/like UnDislike a Response
+     * @api {delete} /remarks/:idRemark/responses/:idResponse/dislike UnDislike a Response
      * @apiDescription Decrease the number of "dislike" of this Response by 1
      * 
      * @apiName DeleteDislike
