@@ -14,7 +14,11 @@ const remarks_contexts = {};
 remarks_contexts.listRemarkContext = (req, res, next) => {
     const sql = 'SELECT * FROM remarks_contexts';
     pool.query(sql, (errors, results) => {
-        res.json(results);
+        const data = results.map(remContext => {
+            remContext.color_context = util.VBColorToHEX(remContext.color_context)
+            return remContext
+        })
+        res.json(data);
     });
 }
 
@@ -26,7 +30,12 @@ remarks_contexts.readRemarkContext = (req, res, next) => {
     const where = {"id_context" : req.params.idRemarkContext}
     model.read(['*'], where, (results, error) => {
         if (!error && results != 0) {
-            res.json(results);
+            let data = {}
+            res.json({
+                "id_context": results[0].id_context,
+                "name_context": results[0].name_context,
+                "color_context": util.VBColorToHEX(results[0].color_context)
+            });
         } else {
             let errors = errorHelper();
             errors.addErrorMessage('40402 ', 'Not found - There is no Remark Context with this id');
@@ -55,13 +64,15 @@ remarks_contexts.addRemarkContext = (req, res, next) => {
 
         data = {
             "name_context" : req.body.name_context,
-            "color_context" : req.body.color_context
+            "color_context" : util.HEXToVBColor(req.body.color_context.slice(1))
         }
         
         /* Creates the remark context */
         model.create(data, {}, (results, error) => {
             if (!error && results.affectedRows != 0) { /* Success */
-                res.sendStatus(201);
+                res.status(201);
+                data.id_response = results.insertId
+                res.json(data);
             } else {
                 errors.addErrorMessage('-1', error.sqlMessage);
                 errors.sendErrors(res, 409);
@@ -73,10 +84,43 @@ remarks_contexts.addRemarkContext = (req, res, next) => {
 }
 
 remarks_contexts.updateRemarkContext = (req, res, next) => {
+    let errors = errorAction();
+
+    let data = { }
+    if (req.body.name_context) {
+        data.name_context = req.body.name_context
+    }
+    if (req.body.color_context) {
+        data.color_context = util.HEXToVBColor(req.body.color_context.slice(1))
+    }
+
+    const where = {"id_context" : req.params.idRemarkContext}
+
+    
+    /* Creates the remark context */
+    model.update (data, where, (results, error) => {
+        if (!error && results.affectedRows != 0) { /* Success */
+            remarks_contexts.readRemarkContext(req, res, next)
+        } else {
+            errors.addErrorMessage('-1', error.sqlMessage);
+            errors.sendErrors(res, 409);
+        }
+    });
 
 }
 
 remarks_contexts.deleteRemarkContext = (req, res, next) => {
+    let errors = errorAction();
+
+    const where = {"id_context" : req.params.idRemarkContext}
+    model.delete(where, (results, error) => {
+        if (!error && results.affectedRows != 0) { /* Success */
+            res.sendStatus(200)
+        } else {
+            errors.addErrorMessage('-1', error.sqlMessage);
+            errors.sendErrors(res, 409);
+        }
+    })
 
 }
 

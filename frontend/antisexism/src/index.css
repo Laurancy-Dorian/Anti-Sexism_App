@@ -1,0 +1,105 @@
+:root {
+  --main-background-color: #1a1a1b;
+  --secondary-background-color : #4d4d4d;
+  --text-color-light: #EEE;
+  --text-color-dark: #111;
+}
+
+* {
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: 'Open Sans', sans-serif;
+	line-height: 1.75em;
+	font-size: 16px;
+	background-color: var(--main-background-color);
+	color: var(--text-color);
+}
+
+
+img {
+	max-width: 100%;
+}
+
+li {
+	line-height: 1.5em;
+}
+
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: 
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+
+/**
+* Remark
+*/
+
+.remark {
+  border: .1rem solid #EEE;
+  margin: 1rem;
+  border-radius: 2rem 0;
+  background: #f1b8b8;
+  color: var(--text-color-dark)
+}
+
+.remark > div {
+  padding: 1rem;
+}
+
+.header-remark {
+  border-bottom: .08rem solid #888;
+  background: #750303;
+  border-radius: 2rem 0 0 0;
+  color: var(--text-color-light)
+}
+
+.footer-remark {
+  border-radius: 0 0 2rem 0;
+}
+
+.description-remark {
+  font-size: 120%;
+  font-weight: 500;
+}
+
+
+.remark-button button {
+  background:grey;
+  border:none;
+}
+
+
+.remark-button-suffered button {
+  background : #751313;
+}
+.remark-button-suffered button:hover, .remark-button-suffered button:focus, .remark-button-suffered button:active {
+  background : #9e3030!important;
+  border-color: #9e3030!important;
+  box-shadow: 0 0 0 0.02rem #c33939!important;
+
+}
+.remark-button-seen button {
+  background: #10375f;
+}
+.remark-button-seen button:hover, .remark-button-seen button:focus, .remark-button-seen button:active {
+  background: #185594!important;
+  border-color: #185594!important;
+  box-shadow: 0 0 0 0.02rem #2265ab!important;
+}
+
+

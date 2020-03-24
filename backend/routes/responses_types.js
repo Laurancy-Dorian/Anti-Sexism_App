@@ -51,17 +51,53 @@ router.route('/:idResponseType')
      * @apiName GetResponsesType
      * @apiGroup Responses Types
      * 
-     * 
-     * @apiSuccess (200) {integer} id_response_type The id
-     * @apiSuccess (200) {String} name_response_type The name
-     * @apiSuccess (200) {String} emoji_response_type The emoji associated
+     * @apiSuccess (200) {object} ReponseType the Response Type
+     * @apiSuccess (200) {integer} ReponseType.id_response_type The id
+     * @apiSuccess (200) {String} ReponseType.name_response_type The name
+     * @apiSuccess (200) {String} ReponseType.emoji_response_type The emoji associated
      *
      * @apiError (404) NotFound The ResponseType doesn't exists
      */
     .get(rtActions.readResponsesTypes)
 
         
+    /**
+     * @api {patch} /responses_types/:idResponseType Update a Responses Type
+     * @apiDescription Update the data of the Remark Context
+     * 
+     * @apiName PatchResponsesType
+     * @apiGroup Responses Types
+     * 
+     * @apiParam {String} [name_response_type] The name of the Responses Type.
+     * @apiParam {String} [emoji_response_type] The emoji associated with this responses type.
+     * 
+     * @apiUse NeedToken
+     * @apiUse MustBeAdmin
+     * @apiPermission MustBeAdmin
+     * @apiPermission NeedToken
+     * 
+     * @apiSuccess (200) {object} ReponseType the Response Type
+     * @apiSuccess (200) {integer} ReponseType.id_response_type The id
+     * @apiSuccess (200) {String} ReponseType.name_response_type The name
+     * @apiSuccess (200) {String} ReponseType.emoji_response_type The emoji associated
+     * @apiError (404) NotFound The Responses Type doesn't exists
+     */
     .patch(auth.validateAdmin, rtActions.updateResponsesTypes)
+
+    /**
+     * @api {delete} /responses_types/:idResponseType Delete a Responses Type
+     * @apiDescription Delete the Remark Context
+     * 
+     * @apiName DeleteResponsesType
+     * @apiGroup Responses Types
+     * 
+     * @apiUse NeedToken
+     * @apiUse MustBeAdmin
+     * @apiPermission MustBeAdmin
+     * @apiPermission NeedToken
+     * 
+     * @apiError (404) NotFound The Responses Type doesn't exists
+     */
     .delete(auth.validateAdmin, rtActions.deleteResponsesTypes)
     
 module.exports = router;

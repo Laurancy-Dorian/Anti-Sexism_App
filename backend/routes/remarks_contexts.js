@@ -18,7 +18,7 @@ router.route('/')
      * @apiSuccess (200) {object[]} RemarksContexts An array containing the Remarks Contexts
      * @apiSuccess (200) {integer} RemarksContexts.id_context The id
      * @apiSuccess (200) {String} RemarksContexts.name_context The name
-     * @apiSuccess (200) {integer} RemarksContexts.color_context The color associated
+     * @apiSuccess (200) {string} RemarksContexts.color_context The color associated
      */
     .get(rcActions.listRemarkContext)
 
@@ -35,7 +35,7 @@ router.route('/')
      * @apiPermission NeedToken
      * 
      * @apiParam {String} name_context The name of the Remarks Context.
-     * @apiParam {integer} color_context The color of the Remarks Context.
+     * @apiParam {String} color_context The color of the Remarks Context in hex format.
      *
      * @apiSuccess (201) Created The Remarks Context has been created
      * @apiError (400) MissingParameters The request is missing parameters
@@ -51,14 +51,50 @@ router.route('/:idRemarkContext')
      * @apiName GetRemarksContext
      * @apiGroup Remarks Contexts
      * 
-     * 
      * @apiSuccess (200) {integer} id_context The id
      * @apiSuccess (200) {String} name_context The name
      * @apiSuccess (200) {integer} color_context The color associated
      * @apiError (404) NotFound The Remark Context doesn't exists
      */
     .get(rcActions.readRemarkContext)
+
+    /**
+     * @api {patch} /remarks_contexts/:idRemarksContext Update a Remarks Context
+     * @apiDescription Update the data of the Remark Context
+     * 
+     * @apiName PatchRemarksContext
+     * @apiGroup Remarks Contexts
+     * 
+     * @apiParam {String} [name_context] The name of the Remarks Context.
+     * @apiParam {String} [color_context] The color of the Remarks Context in hex format.
+     * 
+     * @apiUse NeedToken
+     * @apiUse MustBeAdmin
+     * @apiPermission MustBeAdmin
+     * @apiPermission NeedToken
+     * 
+     * @apiSuccess (200) {object} RemarksContext the Remarks Contexts
+     * @apiSuccess (200) {integer} RemarksContext.id_context The id
+     * @apiSuccess (200) {String} RemarksContext.name_context The name
+     * @apiSuccess (200) {string} RemarksContext.color_context The color associated
+     * @apiError (404) NotFound The Remark Context doesn't exists
+     */
     .patch(auth.validateAdmin, rcActions.updateRemarkContext)
+
+    /**
+     * @api {delete} /remarks_contexts/:idRemarksContext Delete a Remarks Context
+     * @apiDescription Delete the Remark Context
+     * 
+     * @apiName DeleteRemarksContext
+     * @apiGroup Remarks Contexts
+     * 
+     * @apiUse NeedToken
+     * @apiUse MustBeAdmin
+     * @apiPermission MustBeAdmin
+     * @apiPermission NeedToken
+     * 
+     * @apiError (404) NotFound The Remark Context doesn't exists
+     */
     .delete(auth.validateAdmin, rcActions.deleteRemarkContext)
     
 module.exports = router;

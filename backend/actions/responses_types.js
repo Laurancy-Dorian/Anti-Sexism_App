@@ -72,9 +72,44 @@ response_types.addResponsesType = (req, res, next) => {
 
 response_types.updateResponsesTypes = (req, res, next) => {
 
+    let errors = errorAction();
+
+    let data = { }
+    if (req.body.name_response_type) {
+        data.name_response_type = req.body.name_response_type
+    }
+    if (req.body.emoji_response_type) {
+        data.emoji_response_type = req.body.emoji_response_type
+    }
+
+    const where = {"id_response_type" : req.params.idResponseType}
+
+    
+    /* Creates the remark context */
+    model.update (data, where, (results, error) => {
+        if (!error && results.affectedRows != 0) { /* Success */
+            response_types.readResponsesTypes(req, res, next)
+        } else {
+            errors.addErrorMessage('-1', error.sqlMessage);
+            errors.sendErrors(res, 409);
+        }
+    });
+
+
 }
 
 response_types.deleteResponsesTypes = (req, res, next) => {
+    let errors = errorAction();
+
+    const where = {"id_response_type" : req.params.idResponseType}
+    model.delete(where, (results, error) => {
+        if (!error && results.affectedRows != 0) { /* Success */
+            res.sendStatus(200)
+        } else {
+            errors.addErrorMessage('-1', error.sqlMessage);
+            errors.sendErrors(res, 409);
+        }
+    })
 
 }
 
