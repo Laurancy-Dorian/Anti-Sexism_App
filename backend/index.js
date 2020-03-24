@@ -30,6 +30,8 @@ global.pool = require('./db/initDB');
  */
 var app = express();
 
+const cors = require('cors')
+app.use(cors())
 app.use(logger('dev'));
 
 app.use(express.json());

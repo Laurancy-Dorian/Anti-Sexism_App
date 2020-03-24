@@ -112,7 +112,8 @@ auth.login = (req, res, next) => {
                     // Creates the token
                     jwt.sign({user}, config.jwtSecret, (err, token) => {
                         res.json({
-                            token
+                            token,
+                            user
                         });
                     });
                 } else {

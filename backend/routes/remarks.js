@@ -15,7 +15,7 @@ router.route('/')
      * @apiName GetRemarks
      * @apiGroup Remarks
      * 
-     * @apiParam {number[]} [context] Select only the remarks which have context in this array. Ex /remarks?context=["1","4"]
+     * @apiParam {number[]} [context] Select only the remarks which have context in this array. Ex /remarks?context=[1,4]
      * @apiParam {string} [content] Select the remarks with description that contains this string
      * @apiParam {string="date","popularity"} [sortby=date] Sort the remarks by the most recent or popularity
      * @apiParam {string="ASC","DESC"} [order=DESC] the order of the sort
@@ -43,7 +43,14 @@ router.route('/')
      * @apiParam {String} description_remark The content of the remark
      * @apiParam {String} id_context The id of the context of this remark
      *
-     * @apiSuccess (201) Created The Remark has been created
+     * @apiSuccess (201) {object} Remark The object containing the Remark data 
+     * @apiSuccess (201) {number} Remark.id_remark The id
+     * @apiSuccess (201) {String} Remark.description_remark The content of the remark
+     * @apiSuccess (201) {String} Remark.nb_seen_remark The number of users that declared they have seen a situation like this one
+     * @apiSuccess (201) {String} Remark.nb_suffered_remark The number of users that declared they have suffered a situation like this one
+     * @apiSuccess (201) {String} Remark.date_remark The date this remark has been posted
+     * @apiSuccess (201) {String} Remark.pseudo_user The pseudo of the user who posted this remark, null if anonymous
+     * @apiSuccess (201) {String} Remark.id_context The id of the context of this remark     
      * @apiError (400) MissingParameters The request is missing parameters
      * @apiError (401) InvalidJWTToken The jwt token is invalid
      */
