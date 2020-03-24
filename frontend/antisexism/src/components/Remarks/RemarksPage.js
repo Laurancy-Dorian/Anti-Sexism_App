@@ -12,7 +12,11 @@ class RemarkPage extends Component {
     componentDidMount = () => {
         fetch("http://vps685054.ovh.net:8080/api/remarks")
             .then(response => response.json())
-            .then(result => console.log(result))
+            .then(result =>  {
+                this.setState({
+                    remarks: result
+                })
+            })
             .catch(error => console.log('error', error));
     }
 

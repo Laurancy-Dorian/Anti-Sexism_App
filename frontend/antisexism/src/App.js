@@ -1,5 +1,5 @@
 import React from 'react';
-import RemarksPage from './components/Remaks/RemarksPage'
+import RemarksPage from './components/Remarks/RemarksPage'
 
 function App() {
   return (
