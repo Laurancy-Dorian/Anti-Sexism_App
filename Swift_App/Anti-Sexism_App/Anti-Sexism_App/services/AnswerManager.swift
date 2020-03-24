@@ -13,8 +13,27 @@ import Combine
 class AnswerManager: ObservableObject {
     
     @Published var answerList = AnswerList(results: [])
+    @Published var nbAnswers: Int = 0
     
-    init(idRemark: Int){
+    init(idRemark: String){
+        guard let url = URL(string : "http://vps685054.ovh.net:8080/api/remarks/\(idRemark)/responses") else {return}
+        
+        URLSession.shared.dataTask(with: url){ (data, response, error) in
+            guard let data = data else {
+                print(String(describing: error))
+                return
+            }
+            
+            let answerList = try! JSONDecoder().decode([Answer].self, from: data)
+            //print(answerList)
+            
+            DispatchQueue.main.async{
+                self.answerList = AnswerList(results: answerList)
+            }
+        }.resume()
+    }
+    
+    func getAllAnswers(idRemark: Int){
         guard let url = URL(string : "http://vps685054.ovh.net:8080/api/remarks/\(idRemark)/responses") else {return}
         
         URLSession.shared.dataTask(with: url){ (data, response, error) in
@@ -53,6 +72,28 @@ class AnswerManager: ObservableObject {
           print(String(data: data, encoding: .utf8)!)
         }
         task.resume()
+    }
+    
+    func countAnswers(idRemark: String) -> Int{
+        var request = URLRequest(url: URL(string: "http://vps685054.ovh.net:8080/api/remarks/\(idRemark)/responses")!,timeoutInterval: Double.infinity)
+        request.httpMethod = "GET"
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+          guard let data = data else {
+            print(String(describing: error))
+            return
+          }
+          let answerList = try! JSONDecoder().decode([Answer].self, from: data)
+          //print(answerList)
+
+          DispatchQueue.main.async{
+              self.answerList = AnswerList(results: answerList)
+          }
+          self.nbAnswers = answerList.count
+        }
+
+        task.resume()
+        return self.nbAnswers
     }
     
     func like(idRemark: String, idResponse: String){

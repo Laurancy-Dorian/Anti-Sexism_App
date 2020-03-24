@@ -15,7 +15,7 @@ struct AnswerListView: View {
     
     init(idRemark : Int){
         self.idRemark = idRemark
-         answerManager = AnswerManager(idRemark: idRemark)
+         answerManager = AnswerManager(idRemark: String(idRemark))
     }
     
     var body: some View {

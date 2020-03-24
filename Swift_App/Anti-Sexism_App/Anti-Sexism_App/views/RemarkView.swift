@@ -11,22 +11,29 @@ import SwiftUI
 struct RemarkView: View {
     
     var remark: Remark
+    @ObservedObject var remarkManager: RemarkManager
+    @ObservedObject var answerManager: AnswerManager
     
-    @State private var heard: Int = 0
-    @State private var suffered: Int = 0
+    @State private var heard: Bool = false
+    @State private var suffered: Bool = false
+    init (remark: Remark, remarkManager: RemarkManager) {
+        self.remark = remark
+        self.remarkManager = remarkManager
+        self.answerManager = AnswerManager(idRemark: String(remark.id_remark))
+        self.answerManager.countAnswers(idRemark: String(remark.id_remark))
+    }
     
     var body: some View {
 
         VStack(spacing: 5) {
             HStack {
                 HStack {
-                    if (remark.pseudo_user == "") { Text("Poste Anonyme")}
+                    if (remark.pseudo_user == "") {Text("Poste Anonyme")}
                     else { Text ("Par " + (remark.pseudo_user))}
                     Spacer()
                     Text (remark.date_remark.components(separatedBy: "T")[0])
                 }
                 .padding()
-               
             }.background(Color.red)
             .foregroundColor(.white)
             HStack {
@@ -35,18 +42,20 @@ struct RemarkView: View {
             .padding()
             HStack () {
                 Button(action: {
-                    if (self.heard == 0){
-                        RemarkManager().heardRemark(idRemark: String(self.remark.id_remark))
-                        self.heard = 1
+                    if (!self.heard){
+                        self.remarkManager.heardRemark(idRemark: String(self.remark.id_remark))
+                        self.heard = true
+                        //self.parent.remarkManager.getAllRemarks()
                     } else{
-                        RemarkManager().unheardRemark(idRemark: String(self.remark.id_remark))
-                        self.heard = 0
+                        self.remarkManager.unheardRemark(idRemark: String(self.remark.id_remark))
+                        self.heard = false
+                        //self.parent.remarkManager.getAllRemarks()
                     }
                 }) {
                     HStack (spacing : 0) {
                         Text("Déja Entendu")
                         Spacer()
-                        Text (String(remark.nb_seen_remark + heard))
+                        Text (String(remark.nb_seen_remark))
                     }
                     .font(.headline)
                     .foregroundColor(.white)
@@ -58,18 +67,20 @@ struct RemarkView: View {
                 .buttonStyle(PlainButtonStyle())
                 Spacer()
                 Button(action: {
-                    if (self.suffered == 0){
-                        RemarkManager().sufferedRemark(idRemark: String(self.remark.id_remark))
-                        self.suffered = 1
+                    if (!self.suffered){
+                        self.remarkManager.sufferedRemark(idRemark: String(self.remark.id_remark))
+                        self.suffered = true
+                        //self.parent.remarkManager.getAllRemarks()
                     } else{
-                        RemarkManager().unsufferedRemark(idRemark: String(self.remark.id_remark))
-                        self.suffered = 0
+                        self.remarkManager.unsufferedRemark(idRemark: String(self.remark.id_remark))
+                        self.suffered = false
+                        //self.parent.remarkManager.getAllRemarks()
                     }
                 }) {
                     HStack (spacing : 0) {
                         Text("Déja Subi")
                         Spacer()
-                        Text (String(remark.nb_suffered_remark + suffered))
+                        Text (String(remark.nb_suffered_remark))
                     }
                     .buttonStyle(PlainButtonStyle())
                     .font(.headline)
@@ -85,7 +96,7 @@ struct RemarkView: View {
             .padding(.trailing)
             HStack {
                 Spacer()
-                Text("10")
+                Text("\(answerManager.nbAnswers)")
                 Image(systemName: "message")
             }
             .padding()

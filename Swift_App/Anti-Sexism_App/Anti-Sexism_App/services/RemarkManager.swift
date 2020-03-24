@@ -15,7 +15,25 @@ class RemarkManager: ObservableObject {
     @Published var remarkList = RemarkList(results: [])
     
     init(){
-        guard let url = URL(string : "http://vps685054.ovh.net:8080/api/remarks") else {return}
+//        guard let url = URL(string : "http://vps685054.ovh.net:8080/api/remarks") else {return}
+//
+//        URLSession.shared.dataTask(with: url){ (data, response, error) in
+//            guard let data = data else {
+//                print(String(describing: error))
+//                return
+//            }
+//
+//            let remarkList = try! JSONDecoder().decode([Remark].self, from: data)
+//            //print(remarkList)
+//
+//            DispatchQueue.main.async{
+//                self.remarkList = RemarkList(results: remarkList)
+//            }
+//        }.resume()
+        self.getAllRemarks()
+    }
+    func getAll(idCateg : String) {
+        guard let url = URL(string : "http://vps685054.ovh.net:8080/api/remarks?context=[\(idCateg)]") else {return}
         
         URLSession.shared.dataTask(with: url){ (data, response, error) in
             guard let data = data else {
@@ -30,6 +48,10 @@ class RemarkManager: ObservableObject {
                 self.remarkList = RemarkList(results: remarkList)
             }
         }.resume()
+    }
+    
+    func getAllRemarks(){
+        self.getAll(idCateg : "")
     }
     
     func addRemark(description: String, idContext: String, token: String){
@@ -64,6 +86,7 @@ class RemarkManager: ObservableObject {
             print(String(describing: error))
             return
           }
+            self.getAllRemarks()
           //print(String(data: data, encoding: .utf8)!)
             print("heard post \(idRemark)")
         }
@@ -79,6 +102,7 @@ class RemarkManager: ObservableObject {
             print(String(describing: error))
             return
           }
+            self.getAllRemarks()
           //print(String(data: data, encoding: .utf8)!)
             print("unheard post \(idRemark)")
         }
@@ -92,8 +116,10 @@ class RemarkManager: ObservableObject {
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard data != nil else {
             print(String(describing: error))
+            
             return
           }
+            self.getAllRemarks()
           //print(String(data: data, encoding: .utf8)!)
             print("suffered post \(idRemark)")
         }
@@ -109,6 +135,7 @@ class RemarkManager: ObservableObject {
             print(String(describing: error))
             return
           }
+            self.getAllRemarks()
           //print(String(data: data, encoding: .utf8)!)
             print("unsuffered post \(idRemark)")
         }

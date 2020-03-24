@@ -21,8 +21,8 @@ struct RemarkListView: View {
         ZStack(alignment: .bottomTrailing) {
             List(remarkManager.remarkList.results, id: \.id_remark){ remark in
                     ZStack{
-                        RemarkView(remark: remark)
-                        NavigationLink(destination: RemarkPage(remark: remark)){
+                        RemarkView(remark: remark, remarkManager: self.remarkManager)
+                        NavigationLink(destination: RemarkPage(remark: remark, remarkManager:self.remarkManager)){
                         ZStack{
                            EmptyView()
                         }

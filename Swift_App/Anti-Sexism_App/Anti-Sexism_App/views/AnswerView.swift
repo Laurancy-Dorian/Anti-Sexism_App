@@ -31,13 +31,13 @@ struct AnswerView: View {
                     Button(action: {
                         if (self.like == 0){
                             if (self.dislike == 1){
-                                AnswerManager(idRemark: self.answer.id_remark).unDislike(idRemark: String(self.answer.id_remark), idResponse: String(self.answer.id_response))
+                                AnswerManager(idRemark: String(self.answer.id_remark)).unDislike(idRemark: String(self.answer.id_remark), idResponse: String(self.answer.id_response))
                                 self.dislike = 0
                             }
-                            AnswerManager(idRemark: self.answer.id_remark).like(idRemark: String(self.answer.id_remark), idResponse: String(self.answer.id_response))
+                            AnswerManager(idRemark: String(self.answer.id_remark)).like(idRemark: String(self.answer.id_remark), idResponse: String(self.answer.id_response))
                             self.like = 1
                         } else{
-                            AnswerManager(idRemark: self.answer.id_remark).unLike(idRemark: String(self.answer.id_remark), idResponse: String(self.answer.id_response))
+                            AnswerManager(idRemark: String(self.answer.id_remark)).unLike(idRemark: String(self.answer.id_remark), idResponse: String(self.answer.id_response))
                             self.like = 0
                         }
                     }) {
@@ -58,13 +58,13 @@ struct AnswerView: View {
                     Button(action: {
                         if (self.dislike == 0){
                             if (self.like == 1){
-                                AnswerManager(idRemark: self.answer.id_remark).unLike(idRemark: String(self.answer.id_remark), idResponse: String(self.answer.id_response))
+                                AnswerManager(idRemark: String(self.answer.id_remark)).unLike(idRemark: String(self.answer.id_remark), idResponse: String(self.answer.id_response))
                                 self.like = 0
                             }
-                            AnswerManager(idRemark: self.answer.id_remark).dislike(idRemark: String(self.answer.id_remark), idResponse: String(self.answer.id_response))
+                            AnswerManager(idRemark: String(self.answer.id_remark)).dislike(idRemark: String(self.answer.id_remark), idResponse: String(self.answer.id_response))
                             self.dislike = 1
                         } else{
-                            AnswerManager(idRemark: self.answer.id_remark).unDislike(idRemark: String(self.answer.id_remark), idResponse: String(self.answer.id_response))
+                            AnswerManager(idRemark: String(self.answer.id_remark)).unDislike(idRemark: String(self.answer.id_remark), idResponse: String(self.answer.id_response))
                             self.dislike = 0
                         }
                     }) {

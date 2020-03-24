@@ -11,14 +11,12 @@ import SwiftUI
 struct RemarkPage: View {
     
     var remark: Remark
+    var remarkManager : RemarkManager!
     
-    init(remark: Remark){
-        self.remark = remark
-    }
     
     var body: some View {
         VStack{
-            RemarkView(remark: remark).padding()
+            RemarkView(remark: remark, remarkManager : self.remarkManager).padding()
             NavigationLink(destination: AddAnswerPage(idRemark: remark.id_remark)){
                 Text("Répondre")
                     .frame(width: 100, height: 25, alignment: .center)

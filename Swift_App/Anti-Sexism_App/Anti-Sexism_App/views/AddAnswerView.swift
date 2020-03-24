@@ -66,7 +66,7 @@ struct AddAnswerView: View {
                 if (self.response == ""){
                     self.showingAlert = true
                 } else{
-                    AnswerManager(idRemark: self.idRemark).addAnswer(description: self.response, idType: String(self.idType), token: "", idRemark: String(self.idRemark))
+                    AnswerManager(idRemark: String(self.idRemark)).addAnswer(description: self.response, idType: String(self.idType), token: "", idRemark: String(self.idRemark))
                     self.parent.presentationMode.wrappedValue.dismiss()
                 }
             }){
