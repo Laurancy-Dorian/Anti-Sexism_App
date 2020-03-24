@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct HomePage: View {
+    
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     @State var showMenu = false

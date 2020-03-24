@@ -9,6 +9,12 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    static var entendu = [Int]()
+    static var subi = [Int]()
+    static var pertinent = [Int]()
+    static var pasPertinent = [Int]()
+    
     var body: some View {
         HomePage()
     }

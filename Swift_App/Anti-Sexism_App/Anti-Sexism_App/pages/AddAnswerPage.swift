@@ -13,6 +13,11 @@ struct AddAnswerPage: View {
     
     @State var showMenu = false
     @State var text = ""
+    var idRemark : Int
+    
+    init(idRemark : Int){
+        self.idRemark = idRemark
+    }
     
     var body: some View {
         let drag = DragGesture()
@@ -26,7 +31,7 @@ struct AddAnswerPage: View {
         return NavigationView {
             GeometryReader { geometry in
                 ZStack(alignment: .trailing) {
-                    AddAnswerContent(showMenu: self.$showMenu)
+                    AddAnswerContent(showMenu: self.$showMenu, idRemark: self.idRemark, parent: self)
                         .frame(width: geometry.size.width, height: geometry.size.height)
                         .disabled(self.showMenu ? true : false)
                     if self.showMenu {
@@ -77,8 +82,10 @@ struct AddAnswerPage: View {
 struct AddAnswerContent: View {
    
     @Binding var showMenu: Bool
+    var idRemark : Int
+    var parent : AddAnswerPage!
     
     var body: some View {
-        AddAnswerView()
+        AddAnswerView(idRemark: self.idRemark, parent: self.parent)
     }
 }

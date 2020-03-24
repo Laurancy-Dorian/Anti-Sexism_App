@@ -11,6 +11,9 @@ import SwiftUI
 struct AnswerView: View {
     
     var answer: Answer
+    
+    @State private var like: Int = 0
+    @State private var dislike: Int = 0
 
     var body: some View {
         VStack(spacing : 5) {
@@ -26,11 +29,22 @@ struct AnswerView: View {
                 }
                 HStack () {
                     Button(action: {
+                        if (self.like == 0){
+                            if (self.dislike == 1){
+                                AnswerManager(idRemark: self.answer.id_remark).unDislike(idRemark: String(self.answer.id_remark), idResponse: String(self.answer.id_response))
+                                self.dislike = 0
+                            }
+                            AnswerManager(idRemark: self.answer.id_remark).like(idRemark: String(self.answer.id_remark), idResponse: String(self.answer.id_response))
+                            self.like = 1
+                        } else{
+                            AnswerManager(idRemark: self.answer.id_remark).unLike(idRemark: String(self.answer.id_remark), idResponse: String(self.answer.id_response))
+                            self.like = 0
+                        }
                     }) {
                         HStack (spacing : 0) {
                             Text("Pertinent")
                             Spacer()
-                            Text (String(answer.nb_likes_response))
+                            Text (String(answer.nb_likes_response + like))
                         }
                         .font(.headline)
                         .foregroundColor(.white)
@@ -42,11 +56,22 @@ struct AnswerView: View {
                     .buttonStyle(PlainButtonStyle())
                     Spacer()
                     Button(action: {
+                        if (self.dislike == 0){
+                            if (self.like == 1){
+                                AnswerManager(idRemark: self.answer.id_remark).unLike(idRemark: String(self.answer.id_remark), idResponse: String(self.answer.id_response))
+                                self.like = 0
+                            }
+                            AnswerManager(idRemark: self.answer.id_remark).dislike(idRemark: String(self.answer.id_remark), idResponse: String(self.answer.id_response))
+                            self.dislike = 1
+                        } else{
+                            AnswerManager(idRemark: self.answer.id_remark).unDislike(idRemark: String(self.answer.id_remark), idResponse: String(self.answer.id_response))
+                            self.dislike = 0
+                        }
                     }) {
                         HStack (spacing : 0) {
                             Text("Pas Pertinent")
                             Spacer()
-                            Text (String(answer.nb_dislikes_response))
+                            Text (String(answer.nb_dislikes_response + dislike))
                         }
                         .buttonStyle(PlainButtonStyle())
                         .font(.headline)

@@ -9,14 +9,21 @@
 import SwiftUI
 
 struct AddAnswerView: View {
+    
+    var idRemark : Int
+    var parent : AddAnswerPage!
+    
     @State private var types = ["Funny", "Angry", "Irony", "Nerd"]
     @State private var selection = 0
     @State private var pickerVisible = false
     @State private var response = ""
     @State private var enableAnonymat = false
+    @State private var idType: Int = 0
+    @State private var showingAlert = false
+    
     var body: some View {
         VStack{
-            Text("Sélectionnez le type de réponse: ")
+            Text("Sélectionnez le type de réponse : ")
             Button(types[selection]){
                 self.pickerVisible.toggle()
             }
@@ -26,7 +33,7 @@ struct AddAnswerView: View {
                     ForEach(0..<types.count){
                         Text(self.types[$0]).foregroundColor(.secondary)
                     }
-                }
+                }.labelsHidden()
                 .onTapGesture {
                     self.pickerVisible.toggle()
                 }
@@ -39,8 +46,33 @@ struct AddAnswerView: View {
                 Text("Rester anonyme")
             }
             Spacer()
-            Button(action: {}){
+            Button(action: {
+                switch self.types[self.selection] {
+                           case "Funny":
+                               self.idType = 1
+                               
+                           case "Angry":
+                               self.idType = 2
+
+                           case "Irony":
+                               self.idType = 3
+
+                           case "Nerd":
+                               self.idType = 4
+                    
+                           default:
+                               print("Mauvais contexte")
+                }
+                if (self.response == ""){
+                    self.showingAlert = true
+                } else{
+                    AnswerManager(idRemark: self.idRemark).addAnswer(description: self.response, idType: String(self.idType), token: "", idRemark: String(self.idRemark))
+                    self.parent.presentationMode.wrappedValue.dismiss()
+                }
+            }){
                 Text("Soumettre")
+            }.alert(isPresented: $showingAlert) {
+            Alert(title: Text("Attention"), message: Text("Veuillez ne pas laisser la reponse vide"), dismissButton: .default(Text("D'accord!")))
             }
         }
     }

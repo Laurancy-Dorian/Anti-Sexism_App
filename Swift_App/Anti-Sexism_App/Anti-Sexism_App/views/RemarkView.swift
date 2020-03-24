@@ -12,6 +12,9 @@ struct RemarkView: View {
     
     var remark: Remark
     
+    @State private var heard: Int = 0
+    @State private var suffered: Int = 0
+    
     var body: some View {
 
         VStack(spacing: 5) {
@@ -32,11 +35,18 @@ struct RemarkView: View {
             .padding()
             HStack () {
                 Button(action: {
+                    if (self.heard == 0){
+                        RemarkManager().heardRemark(idRemark: String(self.remark.id_remark))
+                        self.heard = 1
+                    } else{
+                        RemarkManager().unheardRemark(idRemark: String(self.remark.id_remark))
+                        self.heard = 0
+                    }
                 }) {
                     HStack (spacing : 0) {
                         Text("Déja Entendu")
                         Spacer()
-                        Text (String(remark.nb_seen_remark))
+                        Text (String(remark.nb_seen_remark + heard))
                     }
                     .font(.headline)
                     .foregroundColor(.white)
@@ -48,11 +58,18 @@ struct RemarkView: View {
                 .buttonStyle(PlainButtonStyle())
                 Spacer()
                 Button(action: {
+                    if (self.suffered == 0){
+                        RemarkManager().sufferedRemark(idRemark: String(self.remark.id_remark))
+                        self.suffered = 1
+                    } else{
+                        RemarkManager().unsufferedRemark(idRemark: String(self.remark.id_remark))
+                        self.suffered = 0
+                    }
                 }) {
                     HStack (spacing : 0) {
                         Text("Déja Subi")
                         Spacer()
-                        Text (String(remark.nb_suffered_remark))
+                        Text (String(remark.nb_suffered_remark + suffered))
                     }
                     .buttonStyle(PlainButtonStyle())
                     .font(.headline)

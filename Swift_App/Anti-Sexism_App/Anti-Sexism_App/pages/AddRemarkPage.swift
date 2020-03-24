@@ -26,7 +26,7 @@ struct AddRemarkPage: View {
         return NavigationView {
             GeometryReader { geometry in
                 ZStack(alignment: .trailing) {
-                    AddRemarkContent(showMenu: self.$showMenu)
+                    AddRemarkContent(showMenu: self.$showMenu, parent: self)
                         .frame(width: geometry.size.width, height: geometry.size.height)
                         .disabled(self.showMenu ? true : false)
                     if self.showMenu {
@@ -76,8 +76,9 @@ struct AddRemarkPage: View {
 struct AddRemarkContent: View {
    
     @Binding var showMenu: Bool
+    var parent : AddRemarkPage!
     
     var body: some View {
-        AddRemarkView()
+        AddRemarkView(parent: self.parent)
     }
 }

@@ -19,10 +19,11 @@ struct RemarkPage: View {
     var body: some View {
         VStack{
             RemarkView(remark: remark).padding()
-            NavigationLink(destination: AddAnswerPage()){
+            NavigationLink(destination: AddAnswerPage(idRemark: remark.id_remark)){
                 Text("Répondre")
                     .frame(width: 100, height: 25, alignment: .center)
-                    .background(Color.green)
+                    .background(Color.blue)
+                    .foregroundColor(.white)
                     .cornerRadius(20)
             }
             AnswerListView(idRemark: remark.id_remark)
