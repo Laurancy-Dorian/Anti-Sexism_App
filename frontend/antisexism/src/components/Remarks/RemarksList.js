@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import Remark from './Remark'
+import config from "../../config/config"
 
-class RemarkPage extends Component {
+class RemarksList extends Component {
     constructor(props) {
         super(props);
         this.state = { 
@@ -10,7 +11,7 @@ class RemarkPage extends Component {
     }
 
     componentDidMount = () => {
-        fetch("http://vps685054.ovh.net:8080/api/remarks")
+        fetch(config.api + "/remarks")
             .then(response => response.json())
             .then(result =>  {
                 this.setState({
@@ -30,11 +31,11 @@ class RemarkPage extends Component {
         })
 
         return ( 
-            <div className="remarks container">
+            <div className="remarks remarks-list container">
                 {remarks}
             </div>
          );
     }
 }
  
-export default RemarkPage;
+export default RemarksList;

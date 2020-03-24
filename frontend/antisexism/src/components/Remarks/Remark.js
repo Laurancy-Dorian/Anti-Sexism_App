@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import config from "../../config/config"
 
 class Remark extends Component {
     constructor(props) {
@@ -10,10 +11,11 @@ class Remark extends Component {
         }
     }
 
-    componentDidMount = () => {
-        fetch("http://vps685054.ovh.net:8080/api/remarks/" + this.props.data.id_remark + "/responses")
+    fetchNumberComments = () => {
+        fetch(config.api + "/remarks/" + this.props.data.id_remark + "/responses")
             .then(response => response.json())
             .then(result =>  {
+                console.log(result)
                 this.setState({
                     nb_comments: result.length,
                     seen : false,
@@ -22,6 +24,20 @@ class Remark extends Component {
             })
             .catch(error => console.log('error', error));
     }
+
+
+    componentDidMount = () => {
+        this.fetchNumberComments()
+    }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.data.id_remark !== this.props.data.id_remark) {
+            this.fetchNumberComments()
+        }        
+      }
+
+
+ 
 
     handleClickSeen = () => {
         console.log("Seen")
@@ -55,7 +71,7 @@ class Remark extends Component {
                     </div>
                     <div className="remark-buttons container row justify-content-center">
                         <div onClick={this.handleClickSeen} className="btn btn-group remark-button remark-button-seen row col-12 col-lg-4 ml-md-5 mr-md-5">
-                            <button className="btn btn-primary col-10">J'ai déjà vu</button>
+                            <button className="btn btn-primary col-10">J'ai déjà entendu</button>
                             <div className="remark-button-number btn btn-light col-2"> { this.props.data.nb_seen_remark } </div>
                         </div>
                         
@@ -69,7 +85,7 @@ class Remark extends Component {
                    
                 </div>
                 <div className="footer-remark text-right">
-                    {this.state.nb_comments} réponses proposées
+                    {this.state.nb_comments} <i className="fas fa-comments"></i>
                 </div>
             </div>
          );

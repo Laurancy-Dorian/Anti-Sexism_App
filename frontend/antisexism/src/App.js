@@ -1,10 +1,12 @@
 import React from 'react';
-import RemarksPage from './components/Remarks/RemarksPage'
+import RemarksList from './components/Remarks/RemarksList'
+
+import RemarkPage from './composers/RemarkPage'
 
 function App() {
   return (
     <div className="App container">
-      <RemarksPage />
+      <RemarkPage idRemark="1" />
     </div>
   );
 }
