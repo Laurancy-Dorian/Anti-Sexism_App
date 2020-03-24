@@ -53,22 +53,23 @@ class Remark extends Component {
                     <div className="description-remark">
                         { this.props.data.description_remark }
                     </div>
-                    <div className="remark-buttons container row">
-                        <div onClick={this.handleClickSeen} className="btn btn-group remark-button remark-button-seen row col ml-5 mr-5">
+                    <div className="remark-buttons container row justify-content-center">
+                        <div onClick={this.handleClickSeen} className="btn btn-group remark-button remark-button-seen row col-12 col-lg-4 ml-md-5 mr-md-5">
                             <button className="btn btn-primary col-10">J'ai déjà vu</button>
                             <div className="remark-button-number btn btn-light col-2"> { this.props.data.nb_seen_remark } </div>
                         </div>
                         
-                        <div onClick={this.handleClickSuffered} className="btn btn-group remark-button remark-button remark-button-suffered row col ml-5 mr-5">
-                            <button className="btn btn-primary col-10">J'ai déjà subi</button>
+                        <div onClick={this.handleClickSuffered} className="btn btn-group remark-button remark-button remark-button-suffered col-12 col-lg-4 row col ml-md-5 mr-md-5">
+                        <button className="btn btn-primary col-10">J'ai déjà subi</button>
                             <div className="remark-button-number btn btn-light col-2"> { this.props.data.nb_suffered_remark } </div>
+                            
                         </div>
                         
                     </div>
                    
                 </div>
                 <div className="footer-remark text-right">
-                    {this.state.nb_comments} Commentaires
+                    {this.state.nb_comments} réponses proposées
                 </div>
             </div>
          );
