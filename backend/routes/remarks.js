@@ -92,7 +92,7 @@ router.route('/:idRemark')
      * @apiSuccess (200) Success
      * @apiError (404) NotFound The Remark doesn't exists
      */
-    .delete(remarksActions.deleteRemark)
+    .delete(auth.validateAdmin, remarksActions.deleteRemark)
     
     
     
