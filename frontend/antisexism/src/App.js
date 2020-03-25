@@ -6,6 +6,8 @@ import RemarkPage from './composers/RemarkPage'
 function App() {
   return (
     <div className="App container">
+      <RemarksList />
+      <hr />
       <RemarkPage idRemark="1" />
     </div>
   );
