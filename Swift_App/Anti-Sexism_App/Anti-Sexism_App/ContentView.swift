@@ -16,7 +16,7 @@ struct ContentView: View {
     static var pasPertinent = [Int]()
     
     var body: some View {
-        HomePage()
+        HomePage(idContext: "")
     }
 }
 

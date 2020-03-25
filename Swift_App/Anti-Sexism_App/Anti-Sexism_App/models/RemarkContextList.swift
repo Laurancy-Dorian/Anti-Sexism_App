@@ -8,13 +8,46 @@
 
 import Foundation
 
-class RemarkContextList {
-     @Published var listContexts : [RemarkContext] = []
+struct RemarkContextList: Decodable {
+    var results: [RemarkContext]
+        
+    init(results : [RemarkContext]) {
+        self.results = results
+    }
+}
+
+struct RemarkContext: Decodable {
+    var id_context : Int = 0
+    var name_context : String = ""
+    var color_context : String = ""
     
-    init() {
-        listContexts.append(RemarkContext(idRemarkContext: 1, nom: "Dans la rue", couleur: 1))
-        listContexts.append(RemarkContext(idRemarkContext: 2, nom: "Dans les transports", couleur: 1))
-        listContexts.append(RemarkContext(idRemarkContext: 3, nom: "Au travail", couleur: 1))
-        listContexts.append(RemarkContext(idRemarkContext: 4, nom: "Au domicile", couleur: 1))
+    //init(idRemarkContext : Int, nom : String, couleur : Int) {
+        //self.idRemarkContext = idRemarkContext
+        //self.nom = nom
+        //self.couleur = couleur
+    //}
+    
+    enum CodingKeys: Any, CodingKey {
+        case id_context
+        case name_context
+        case color_context
+    }
+    
+    init(from decoder: Decoder) throws {
+    do {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        if let stringProperty = try? container.decode(String.self, forKey: .color_context) {
+            color_context = stringProperty
+        }
+        if let stringProperty = try? container.decode(String.self, forKey: .name_context) {
+            name_context = stringProperty
+        }
+        if let intProperty = try? container.decode(Int.self, forKey: .id_context) {
+            id_context = intProperty
+        }
+        else {
+                throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: container.codingPath, debugDescription: "Not a JSON"))
+            }
+        }
     }
 }

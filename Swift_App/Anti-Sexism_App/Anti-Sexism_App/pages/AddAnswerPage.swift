@@ -11,12 +11,15 @@ import SwiftUI
 struct AddAnswerPage: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
+    @ObservedObject var answerManager: AnswerManager
+    
     @State var showMenu = false
     @State var text = ""
     var idRemark : Int
     
     init(idRemark : Int){
         self.idRemark = idRemark
+        answerManager = AnswerManager(idRemark: String(self.idRemark))
     }
     
     var body: some View {
@@ -31,7 +34,7 @@ struct AddAnswerPage: View {
         return NavigationView {
             GeometryReader { geometry in
                 ZStack(alignment: .trailing) {
-                    AddAnswerContent(showMenu: self.$showMenu, idRemark: self.idRemark, parent: self)
+                    AddAnswerContent(showMenu: self.$showMenu, idRemark: self.idRemark, parent: self, answerManager: self.answerManager)
                         .frame(width: geometry.size.width, height: geometry.size.height)
                         .disabled(self.showMenu ? true : false)
                     if self.showMenu {
@@ -44,7 +47,7 @@ struct AddAnswerPage: View {
             }
                 .navigationBarItems(leading: (
                     HStack{
-                        NavigationLink(destination: HomePage().navigationBarBackButtonHidden(false)){
+                        NavigationLink(destination: HomePage(idContext: "").navigationBarBackButtonHidden(false)){
                             Button(action: {
                                 //TODO rediriger plus proprement
                                 self.presentationMode.wrappedValue.dismiss()
@@ -84,8 +87,9 @@ struct AddAnswerContent: View {
     @Binding var showMenu: Bool
     var idRemark : Int
     var parent : AddAnswerPage!
+    var answerManager: AnswerManager
     
     var body: some View {
-        AddAnswerView(idRemark: self.idRemark, parent: self.parent)
+        AddAnswerView(idRemark: self.idRemark, parent: self.parent, answerManager: self.answerManager)
     }
 }

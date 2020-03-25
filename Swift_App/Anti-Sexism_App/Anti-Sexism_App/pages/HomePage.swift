@@ -15,6 +15,8 @@ struct HomePage: View {
     @State var showMenu = false
     @State var text = ""
     
+    var idContext: String
+    
     var body: some View {
         let drag = DragGesture()
             .onEnded {
@@ -27,7 +29,7 @@ struct HomePage: View {
         return NavigationView {
             GeometryReader { geometry in
                 ZStack(alignment: .trailing) {
-                    HomeContent(showMenu: self.$showMenu)
+                    HomeContent(showMenu: self.$showMenu, idContext: self.idContext)
                         .frame(width: geometry.size.width, height: geometry.size.height)
                         .disabled(self.showMenu ? true : false)
                     if self.showMenu {
@@ -40,16 +42,11 @@ struct HomePage: View {
             }
                 .navigationBarItems(leading: (
                     HStack{
-                        //TODO: change navigation link
-                        NavigationLink(destination: HomePage().navigationBarBackButtonHidden(false)){
-                            Button(action: {
-                                self.presentationMode.wrappedValue.dismiss()
-                            }){
-                                Image("Logo")
-                                .resizable()
-                                .frame(width: 70.0, height: 70.0)
-                                .foregroundColor(.black)
-                            }
+                        Button(action: {}){
+                            Image("Logo")
+                            .resizable()
+                            .frame(width: 70.0, height: 70.0)
+                            .foregroundColor(.black)
                         }
                         Spacer()
                         HStack {
@@ -77,9 +74,10 @@ struct HomePage: View {
 struct HomeContent: View {
     
     @Binding var showMenu: Bool
+    var idContext: String
     
     var body: some View {
-        RemarkListView()
+        RemarkListView(idContext: idContext)
     }
 }
 

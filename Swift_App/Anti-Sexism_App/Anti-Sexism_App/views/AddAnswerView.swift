@@ -12,6 +12,7 @@ struct AddAnswerView: View {
     
     var idRemark : Int
     var parent : AddAnswerPage!
+    var answerManager: AnswerManager
     
     @State private var types = ["Funny", "Angry", "Irony", "Nerd"]
     @State private var selection = 0

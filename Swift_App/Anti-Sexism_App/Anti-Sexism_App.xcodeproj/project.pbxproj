@@ -11,7 +11,6 @@
 		B327FC45242796E900AE1951 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B327FC44242796E900AE1951 /* UserManager.swift */; };
 		B32DD49A240D32F300BB4579 /* RemarkListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32DD499240D32F300BB4579 /* RemarkListView.swift */; };
 		B32DD49E240D412300BB4579 /* RemarkContextList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32DD49D240D412300BB4579 /* RemarkContextList.swift */; };
-		B32DD4A0240D415C00BB4579 /* RemarkContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32DD49F240D415C00BB4579 /* RemarkContext.swift */; };
 		B32DD4A2240D45E600BB4579 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32DD4A1240D45E600BB4579 /* HeaderView.swift */; };
 		B339CA13240971CF0095CE9B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B339CA12240971CF0095CE9B /* AppDelegate.swift */; };
 		B339CA15240971CF0095CE9B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B339CA14240971CF0095CE9B /* SceneDelegate.swift */; };
@@ -26,6 +25,7 @@
 		B3650DAF24250A8500C3E844 /* RemarkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3650DAE24250A8500C3E844 /* RemarkManager.swift */; };
 		B3737776240E78E100871D52 /* AnswerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3737775240E78E100871D52 /* AnswerView.swift */; };
 		B3749E412425357900AD7E99 /* AnswerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3749E402425357900AD7E99 /* AnswerManager.swift */; };
+		B37EF617242AB5F1005C85CB /* RemarkContextManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B37EF616242AB5F1005C85CB /* RemarkContextManager.swift */; };
 		B3ACA1FA240E904F00E2895B /* AnswerListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3ACA1F9240E904F00E2895B /* AnswerListView.swift */; };
 		B3ACA1FC240E913400E2895B /* RemarkPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3ACA1FB240E913400E2895B /* RemarkPage.swift */; };
 		B3C906F4240EA81B006C8A2B /* HomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3C906F3240EA81B006C8A2B /* HomePage.swift */; };
@@ -64,7 +64,6 @@
 		B327FC44242796E900AE1951 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		B32DD499240D32F300BB4579 /* RemarkListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemarkListView.swift; sourceTree = "<group>"; };
 		B32DD49D240D412300BB4579 /* RemarkContextList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemarkContextList.swift; sourceTree = "<group>"; };
-		B32DD49F240D415C00BB4579 /* RemarkContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemarkContext.swift; sourceTree = "<group>"; };
 		B32DD4A1240D45E600BB4579 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		B339CA0F240971CF0095CE9B /* Anti-Sexism_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Anti-Sexism_App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B339CA12240971CF0095CE9B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -85,6 +84,7 @@
 		B3650DAE24250A8500C3E844 /* RemarkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemarkManager.swift; sourceTree = "<group>"; };
 		B3737775240E78E100871D52 /* AnswerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerView.swift; sourceTree = "<group>"; };
 		B3749E402425357900AD7E99 /* AnswerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerManager.swift; sourceTree = "<group>"; };
+		B37EF616242AB5F1005C85CB /* RemarkContextManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemarkContextManager.swift; sourceTree = "<group>"; };
 		B3ACA1F9240E904F00E2895B /* AnswerListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerListView.swift; sourceTree = "<group>"; };
 		B3ACA1FB240E913400E2895B /* RemarkPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemarkPage.swift; sourceTree = "<group>"; };
 		B3C906F3240EA81B006C8A2B /* HomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePage.swift; sourceTree = "<group>"; };
@@ -132,6 +132,7 @@
 				B3650DAE24250A8500C3E844 /* RemarkManager.swift */,
 				B3749E402425357900AD7E99 /* AnswerManager.swift */,
 				B327FC44242796E900AE1951 /* UserManager.swift */,
+				B37EF616242AB5F1005C85CB /* RemarkContextManager.swift */,
 			);
 			path = services;
 			sourceTree = "<group>";
@@ -207,7 +208,6 @@
 				B3F4FE0F240CEC47009E48CB /* User.swift */,
 				B3F4FE16240D02D2009E48CB /* RemarkList.swift */,
 				B32DD49D240D412300BB4579 /* RemarkContextList.swift */,
-				B32DD49F240D415C00BB4579 /* RemarkContext.swift */,
 				B3DF2F5B240D57BE00DCDB19 /* AnswerType.swift */,
 				B3DF2F5D240D583100DCDB19 /* AnswerTypeList.swift */,
 				B3DF2F61240D599F00DCDB19 /* AnswerList.swift */,
@@ -385,6 +385,7 @@
 				B32DD49A240D32F300BB4579 /* RemarkListView.swift in Sources */,
 				B3737776240E78E100871D52 /* AnswerView.swift in Sources */,
 				B3F4FE15240D02AD009E48CB /* RemarkView.swift in Sources */,
+				B37EF617242AB5F1005C85CB /* RemarkContextManager.swift in Sources */,
 				B3D8C85124191B0B000A34DD /* AddRemarkPage.swift in Sources */,
 				B3F4FE17240D02D2009E48CB /* RemarkList.swift in Sources */,
 				B339CA13240971CF0095CE9B /* AppDelegate.swift in Sources */,
@@ -394,7 +395,6 @@
 				B327FC45242796E900AE1951 /* UserManager.swift in Sources */,
 				B339CA15240971CF0095CE9B /* SceneDelegate.swift in Sources */,
 				B3650DAF24250A8500C3E844 /* RemarkManager.swift in Sources */,
-				B32DD4A0240D415C00BB4579 /* RemarkContext.swift in Sources */,
 				B3ACA1FA240E904F00E2895B /* AnswerListView.swift in Sources */,
 				B31C58312417E9AE00B01BCF /* MyAccountView.swift in Sources */,
 				B3F4FE10240CEC47009E48CB /* User.swift in Sources */,

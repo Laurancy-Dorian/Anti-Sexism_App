@@ -11,6 +11,8 @@ import SwiftUI
 struct AddRemarkPage: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
+    @ObservedObject var remarkManager: RemarkManager
+    
     @State var showMenu = false
     @State var text = ""
     
@@ -26,7 +28,7 @@ struct AddRemarkPage: View {
         return NavigationView {
             GeometryReader { geometry in
                 ZStack(alignment: .trailing) {
-                    AddRemarkContent(showMenu: self.$showMenu, parent: self)
+                    AddRemarkContent(showMenu: self.$showMenu, parent: self, remarkManager: self.remarkManager)
                         .frame(width: geometry.size.width, height: geometry.size.height)
                         .disabled(self.showMenu ? true : false)
                     if self.showMenu {
@@ -40,7 +42,7 @@ struct AddRemarkPage: View {
                 .navigationBarItems(leading: (
                     HStack{
                         //TODO: change navigation link
-                        NavigationLink(destination: HomePage().navigationBarBackButtonHidden(false)){
+                        NavigationLink(destination: HomePage(idContext: "").navigationBarBackButtonHidden(false)){
                             Button(action: {
                                 self.presentationMode.wrappedValue.dismiss()
                             }){
@@ -77,8 +79,9 @@ struct AddRemarkContent: View {
    
     @Binding var showMenu: Bool
     var parent : AddRemarkPage!
+    var remarkManager: RemarkManager
     
     var body: some View {
-        AddRemarkView(parent: self.parent)
+        AddRemarkView(parent: self.parent, remarkManager: self.remarkManager)
     }
 }

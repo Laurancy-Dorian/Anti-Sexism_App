@@ -8,19 +8,93 @@
 
 import SwiftUI
 
+
+
+//extension Color {
+//    init(_ hex: UInt32, opacity:Double = 1.0) {
+//        let red = Double((hex & 0xff0000) >> 16) / 255.0
+//        let green = Double((hex & 0xff00) >> 8) / 255.0
+//        let blue = Double((hex & 0xff) >> 0) / 255.0
+//        self.init(.sRGB, red: red, green: green, blue: blue, opacity: opacity)
+//    }
+//}
+
+func lighterColorForColor(color: UIColor) -> UIColor {
+
+       var r:CGFloat = 0, g:CGFloat = 0, b:CGFloat = 0, a:CGFloat = 0
+
+       if color.getRed(&r, green: &g, blue: &b, alpha: &a){
+           return UIColor(red: min(r + 0.8, 1.0), green: min(g + 0.8, 1.0), blue: min(b + 0.8, 1.0), alpha: a)
+       }
+
+       return UIColor()
+}
+
+func hexStringToUIColor (hex:String) -> UIColor {
+    var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
+
+    if (cString.hasPrefix("#")) {
+        cString.remove(at: cString.startIndex)
+    }
+
+    if ((cString.count) != 6) {
+        return UIColor.gray
+    }
+
+    var rgbValue:UInt32 = 0
+    Scanner(string: cString).scanHexInt32(&rgbValue)
+
+    return UIColor(
+        red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
+        green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
+        blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
+        alpha: CGFloat(1.0)
+    )
+}
+
+
+//let hexColor:(UInt32) -> (Color) = {
+//    return Color($0)
+//}
+
 struct RemarkView: View {
     
     var remark: Remark
     @ObservedObject var remarkManager: RemarkManager
     @ObservedObject var answerManager: AnswerManager
+    @ObservedObject var remarkContextManager = RemarkContextManager()
     
-    @State private var heard: Bool = false
-    @State private var suffered: Bool = false
+    @State var heard: Bool = false
+    @State var suffered: Bool = false
+    
     init (remark: Remark, remarkManager: RemarkManager) {
         self.remark = remark
         self.remarkManager = remarkManager
+
         self.answerManager = AnswerManager(idRemark: String(remark.id_remark))
         self.answerManager.countAnswers(idRemark: String(remark.id_remark))
+        
+    }
+    
+    func getColorContext() -> String {
+        var hexa : String = "000000"
+        for context in self.remarkContextManager.remarkContextList.results {
+            if (context.id_context == remark.id_context){
+                hexa = context.color_context.components(separatedBy: "#")[1]
+                print("\(hexa)")
+            }
+        }
+        return hexa
+    }
+    
+    func find(value searchValue: Int, in array: [Int]) -> Int? {
+        for (index, value) in array.enumerated()
+        {
+            if value == searchValue {
+                return index
+            }
+        }
+        return nil
     }
     
     var body: some View {
@@ -34,7 +108,7 @@ struct RemarkView: View {
                     Text (remark.date_remark.components(separatedBy: "T")[0])
                 }
                 .padding()
-            }.background(Color.red)
+            }.background(Color(hexStringToUIColor( hex : self.getColorContext())))
             .foregroundColor(.white)
             HStack {
                 Text (remark.description_remark)
@@ -42,14 +116,18 @@ struct RemarkView: View {
             .padding()
             HStack () {
                 Button(action: {
+                    if self.find(value: self.remark.id_remark, in: ContentView.entendu) != nil{
+                        self.heard = true
+                    }
                     if (!self.heard){
                         self.remarkManager.heardRemark(idRemark: String(self.remark.id_remark))
                         self.heard = true
-                        //self.parent.remarkManager.getAllRemarks()
+                        ContentView.entendu.append(self.remark.id_remark)
                     } else{
                         self.remarkManager.unheardRemark(idRemark: String(self.remark.id_remark))
                         self.heard = false
-                        //self.parent.remarkManager.getAllRemarks()
+                        guard let index = self.find(value: self.remark.id_remark, in: ContentView.entendu) else {return}
+                        ContentView.entendu.remove(at: index)
                     }
                 }) {
                     HStack (spacing : 0) {
@@ -67,14 +145,18 @@ struct RemarkView: View {
                 .buttonStyle(PlainButtonStyle())
                 Spacer()
                 Button(action: {
+                    if self.find(value: self.remark.id_remark, in: ContentView.subi) != nil{
+                        self.suffered = true
+                    }
                     if (!self.suffered){
                         self.remarkManager.sufferedRemark(idRemark: String(self.remark.id_remark))
                         self.suffered = true
-                        //self.parent.remarkManager.getAllRemarks()
+                        ContentView.subi.append(self.remark.id_remark)
                     } else{
                         self.remarkManager.unsufferedRemark(idRemark: String(self.remark.id_remark))
                         self.suffered = false
-                        //self.parent.remarkManager.getAllRemarks()
+                        guard let index = self.find(value: self.remark.id_remark, in: ContentView.subi) else {return}
+                        ContentView.subi.remove(at: index)
                     }
                 }) {
                     HStack (spacing : 0) {
@@ -102,7 +184,11 @@ struct RemarkView: View {
             .padding()
         }
         
-        .background(Color(red : 240/255, green : 200/255, blue : 200/255))
+        .background(
+            Color(
+                lighterColorForColor(
+                    color : hexStringToUIColor( hex : self.getColorContext())
+            )))
         .cornerRadius(25)
     }
 

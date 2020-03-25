@@ -18,37 +18,45 @@ struct HeaderView: View {
                 Text("CATEGORIE")
                 .foregroundColor(.gray)
                 .font(.headline)
-                HStack {
-                    Image(systemName: "map")
-                        .foregroundColor(.red)
-                        .imageScale(.large)
-                    Text("Dans la rue")
-                        .foregroundColor(.red)
-                        .font(.headline)
+                NavigationLink(destination: HomePage(idContext: "1")){
+                    HStack {
+                        Image(systemName: "map")
+                            .foregroundColor(.red)
+                            .imageScale(.large)
+                        Text("Dans la rue")
+                            .foregroundColor(.red)
+                            .font(.headline)
+                    }
                 }
-                HStack {
-                    Image(systemName: "desktopcomputer")
-                        .foregroundColor(.blue)
-                        .imageScale(.large)
-                    Text("Au travail")
-                        .foregroundColor(.blue)
-                        .font(.headline)
+                NavigationLink(destination: HomePage(idContext: "2")){
+                    HStack {
+                        Image(systemName: "desktopcomputer")
+                            .foregroundColor(.blue)
+                            .imageScale(.large)
+                        Text("Au travail")
+                            .foregroundColor(.blue)
+                            .font(.headline)
+                    }
                 }
-                HStack {
-                    Image(systemName: "tram.fill")
-                        .foregroundColor(.orange)
-                        .imageScale(.large)
-                    Text("Dans les transports")
-                        .foregroundColor(.orange)
-                        .font(.headline)
+                NavigationLink(destination: HomePage(idContext: "3")){
+                    HStack {
+                        Image(systemName: "tram.fill")
+                            .foregroundColor(.orange)
+                            .imageScale(.large)
+                        Text("Dans les transports")
+                            .foregroundColor(.orange)
+                            .font(.headline)
+                    }
                 }
-                HStack {
-                    Image(systemName: "house.fill")
-                        .foregroundColor(.green)
-                        .imageScale(.large)
-                    Text("Au domicile")
-                        .foregroundColor(.green)
-                        .font(.headline)
+                NavigationLink(destination: HomePage(idContext: "4")){
+                    HStack {
+                        Image(systemName: "house.fill")
+                            .foregroundColor(.green)
+                            .imageScale(.large)
+                        Text("Au domicile")
+                            .foregroundColor(.green)
+                            .font(.headline)
+                    }
                 }
             }
             .padding(.top, 100)

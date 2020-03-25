@@ -16,24 +16,10 @@ class AnswerManager: ObservableObject {
     @Published var nbAnswers: Int = 0
     
     init(idRemark: String){
-        guard let url = URL(string : "http://vps685054.ovh.net:8080/api/remarks/\(idRemark)/responses") else {return}
-        
-        URLSession.shared.dataTask(with: url){ (data, response, error) in
-            guard let data = data else {
-                print(String(describing: error))
-                return
-            }
-            
-            let answerList = try! JSONDecoder().decode([Answer].self, from: data)
-            //print(answerList)
-            
-            DispatchQueue.main.async{
-                self.answerList = AnswerList(results: answerList)
-            }
-        }.resume()
+        self.getAllAnswers(idRemark: String(idRemark))
     }
     
-    func getAllAnswers(idRemark: Int){
+    func getAllAnswers(idRemark: String){
         guard let url = URL(string : "http://vps685054.ovh.net:8080/api/remarks/\(idRemark)/responses") else {return}
         
         URLSession.shared.dataTask(with: url){ (data, response, error) in
@@ -70,11 +56,12 @@ class AnswerManager: ObservableObject {
             return
           }
           print(String(data: data, encoding: .utf8)!)
+          self.getAllAnswers(idRemark: String(idRemark))
         }
         task.resume()
     }
     
-    func countAnswers(idRemark: String) -> Int{
+    func countAnswers(idRemark: String){
         var request = URLRequest(url: URL(string: "http://vps685054.ovh.net:8080/api/remarks/\(idRemark)/responses")!,timeoutInterval: Double.infinity)
         request.httpMethod = "GET"
 
@@ -87,13 +74,11 @@ class AnswerManager: ObservableObject {
           //print(answerList)
 
           DispatchQueue.main.async{
-              self.answerList = AnswerList(results: answerList)
+            self.answerList = AnswerList(results: answerList)
+            self.nbAnswers = answerList.count
           }
-          self.nbAnswers = answerList.count
         }
-
         task.resume()
-        return self.nbAnswers
     }
     
     func like(idRemark: String, idResponse: String){
@@ -105,6 +90,7 @@ class AnswerManager: ObservableObject {
             print(String(describing: error))
             return
           }
+            self.getAllAnswers(idRemark: String(idRemark))
           //print(String(data: data, encoding: .utf8)!)
             print("liked response \(idResponse) of post \(idRemark)")
         }
@@ -120,6 +106,7 @@ class AnswerManager: ObservableObject {
             print(String(describing: error))
             return
           }
+            self.getAllAnswers(idRemark: String(idRemark))
           //print(String(data: data, encoding: .utf8)!)
             print("unliked response \(idResponse) of post \(idRemark)")
         }
@@ -135,6 +122,7 @@ class AnswerManager: ObservableObject {
             print(String(describing: error))
             return
           }
+            self.getAllAnswers(idRemark: String(idRemark))
           //print(String(data: data, encoding: .utf8)!)
             print("disliked response \(idResponse) of post \(idRemark)")
         }
@@ -150,6 +138,7 @@ class AnswerManager: ObservableObject {
             print(String(describing: error))
             return
           }
+            self.getAllAnswers(idRemark: String(idRemark))
           //print(String(data: data, encoding: .utf8)!)
             print("undisliked response \(idResponse) of post \(idRemark)")
         }

@@ -12,6 +12,8 @@ struct AddRemarkView: View {
     
     var parent : AddRemarkPage!
     
+    @ObservedObject var remarkManager: RemarkManager
+    
     @State private var contexts = ["Dans la rue", "Dans les transports", "Au travail", "Au domicile"]
     @State private var selection = 0
     @State private var pickerVisible = false
@@ -68,7 +70,7 @@ struct AddRemarkView: View {
                 if (self.remark == ""){
                     self.showingAlert = true
                 } else{
-                    RemarkManager().addRemark(description: self.remark, idContext: String(self.idContext), token: "")
+                    self.remarkManager.addRemark(description: self.remark, idContext: String(self.idContext), token: "")
                     self.parent.presentationMode.wrappedValue.dismiss()
                 }
             }){

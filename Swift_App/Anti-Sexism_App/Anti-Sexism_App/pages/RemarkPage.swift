@@ -11,7 +11,7 @@ import SwiftUI
 struct RemarkPage: View {
     
     var remark: Remark
-    var remarkManager : RemarkManager!
+    var remarkManager: RemarkManager!
     
     
     var body: some View {

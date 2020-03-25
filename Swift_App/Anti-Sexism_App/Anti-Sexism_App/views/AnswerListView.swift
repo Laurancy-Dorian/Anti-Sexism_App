@@ -15,12 +15,12 @@ struct AnswerListView: View {
     
     init(idRemark : Int){
         self.idRemark = idRemark
-         answerManager = AnswerManager(idRemark: String(idRemark))
+        answerManager = AnswerManager(idRemark: String(idRemark))
     }
     
     var body: some View {
         List(answerManager.answerList.results, id: \.id_response){ answer in
-            AnswerView(answer: answer)
+            AnswerView(answer: answer, answerManager: self.answerManager)
         }
     }
 }

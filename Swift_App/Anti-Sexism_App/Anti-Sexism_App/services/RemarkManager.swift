@@ -14,26 +14,12 @@ class RemarkManager: ObservableObject {
     
     @Published var remarkList = RemarkList(results: [])
     
-    init(){
-//        guard let url = URL(string : "http://vps685054.ovh.net:8080/api/remarks") else {return}
-//
-//        URLSession.shared.dataTask(with: url){ (data, response, error) in
-//            guard let data = data else {
-//                print(String(describing: error))
-//                return
-//            }
-//
-//            let remarkList = try! JSONDecoder().decode([Remark].self, from: data)
-//            //print(remarkList)
-//
-//            DispatchQueue.main.async{
-//                self.remarkList = RemarkList(results: remarkList)
-//            }
-//        }.resume()
-        self.getAllRemarks()
+    init(idContext: String){
+        self.getAll(idContext: idContext)
     }
-    func getAll(idCateg : String) {
-        guard let url = URL(string : "http://vps685054.ovh.net:8080/api/remarks?context=[\(idCateg)]") else {return}
+    
+    func getAll(idContext : String) {
+        guard let url = URL(string : "http://vps685054.ovh.net:8080/api/remarks?context=[\(idContext)]") else {return}
         
         URLSession.shared.dataTask(with: url){ (data, response, error) in
             guard let data = data else {
@@ -51,7 +37,7 @@ class RemarkManager: ObservableObject {
     }
     
     func getAllRemarks(){
-        self.getAll(idCateg : "")
+        self.getAll(idContext: "")
     }
     
     func addRemark(description: String, idContext: String, token: String){
@@ -73,6 +59,7 @@ class RemarkManager: ObservableObject {
             return
           }
           print(String(data: data, encoding: .utf8)!)
+          self.getAllRemarks()
         }
         task.resume()
     }
