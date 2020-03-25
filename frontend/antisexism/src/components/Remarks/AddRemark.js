@@ -58,6 +58,8 @@ class AddRemark extends Component {
     render() { 
         return (
             <div className="add-remark container d-flex justify-content-center row">
+                <h2>Ajouter une remarque</h2>
+                <br />
                 <form className="add-remark-form d-flex justify-content-center row col-12" onSubmit={this.handleSubmit}>
                     <div className="form-group col-5" >
                         <select className="form-control" name="context" value={this.state.value} onChange={this.handleChange}>
