@@ -1,6 +1,11 @@
 import React, {Component} from 'react'
 import config from "../../config/config"
 
+import {
+    BrowserRouter as Router,
+    Link,
+} from "react-router-dom";
+
 class Remark extends Component {
     constructor(props) {
         super(props);
@@ -66,9 +71,11 @@ class Remark extends Component {
                     <div className="remark-date col-6 text-right">Le { date } </div>
                 </div>
                 <div className="content-remark">
-                    <div className="description-remark">
-                        { this.props.data.description_remark }
-                    </div>
+                    <Link to={ "/remark/" + this.props.data.id_remark }>
+                        <div className="description-remark">
+                            { this.props.data.description_remark }
+                        </div>
+                    </Link>
                     <div className="remark-buttons container row justify-content-center">
                         <div onClick={this.handleClickSeen} className="btn btn-group remark-button remark-button-seen row col-12 col-lg-4 ml-md-5 mr-md-5">
                             <button className="btn btn-primary col-10">J'ai déjà entendu</button>
@@ -84,9 +91,15 @@ class Remark extends Component {
                     </div>
                    
                 </div>
+                
                 <div className="footer-remark text-right">
-                    {this.state.nb_comments} <i className="fas fa-comments"></i>
+                    <Link to={ "/remark/" + this.props.data.id_remark }>
+                        <div>
+                                {this.state.nb_comments} <i className="fas fa-comments"></i>
+                        </div>
+                    </Link>
                 </div>
+                
             </div>
          );
     }

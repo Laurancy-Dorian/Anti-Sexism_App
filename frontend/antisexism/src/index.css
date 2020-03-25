@@ -34,7 +34,19 @@ li {
 	line-height: 1.5em;
 }
 
+a {
+  text-decoration: none;
+  color : var(--text-color-light);
+}
 
+a:hover {
+  text-decoration: none;
+  color : var(--text-color-light);
+}
+
+textarea {
+  min-width: 100%;
+}
 
 
 code {
@@ -69,11 +81,18 @@ code {
 
 .footer-remark {
   border-radius: 0 0 2rem 0;
+  color : var(--text-color-dark);
+}
+
+.footer-remark a {
+  color : var(--text-color-dark);
 }
 
 .description-remark {
   font-size: 120%;
   font-weight: 500;
+  text-decoration: none;
+  color : var(--text-color-dark);
 }
 
 
