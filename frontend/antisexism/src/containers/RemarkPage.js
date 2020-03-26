@@ -1,6 +1,9 @@
 import React, {Component} from 'react'
 import Remark from '../components/Remarks/Remark'
 import ResponsesList from '../components/Responses/ResponsesList'
+import AddResponse from '../components/Responses/AddResponse'
+import Notification from '../components/utils/Notification'
+
 
 import config from "../config/config"
 
@@ -11,7 +14,9 @@ class RemarkPage extends Component {
         super(props);
         this.state = { 
             remark: {},
-            responses: []
+            responses: [],
+            notification: "",
+            notificationType : "warning"
         }
     }
 
@@ -22,7 +27,9 @@ class RemarkPage extends Component {
             this.setState(function(state) {
                 return {
                     remark: result[0],
-                    responses: state.responses
+                    responses: state.responses,
+                    notification: state.notification,
+                    notificationType: state.notificationType
                 };
             });
         })
@@ -36,7 +43,9 @@ class RemarkPage extends Component {
             this.setState(function(state) {
                 return {
                     remark: state.remark,
-                    responses: result
+                    responses: result,
+                    notification: state.notification,
+                    notificationType: state.notificationType
                 };
             });
         })
@@ -48,11 +57,26 @@ class RemarkPage extends Component {
         this.fetchResponses()
     }
 
+    submitNewResponse = (message, notificationType) => {
+        this.setState(function(state) {
+            return {
+                remark: state.remark,
+                responses: state.responses,
+                notification: message,
+                notificationType: notificationType
+            };
+        });
+        this.fetchResponses()
+    }
+
 
     render() { 
         return ( 
             <div className="remark-page container">
                <Remark data={this.state.remark} />
+               <AddResponse idRemark={parseInt(this.props.idRemark)} afterSubmit={this.submitNewResponse} />
+               {this.state.notification.length > 0 ? <Notification type={this.state.notificationType} content={this.state.notification} /> : ""}
+
                <ResponsesList responses={this.state.responses} />
             </div>
          );

@@ -7,8 +7,12 @@ import PropTypes from 'prop-types'
  */
 class Notification extends Component {
     render() {
+        const typesAllowedValues = [ "primary", "secondary", "success", "danger", "warning", "info", "light", "dark" ]
+
+        const type = typesAllowedValues.includes(this.props.type) ? this.props.type : typesAllowedValues[0]
+        
         return (
-            <div className="notification alert alert-success">
+            <div className={"notification alert alert-" + type}>
                 {this.props.content}
             </div>
         )
@@ -17,11 +21,18 @@ class Notification extends Component {
 
 Notification.propTypes = {
     /** The content of the Notification */
-    content : PropTypes.string
+    content : PropTypes.string,
+
+    /**
+     * The type of Notification. 
+     * AllowedValues = [ "primary", "secondary", "success", "danger", "warning", "info", "light", "dark" ]
+     */
+    type: PropTypes.string
 }
 
 Notification.defaultProps = {
-    content: ""
+    content: "",
+    type:"primary"
 }
 
 export default Notification

@@ -13,7 +13,8 @@ class HomePage extends Component {
         super(props);
         this.state = { 
             remarks: [],
-            notification: ""
+            notification: "",
+            notificationType: ""
         }
     }
 
@@ -24,7 +25,8 @@ class HomePage extends Component {
             this.setState(function(state) {
                 return {
                     remarks: result,
-                    notification: state.notification
+                    notification: state.notification,
+                    notificationType: state.notificationType
                 };
             });
         })
@@ -35,11 +37,12 @@ class HomePage extends Component {
         this.fetchAllRemarks()
     }
 
-    submitNewRemark = () => {
+    submitNewRemark = (message, notificationType) => {
         this.setState(function(state) {
             return {
                 remarks: state.remarks,
-                notification: "Votre remarque a bien été ajoutée"
+                notification: message,
+                notificationType: notificationType
             };
         });
         this.fetchAllRemarks()
@@ -51,7 +54,7 @@ class HomePage extends Component {
         return ( 
             <div className="home-page container">
                 <AddRemark afterSubmit={this.submitNewRemark} />
-                {this.state.notification.length > 0 ? <Notification content={this.state.notification} /> : ""}
+                {this.state.notification.length > 0 ? <Notification type={this.state.notificationType} content={this.state.notification} /> : ""}
                 <RemarksList remarks={this.state.remarks} />
             </div>
          );
