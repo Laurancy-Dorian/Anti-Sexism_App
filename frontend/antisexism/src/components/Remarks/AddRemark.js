@@ -1,23 +1,23 @@
 import React, {Component} from 'react'
 import config from "../../config/config"
+import PropTypes from 'prop-types'
 
-import {
-    BrowserRouter as Router,
-    Link,
-} from "react-router-dom";
 
+/**
+ * Form for adding a new Remark
+ */
 class AddRemark extends Component {
+
+    static propTypes = {
+        
+    }
+
     constructor(props) {
         super(props);
         this.state = { 
             context: "",
             description: ""
         }
-    }
-
-
-
-    componentDidMount = () => {
     }
 
     handleSubmit = (event) => {
@@ -40,10 +40,13 @@ class AddRemark extends Component {
         fetch(config.api + "/remarks", requestOptions)
         .then(response => response.json())
         .then(result => {
-            window.location.reload(false);
+            this.setState({ 
+                context: "",
+                description: ""
+            })
+            this.props.afterSubmit()
         })
         .catch(error => console.log('error', error));
-
     }
 
     handleChange = (event) => {
@@ -62,18 +65,18 @@ class AddRemark extends Component {
                 <br />
                 <form className="add-remark-form d-flex justify-content-center row col-12" onSubmit={this.handleSubmit}>
                     <div className="form-group col-5" >
-                        <select className="form-control" name="context" value={this.state.value} onChange={this.handleChange}>
-                            <option value ='' selected='selected'>--- Choisissez un contexte ---</option>
+                        <select className="form-control" name="context" value={this.state.context} onChange={this.handleChange}>
+                            <option value=''>--- Choisissez un contexte ---</option>
                             <option value='1'>Dans la Rue</option>
                             <option value='2'>Au Travail</option>
                             <option value='3'>Dans les transports</option>
                             <option value='4'>Au domicile</option>
                         </select>
                         <br />
-                        <label for="textarearemark" className="">
+                        <label htmlFor="textarearemark" className="">
                             Entrez la remarque :
                         </label>
-                        <textarea id="textarearemark" className="form-control" name="description" value={this.state.value} onChange={this.handleChange} />
+                        <textarea id="textarearemark" className="form-control" name="description" value={this.state.description} onChange={this.handleChange} />
                         
                         <br />
                         <input className="form-control" type="submit" value="Envoyer" />
@@ -84,5 +87,9 @@ class AddRemark extends Component {
         )
     }
 }
- 
+
+AddRemark.propTypes = {
+    /** Function to execute after sending the form has been submitted */
+    afterSubmit: PropTypes.func
+}
 export default AddRemark;

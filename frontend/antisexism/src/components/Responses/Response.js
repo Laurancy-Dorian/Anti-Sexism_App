@@ -1,5 +1,9 @@
 import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 
+/**
+ * Component representing a Response to a Remark
+ */
 class Response extends Component {
     constructor(props) {
         super(props);
@@ -59,6 +63,31 @@ class Response extends Component {
             </div>
          );
     }
+}
+
+
+Response.propTypes = {
+
+    /** 
+     * The object containing the data of the response
+     *      data.id_response              The id of the Response
+     *      data.description_response     The content of the Response
+     *      data.nb_likes_response        The number of users that liked this Response
+     *      data.nb_dislikes_response     The number of users that disliked this Response
+     *      data.date_remsponse           The date this response has been posted
+     *      data.pseudo_user              The pseudo of the user who posted this response, null if anonymous
+     *      data.id_responses_type        The id of the type of this response
+     */
+
+    data: PropTypes.shape({
+        id_response: PropTypes.number,
+        description_response: PropTypes.string,
+        nb_likes_response: PropTypes.number,
+        nb_dislikes_response: PropTypes.number,
+        date_remsponse: PropTypes.string,
+        pseudo_user: PropTypes.string,
+        id_responses_type: PropTypes.number
+    })
 }
  
 export default Response;

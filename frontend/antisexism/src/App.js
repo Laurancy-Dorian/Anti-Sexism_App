@@ -1,7 +1,8 @@
 import React from 'react';
-import RemarksList from './components/Remarks/RemarksList'
-import RemarkPage from './composers/RemarkPage'
-import AddRemark from './components/Remarks/AddRemark'
+
+import HomePage from './containers/HomePage'
+import RemarkPage from './containers/RemarkPage'
+
 
 import {
   BrowserRouter as Router,
@@ -13,36 +14,33 @@ import {
 
 function App() {
   return (
+    
     <div className="App container">
-
       <Router>
+
+        <Link to="/">
+          <h1>Header</h1>
+        </Link>
+
         <Switch>
-          <Route exact path="/">
-            <Home />
+          <Route exact path="/"> 
+            <HomePage />
           </Route>
-          <Route path="/remark/:id">
+          <Route path="/remarks/:id">
             <RemarkPageRoute />
           </Route>
         </Switch>
-      </Router>
+        
+        <h1>Footer</h1>
 
-    </div>    
+      </Router>  
+    </div>  
+    
   );
-}
-
-function Home() {
-  return (
-    <div>
-      <AddRemark />
-      <RemarksList />
-    </div>
-
-  )
 }
 
 function RemarkPageRoute() {
   let { id } = useParams()
-
   return (<RemarkPage idRemark={id} />)
 }
 
