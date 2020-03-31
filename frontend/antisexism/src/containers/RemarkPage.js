@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import Remark from '../components/Remarks/Remark'
+import RemarksList from '../components/Remarks/RemarksList'
 import ResponsesList from '../components/Responses/ResponsesList'
 import AddResponse from '../components/Responses/AddResponse'
 import Notification from '../components/utils/Notification'
@@ -13,8 +13,9 @@ class RemarkPage extends Component {
     constructor(props) {
         super(props);
         this.state = { 
-            remark: {},
+            remark: [],
             responses: [],
+            contextList: [],
             notification: "",
             notificationType : "warning"
         }
@@ -26,8 +27,9 @@ class RemarkPage extends Component {
         .then(result =>  {
             this.setState(function(state) {
                 return {
-                    remark: result[0],
+                    remark: result,
                     responses: state.responses,
+                    contextList: state.contextList,
                     notification: state.notification,
                     notificationType: state.notificationType
                 };
@@ -44,8 +46,26 @@ class RemarkPage extends Component {
                 return {
                     remark: state.remark,
                     responses: result,
+                    contextList : state.contextList,
                     notification: state.notification,
                     notificationType: state.notificationType
+                };
+            });
+        })
+        .catch(error => console.log('error', error));
+    }
+
+    fetchAllContexts = () => {
+        fetch(config.api + "/remarks_contexts")
+        .then(response => response.json())
+        .then(result =>  {
+            this.setState(function(state) {
+                return {
+                    remarks: state.remarks,
+                    notification: state.notification,
+                    contextList: result,
+                    notificationType: state.notificationType,
+                    contextList: result
                 };
             });
         })
@@ -55,6 +75,7 @@ class RemarkPage extends Component {
     componentDidMount = () => {
         this.fetchRemark()
         this.fetchResponses()
+        this.fetchAllContexts()
     }
 
     submitNewResponse = (message, notificationType) => {
@@ -62,6 +83,7 @@ class RemarkPage extends Component {
             return {
                 remark: state.remark,
                 responses: state.responses,
+                contextList: state.contextList,
                 notification: message,
                 notificationType: notificationType
             };
@@ -73,7 +95,7 @@ class RemarkPage extends Component {
     render() { 
         return ( 
             <div className="remark-page container">
-               <Remark data={this.state.remark} />
+               <RemarksList remarks={this.state.remark} contextList={this.state.contextList} />
                <AddResponse idRemark={parseInt(this.props.idRemark)} afterSubmit={this.submitNewResponse} />
                {this.state.notification.length > 0 ? <Notification type={this.state.notificationType} content={this.state.notification} /> : ""}
 

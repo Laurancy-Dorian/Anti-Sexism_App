@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import config from "../../config/config"
 import PropTypes from 'prop-types'
+import {lightenDarkenColor} from '../../lib/color-management'
 
 import {
     Link
@@ -55,7 +56,6 @@ class Remark extends Component {
 
 
     render() { 
-
         let date = new Date(this.props.data.date_remark)
         date = (date.getDate()).toLocaleString('fr-FR', {minimumIntegerDigits: 2, useGrouping:false}) 
                 + "/" + (1+date.getMonth()).toLocaleString('fr-FR', {minimumIntegerDigits: 2, useGrouping:false}) 
@@ -65,11 +65,20 @@ class Remark extends Component {
                 + ":" 
                 + date.getMinutes().toLocaleString('fr-FR', {minimumIntegerDigits: 2, useGrouping:false})
 
+
+        const color = this.props.context ? this.props.context.color_context : ""
+        const lighterColor = this.props.context ? lightenDarkenColor(color, 200) : ""
+
         return ( 
-            <div id={"remark-" + this.props.data.id_remark} className="remark container">
-                <div className="header-remark row">
-                    <div className="remark-user col-6">Par { this.props.data.pseudo_user ? this.props.data.pseudo_user : "Anonyme" }</div>
-                    <div className="remark-date col-6 text-right">Le { date } </div>
+            <div style={{background: lighterColor}} id={"remark-" + this.props.data.id_remark} className="remark container">
+                <div style={{background: color}} className="header-remark row">
+                    <div className="remark-user col-4">Par { this.props.data.pseudo_user ? this.props.data.pseudo_user : "Anonyme" } <i class="fas fa-user"></i></div>
+                    <div className="remark-context col-4 text-center">
+                        <i class="fas fa-quote-left"></i>
+                        <span className="mr-2 ml-2">{this.props.context ? this.props.context.name_context : ""}</span>
+                        <i class="fas fa-quote-right"></i>
+                    </div>
+                    <div className="remark-date col-4 text-right">Le { date } </div>
                 </div>
                 <div className="content-remark">
                     <Link to={ "/remarks/" + this.props.data.id_remark }>
@@ -125,6 +134,19 @@ Remark.propTypes = {
         date_remark: PropTypes.string,
         pseudo_user: PropTypes.string,
         id_context: PropTypes.number
+    }),
+
+    
+    /**
+     * the Remark context of this remark
+     *      id_context	    number  The id of the context
+     *      name_context	String	The name
+     *      color_context	String  The color associated (hex)
+     */
+    context: PropTypes.shape({
+        id_context: PropTypes.number,
+        name_context: PropTypes.string,
+        color_context: PropTypes.string
     })
 }
 

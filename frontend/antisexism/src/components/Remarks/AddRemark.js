@@ -64,6 +64,9 @@ class AddRemark extends Component {
 
 
     render() { 
+        const options = this.props.contextList.map (context => {
+            return( <option key={ context.id_context } style={ {color: context.color_context} } value= { context.id_context } > { context.name_context } </option> )
+        })
         return (
             <div className="add-remark container d-flex justify-content-center row">
                 <h2>Ajouter une remarque</h2>
@@ -72,10 +75,7 @@ class AddRemark extends Component {
                     <div className="form-group col-5" >
                         <select className="form-control" name="context" value={this.state.context} onChange={this.handleChange}>
                             <option value=''>--- Choisissez un contexte ---</option>
-                            <option value='1'>Dans la Rue</option>
-                            <option value='2'>Au Travail</option>
-                            <option value='3'>Dans les transports</option>
-                            <option value='4'>Au domicile</option>
+                            {options}
                         </select>
                         <br />
                         <label htmlFor="textarearemark" className="">
@@ -99,6 +99,18 @@ AddRemark.propTypes = {
      * @param message the message to print in the ui
      * @param notificationType the type of notification
      */
-    afterSubmit: PropTypes.func
+    afterSubmit: PropTypes.func,
+
+    /**
+     * All the Remark contexts
+     *      contextList.id_context	    number  The id of the context
+     *      contextList.name_context	String	The name
+     *      contextList.color_context	String  The color associated (hex)
+     */
+    contextList: PropTypes.arrayOf(PropTypes.shape({
+        id_context: PropTypes.number,
+        name_context: PropTypes.string,
+        color_context: PropTypes.string
+    }))
 }
 export default AddRemark;

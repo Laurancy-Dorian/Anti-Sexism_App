@@ -8,8 +8,9 @@ import PropTypes from 'prop-types'
 class RemarksList extends Component {
     render() { 
         const remarks = this.props.remarks.map(remark => {
+            const context = this.props.contextList.find(c => c.id_context === remark.id_context)
             return (
-                <Remark key={remark.id_remark} data={remark} />
+                <Remark key={remark.id_remark} data={remark} context={ context } />
             )
         })
 
@@ -42,8 +43,21 @@ RemarksList.propTypes = {
             date_remark: PropTypes.string,
             pseudo_user: PropTypes.string,
             id_context: PropTypes.number
-        })
-    )
+        }
+    )),
+
+    /**
+     * All the Remark contexts
+     *      contextList.id_context	    number  The id of the context
+     *      contextList.name_context	String	The name
+     *      contextList.color_context	String  The color associated (hex)
+     */
+    contextList: PropTypes.arrayOf(PropTypes.shape({
+        id_context: PropTypes.number,
+        name_context: PropTypes.string,
+        color_context: PropTypes.string
+    }))
+    
 }
 
 

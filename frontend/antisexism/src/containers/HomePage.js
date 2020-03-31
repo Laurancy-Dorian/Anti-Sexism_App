@@ -14,7 +14,8 @@ class HomePage extends Component {
         this.state = { 
             remarks: [],
             notification: "",
-            notificationType: ""
+            notificationType: "",
+            contextList : []
         }
     }
 
@@ -26,7 +27,24 @@ class HomePage extends Component {
                 return {
                     remarks: result,
                     notification: state.notification,
-                    notificationType: state.notificationType
+                    notificationType: state.notificationType,
+                    contextList: state.contextList
+                };
+            });
+        })
+        .catch(error => console.log('error', error));
+    }
+
+    fetchAllContexts = () => {
+        fetch(config.api + "/remarks_contexts")
+        .then(response => response.json())
+        .then(result =>  {
+            this.setState(function(state) {
+                return {
+                    remarks: state.remarks,
+                    notification: state.notification,
+                    notificationType: state.notificationType,
+                    contextList: result
                 };
             });
         })
@@ -35,6 +53,7 @@ class HomePage extends Component {
 
     componentDidMount = () => {
         this.fetchAllRemarks()
+        this.fetchAllContexts()
     }
 
     submitNewRemark = (message, notificationType) => {
@@ -42,7 +61,8 @@ class HomePage extends Component {
             return {
                 remarks: state.remarks,
                 notification: message,
-                notificationType: notificationType
+                notificationType: notificationType,
+                contextList: state.contextList
             };
         });
         this.fetchAllRemarks()
@@ -53,9 +73,9 @@ class HomePage extends Component {
 
         return ( 
             <div className="home-page container">
-                <AddRemark afterSubmit={this.submitNewRemark} />
+                <AddRemark afterSubmit={this.submitNewRemark} contextList={this.state.contextList} />
                 {this.state.notification.length > 0 ? <Notification type={this.state.notificationType} content={this.state.notification} /> : ""}
-                <RemarksList remarks={this.state.remarks} />
+                <RemarksList contextList={this.state.contextList} remarks={this.state.remarks} />
             </div>
          );
     }

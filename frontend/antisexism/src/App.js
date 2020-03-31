@@ -3,7 +3,6 @@ import React from 'react';
 import HomePage from './containers/HomePage'
 import RemarkPage from './containers/RemarkPage'
 
-
 import {
   BrowserRouter as Router,
   Switch,
