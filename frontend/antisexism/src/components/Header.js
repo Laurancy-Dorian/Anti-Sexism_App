@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { Link } from "react-router-dom"
-import PropTypes from 'prop-types'
+import config from "../config/config"
 import {Navbar, Nav, Form, FormControl, Button, NavDropdown, Container} from 'react-bootstrap'
 
 
@@ -12,14 +12,39 @@ class Header extends Component {
 
   constructor(){
     super();
+    this.state = { 
+      contextList: []
+    }
   }
 
+
+  fetchAllContexts = () => {
+    fetch(config.api + "/remarks_contexts")
+    .then(response => response.json())
+    .then(result =>  {
+        this.setState(function(state) {
+            return {
+              contextList: result
+            };
+        });
+    })
+    .catch(error => console.log('error', error));
+}
+
+componentDidMount = () => {
+  this.fetchAllContexts()
+}
+
+
   render(){
+    const items = this.state.contextList.map (context => {
+      return(  <NavDropdown.Item key={ context.id_context } value= { context.id_context } style={ {color: context.color_context} } href="#action/3.1">{ context.name_context }</NavDropdown.Item>)
+    })
     return(
           <Container>
             <Navbar bg="dark" variant="dark" sticky="top">
               <Link to="/">
-              <Navbar.Brand href="#home">
+              <Navbar.Brand >
                 <img
                   src="/logo2.png"
                   width="30"
@@ -35,9 +60,7 @@ class Header extends Component {
               </Form>
               <Nav className="justify-content-end">
                 <NavDropdown title="CATEGORIE">
-                  <NavDropdown.Item href="#action/3.1"></NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.2">Catégorie 2</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">Catégorie 3</NavDropdown.Item>
+                  {items}
                 </NavDropdown>
               </Nav>
               <Nav>
