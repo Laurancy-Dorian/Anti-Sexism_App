@@ -2,6 +2,7 @@ import React from 'react';
 
 import HomePage from './containers/HomePage'
 import RemarkPage from './containers/RemarkPage'
+import Header from './components/Header'
 
 import {
   BrowserRouter as Router,
@@ -18,7 +19,7 @@ function App() {
       <Router>
 
         <Link to="/">
-          <h1>Header</h1>
+          <Header/>
         </Link>
 
         <Switch>
