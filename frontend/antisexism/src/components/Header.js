@@ -1,4 +1,4 @@
-import {React, Component} from 'react'
+import React, {Component} from 'react'
 import { Link } from "react-router-dom"
 import PropTypes from 'prop-types'
 import {Navbar, Nav, Form, FormControl, Button, NavDropdown, Container} from 'react-bootstrap'
@@ -10,14 +10,11 @@ import {Navbar, Nav, Form, FormControl, Button, NavDropdown, Container} from 're
  */
 class Header extends Component {
 
-  constructor(props){
-    super(props);
+  constructor(){
+    super();
   }
 
-
-  
   render(){
-
     return(
           <Container>
             <Navbar bg="dark" variant="dark" sticky="top">
@@ -38,7 +35,7 @@ class Header extends Component {
               </Form>
               <Nav className="justify-content-end">
                 <NavDropdown title="CATEGORIE">
-                  <NavDropdown.Item href="#action/3.1">{this.props.data.name_context}</NavDropdown.Item>
+                  <NavDropdown.Item href="#action/3.1"></NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.2">Catégorie 2</NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.3">Catégorie 3</NavDropdown.Item>
                 </NavDropdown>
@@ -60,21 +57,7 @@ class Header extends Component {
 
 }
 
-Header.propTypes = {
-  /**
- * All the Remark contexts
- *      contextList.id_context	    number  The id of the context
- *      contextList.name_context	String	The name
- *      contextList.color_context	String  The color associated (hex)
- */
-data: PropTypes.shape({
-  contextList: PropTypes.arrayOf(PropTypes.shape({
-    id_context: PropTypes.number,
-    name_context: PropTypes.string,
-    color_context: PropTypes.string
-  }))
-})
 
-}
+
 
 export default Header;
