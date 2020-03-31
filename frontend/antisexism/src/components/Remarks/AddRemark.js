@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import config from "../../config/config"
 import PropTypes from 'prop-types'
 
@@ -9,12 +9,12 @@ import PropTypes from 'prop-types'
 class AddRemark extends Component {
 
     static propTypes = {
-        
+
     }
 
     constructor(props) {
         super(props);
-        this.state = { 
+        this.state = {
             context: "",
             description: ""
         }
@@ -38,34 +38,34 @@ class AddRemark extends Component {
             };
 
             fetch(config.api + "/remarks", requestOptions)
-            .then(response => response.json())
-            .then(result => {
-                this.setState({ 
-                    context: "",
-                    description: ""
+                .then(response => response.json())
+                .then(result => {
+                    this.setState({
+                        context: "",
+                        description: ""
+                    })
+                    this.props.afterSubmit("Votre Remarque a bien été ajoutée", "success")
                 })
-                this.props.afterSubmit("Votre Remarque a bien été ajoutée", "success")
-            })
-            .catch(error => console.log('error', error));
+                .catch(error => console.log('error', error));
         } else {
             this.props.afterSubmit("Veuillez renseigner tous les champs", "danger")
         }
 
-        
+
     }
 
     handleChange = (event) => {
-        const {name, value} = event.target
+        const { name, value } = event.target
         this.setState({
-            [name] : value
+            [name]: value
         });
     }
 
 
 
-    render() { 
-        const options = this.props.contextList.map (context => {
-            return( <option key={ context.id_context } style={ {color: context.color_context} } value= { context.id_context } > { context.name_context } </option> )
+    render() {
+        const options = this.props.contextList.map(context => {
+            return (<option key={context.id_context} style={{ color: context.color_context }} value={context.id_context} > {context.name_context} </option>)
         })
         return (
             <div className="add-remark container d-flex justify-content-center row">
@@ -82,7 +82,7 @@ class AddRemark extends Component {
                             Entrez la remarque :
                         </label>
                         <textarea id="textarearemark" className="form-control" name="description" value={this.state.description} onChange={this.handleChange} />
-                        
+
                         <br />
                         <input className="form-control" type="submit" value="Envoyer" />
                     </div>

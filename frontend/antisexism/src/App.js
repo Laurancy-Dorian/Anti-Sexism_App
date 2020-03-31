@@ -3,6 +3,7 @@ import React from 'react';
 import HomePage from './containers/HomePage'
 import RemarkPage from './containers/RemarkPage'
 import Header from './components/Header'
+import Login from './components/Auth/Login'
 
 import {
   BrowserRouter as Router,
@@ -26,9 +27,15 @@ function App() {
           <Route exact path="/"> 
             <HomePage />
           </Route>
+
           <Route path="/remarks/:id">
             <RemarkPageRoute />
           </Route>
+
+          <Route path="/login">
+            <Login />
+          </Route>
+
         </Switch>
         
         <h1>Footer</h1>

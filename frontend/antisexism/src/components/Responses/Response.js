@@ -38,6 +38,7 @@ class Response extends Component {
 
         let typeName = ""
         let typeEmoji = ""
+        
         if (this.props.type) {
             typeName = this.props.type.name_response_type 
             typeEmoji = this.props.type.emoji_response_type 

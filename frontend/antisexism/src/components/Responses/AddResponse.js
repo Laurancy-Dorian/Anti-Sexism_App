@@ -8,10 +8,6 @@ import PropTypes from 'prop-types'
  */
 class AddReponse extends Component {
 
-    static propTypes = {
-        
-    }
-
     constructor(props) {
         super(props);
         this.state = { 
