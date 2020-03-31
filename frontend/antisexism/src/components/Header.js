@@ -38,7 +38,7 @@ componentDidMount = () => {
 
   render(){
     const items = this.state.contextList.map (context => {
-      return(  <NavDropdown.Item key={ context.id_context } value= { context.id_context } style={ {color: context.color_context} } href="#action/3.1">{ context.name_context }</NavDropdown.Item>)
+      return(  <NavDropdown.Item key={ context.id_context } value= { context.id_context } style={ {color: context.color_context} } >{ context.name_context }</NavDropdown.Item>)
     })
     return(
           <Container>

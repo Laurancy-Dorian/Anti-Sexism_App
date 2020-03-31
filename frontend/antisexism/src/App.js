@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 
 import HomePage from './containers/HomePage'
 import RemarkPage from './containers/RemarkPage'
@@ -12,7 +12,20 @@ import {
   useParams
 } from "react-router-dom";
 
-function App() {
+/**
+ * App
+ */
+class App extends Component {
+
+  constructor(){
+    super();
+    this.state = { 
+      context: ""
+    }
+  }
+  
+
+  render(){
   return (
     
     <div className="App container">
@@ -41,6 +54,7 @@ function App() {
     </div>  
     
   );
+  }
 }
 
 function RemarkPageRoute() {
