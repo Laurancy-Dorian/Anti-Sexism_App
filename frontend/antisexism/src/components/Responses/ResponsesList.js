@@ -7,8 +7,10 @@ class ResponsesList extends Component {
     render() { 
 
         const responses = this.props.responses.map(response => {
+            const type = this.props.responseTypeList.find(t => t.id_response_type === response.id_response_type)
+
             return (
-                <Response key={"response-" + response.id_response} data={response} />
+                <Response key={"response-" + response.id_response} data={response} type={type} />
             )
         })
 
@@ -43,7 +45,19 @@ ResponsesList.propTypes = {
             pseudo_user: PropTypes.string,
             id_responses_type: PropTypes.number
         })
-    )
+    ),
+
+    /**
+     * ResponseTypeList 	object[]	An array containing the Responses Types
+     *      ResponseTypeList.id_response_type	    number  The id
+     *      ResponseTypeList.name_response_type	    String	The name
+     *      ResponseTypeList.emoji_response_type	String	The emoji associated
+     */
+    responseTypeList: PropTypes.arrayOf(PropTypes.shape({
+        id_response_type: PropTypes.number,
+        name_response_type: PropTypes.string,
+        emoji_response_type: PropTypes.string
+    }))
 }
 
  

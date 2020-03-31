@@ -36,11 +36,23 @@ class Response extends Component {
                 + ":" 
                 + date.getMinutes().toLocaleString('fr-FR', {minimumIntegerDigits: 2, useGrouping:false})
 
+        let typeName = ""
+        let typeEmoji = ""
+        if (this.props.type) {
+            typeName = this.props.type.name_response_type 
+            typeEmoji = this.props.type.emoji_response_type 
+        }
+        
+
         return ( 
             <div id={"response-" + this.props.data.id_response} className="response container">
                 <div className="header-response row">
-                    <div className="response-user col-6">Par { this.props.data.pseudo_user ? this.props.data.pseudo_user : "Anonyme" }</div>
-                    <div className="response-date col-6 text-right">Le { date } </div>
+                    <div className="response-user col-4">Par { this.props.data.pseudo_user ? this.props.data.pseudo_user : "Anonyme" }</div>
+                    <div className="remark-context col-4 text-center">
+                        <span className="mr-2 ml-2 response-type-name"> { typeName } </span>
+                        <span className="mr-2 ml-2 response-type-emoji"> { typeEmoji } </span>
+                    </div>
+                    <div className="response-date col-4 text-right">Le { date } </div>
                 </div>
                 <div className="content-response">
                     <div className="description-response">
@@ -87,6 +99,12 @@ Response.propTypes = {
         date_remsponse: PropTypes.string,
         pseudo_user: PropTypes.string,
         id_responses_type: PropTypes.number
+    }),
+
+    type: PropTypes.shape({
+        id_response_type: PropTypes.number,
+        name_response_type: PropTypes.string,
+        emoji_response_type: PropTypes.string
     })
 }
  

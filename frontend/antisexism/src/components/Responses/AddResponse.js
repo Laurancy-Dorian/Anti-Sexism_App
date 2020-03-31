@@ -68,6 +68,11 @@ class AddReponse extends Component {
 
 
     render() { 
+
+        const options = this.props.responseTypeList.map (type => {
+            return( <option key={ type.id_response_type } value= { type.id_response_type } > { type.name_response_type } </option> )
+        })
+
         return (
             <div className="add-response container d-flex justify-content-center row">
                 <h2>Ajouter une Réponse</h2>
@@ -76,8 +81,9 @@ class AddReponse extends Component {
                     <div className="form-group col-5" >
                         <select className="form-control" name="responseType" value={this.state.responseType} onChange={this.handleChange}>
                             <option value=''>--- Choisissez un Type de Réponse ---</option>
-                            <option value='1'>Humour</option>
-                            <option value='2'>Tristesse</option>
+                            
+                            { options }
+
                         </select>
                         <br />
                         <label htmlFor="textarearesponse" className="">
@@ -103,6 +109,18 @@ AddReponse.propTypes = {
      */
     afterSubmit: PropTypes.func,
     /** The id of the Remark */
-    idRemark: PropTypes.number
+    idRemark: PropTypes.number,
+
+    /**
+     * ResponseTypeList 	object[]	An array containing the Responses Types
+     *      ResponseTypeList.id_response_type	    number  The id
+     *      ResponseTypeList.name_response_type	    String	The name
+     *      ResponseTypeList.emoji_response_type	String	The emoji associated
+     */
+    responseTypeList: PropTypes.arrayOf(PropTypes.shape({
+        id_response_type: PropTypes.number,
+        name_response_type: PropTypes.string,
+        emoji_response_type: PropTypes.string
+    }))
 }
 export default AddReponse;
