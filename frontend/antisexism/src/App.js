@@ -18,9 +18,9 @@ function App() {
     <div className="App container">
       <Router>
 
-        <Link to="/">
-          <Header/>
-        </Link>
+
+        <Header/>
+
 
         <Switch>
           <Route exact path="/"> 

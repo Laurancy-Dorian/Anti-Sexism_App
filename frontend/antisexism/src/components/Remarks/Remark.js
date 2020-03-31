@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import config from "../../config/config"
 import PropTypes from 'prop-types'
-import {lightenDarkenColor} from '../../lib/color-management'
+import {lightenDarkenColor, getContrastYIQ} from '../../lib/color-management'
 
 import {
     Link
@@ -68,17 +68,29 @@ class Remark extends Component {
 
         const color = this.props.context ? this.props.context.color_context : ""
         const lighterColor = this.props.context ? lightenDarkenColor(color, 200) : ""
+        const buttonColor = this.props.context ? lightenDarkenColor(color, -50) : ""
+        const fontColor =  this.props.context ? getContrastYIQ(color) : ""
 
         return ( 
-            <div style={{background: lighterColor}} id={"remark-" + this.props.data.id_remark} className="remark container">
-                <div style={{background: color}} className="header-remark row">
-                    <div className="remark-user col-4">Par { this.props.data.pseudo_user ? this.props.data.pseudo_user : "Anonyme" } <i class="fas fa-user"></i></div>
-                    <div className="remark-context col-4 text-center">
-                        <i class="fas fa-quote-left"></i>
-                        <span className="mr-2 ml-2">{this.props.context ? this.props.context.name_context : ""}</span>
-                        <i class="fas fa-quote-right"></i>
+            <div 
+                style={{background: lighterColor}} 
+                id={"remark-" + this.props.data.id_remark} 
+                className="remark container"
+                >
+
+                <div style={{background: color, "color": fontColor}} className="header-remark row">
+                    <div className="remark-user col-4">
+                        <span className="mr-1" >Par { this.props.data.pseudo_user ? this.props.data.pseudo_user : "Anonyme" } </span>
+                        <i className="fas fa-user"></i>
                     </div>
-                    <div className="remark-date col-4 text-right">Le { date } </div>
+                    <div className="remark-context col-4 text-center">
+                        <i className="fas fa-quote-left"></i>
+                        <span className="mr-2 ml-2">{this.props.context ? this.props.context.name_context : ""}</span>
+                        <i className="fas fa-quote-right"></i>
+                    </div>
+                    <div className="remark-date col-4 text-right">
+                        Le { date } 
+                    </div>
                 </div>
                 <div className="content-remark">
                     <Link to={ "/remarks/" + this.props.data.id_remark }>
@@ -87,17 +99,15 @@ class Remark extends Component {
                         </div>
                     </Link>
                     <div className="remark-buttons container row justify-content-center">
-                        <div onClick={this.handleClickSeen} className="btn btn-group remark-button remark-button-seen row col-12 col-lg-4 ml-md-5 mr-md-5">
-                            <button className="btn btn-primary col-10">J'ai déjà entendu</button>
+                        <div onClick={this.handleClickSeen} className="btn btn-group remark-button remark-button-seen row col-12 col-lg-4 ml-md-5 mr-md-5" >
+                            <button className="btn btn-primary col-10" style={{background:buttonColor}}>J'ai déjà entendu</button>
                             <div className="remark-button-number btn btn-light col-2"> { this.props.data.nb_seen_remark } </div>
                         </div>
                         
                         <div onClick={this.handleClickSuffered} className="btn btn-group remark-button remark-button remark-button-suffered col-12 col-lg-4 row col ml-md-5 mr-md-5">
-                        <button className="btn btn-primary col-10">J'ai déjà subi</button>
+                        <button className="btn btn-primary col-10"  style={{background:buttonColor}}>J'ai déjà subi</button>
                             <div className="remark-button-number btn btn-light col-2"> { this.props.data.nb_suffered_remark } </div>
-                            
                         </div>
-                        
                     </div>
                    
                 </div>
