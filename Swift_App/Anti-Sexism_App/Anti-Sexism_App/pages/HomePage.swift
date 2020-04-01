@@ -13,7 +13,8 @@ struct HomePage: View {
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     @State var showMenu = false
-    @State var text = ""
+    @State var text: String = ""
+    @State var content: String = ""
     
     var idContext: String
     
@@ -29,7 +30,7 @@ struct HomePage: View {
         return NavigationView {
             GeometryReader { geometry in
                 ZStack(alignment: .trailing) {
-                    HomeContent(showMenu: self.$showMenu, idContext: self.idContext)
+                    HomeContent(showMenu: self.$showMenu, idContext: self.idContext, text: self.content)
                         .frame(width: geometry.size.width, height: geometry.size.height)
                         .disabled(self.showMenu ? true : false)
                     if self.showMenu {
@@ -50,7 +51,11 @@ struct HomePage: View {
                         }
                         Spacer()
                         HStack {
-                            Image(systemName: "magnifyingglass")
+                            Button(action: {
+                                self.content = self.text
+                            }){
+                                Image(systemName: "magnifyingglass")
+                            }
                             TextField("Recherche", text: self.$text)
                             .frame(width: 200, height: 1)
                         }
@@ -75,9 +80,14 @@ struct HomeContent: View {
     
     @Binding var showMenu: Bool
     var idContext: String
+    var text: String
     
     var body: some View {
-        RemarkListView(idContext: idContext)
+        if (self.text == ""){
+            return RemarkListView(idContext: self.idContext)
+        } else{
+            return RemarkListView(text: self.text)
+        }
     }
 }
 

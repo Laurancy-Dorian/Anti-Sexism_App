@@ -12,7 +12,8 @@ struct RemarkListView: View {
     
     @ObservedObject var remarkManager: RemarkManager
     
-    var idContext: String
+    var idContext: String = ""
+    var text: String = ""
     
     init(idContext: String) {
         UITableView.appearance().tableFooterView = UIView()
@@ -21,16 +22,24 @@ struct RemarkListView: View {
         remarkManager = RemarkManager(idContext: self.idContext)
     }
     
+    init(text: String){
+        UITableView.appearance().tableFooterView = UIView()
+        UITableView.appearance().separatorStyle = .none
+        self.text = text
+        remarkManager = RemarkManager(content: text)
+    }
+    
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
             List(remarkManager.remarkList.results, id: \.id_remark){ remark in
-                    ZStack{
-                        RemarkView(remark: remark, remarkManager: self.remarkManager)
-                        NavigationLink(destination: RemarkPage(remark: remark, remarkManager: self.remarkManager)){
+                ZStack{
+                    RemarkView(remark: remark, remarkManager: self.remarkManager)
+                    NavigationLink(destination: RemarkPage(remark: remark, remarkManager: self.remarkManager)){
                         ZStack{
-                           EmptyView()
+                            EmptyView()
                         }
-                        }}.buttonStyle(PlainButtonStyle())
+                    }
+                }.buttonStyle(PlainButtonStyle())
             }
             NavigationLink(destination: AddRemarkPage(remarkManager: self.remarkManager)){
                 Image(systemName: "plus.circle.fill")

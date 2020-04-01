@@ -11,6 +11,7 @@ import SwiftUI
 struct HeaderView: View {
 
     @State var text = ""
+    @EnvironmentObject var token: Token
 
     var body: some View{
         VStack() {
@@ -65,64 +66,50 @@ struct HeaderView: View {
                 .foregroundColor(.gray)
                 .font(.headline)
                 .padding(.top, 30)
-                NavigationLink(destination: MyAccountView()){
-                    HStack{
-                        Image(systemName: "person.circle")
-                            .foregroundColor(.gray)
-                            .imageScale(.large)
-                        Text("Mon Compte")
-                            .foregroundColor(.gray)
-                            .font(.headline)
+                if self.token.value == "" {
+                    NavigationLink(destination: LoginView()){
+                        HStack {
+                            Image(systemName: "person.circle")
+                                .foregroundColor(.gray)
+                                .imageScale(.large)
+                            Text("Se connecter")
+                                .foregroundColor(.gray)
+                                .font(.headline)
+                        }
+                    }
+                    NavigationLink(destination: SignupView()){
+                        HStack {
+                            Image(systemName: "person.crop.circle.badge.plus")
+                                .foregroundColor(.gray)
+                                .imageScale(.large)
+                            Text("S'inscrire")
+                                .foregroundColor(.gray)
+                                .font(.headline)
+                        }
+                    }
+                } else {
+                    Button(action: {
+                        UserManager().LogOut()
+                    }){
+                        HStack {
+                            Image(systemName: "power")
+                                .foregroundColor(.gray)
+                                .imageScale(.large)
+                            Text("Déconnexion")
+                                .foregroundColor(.red)
+                                .font(.headline)
+                        }
                     }
                 }
-                HStack {
-                    Image(systemName: "square.and.pencil")
-                        .foregroundColor(.gray)
-                        .imageScale(.large)
-                    Text("Mes remarques")
-                        .foregroundColor(.gray)
-                        .font(.headline)
-                }
-                HStack {
-                    Image(systemName: "envelope")
-                        .foregroundColor(.gray)
-                        .imageScale(.large)
-                    Text("Mes réponses")
-                        .foregroundColor(.gray)
-                        .font(.headline)
-                }
-                HStack {
-                    Image(systemName: "person.circle")
-                        .foregroundColor(.gray)
-                        .imageScale(.large)
-                    Text("Se connecter")
-                        .foregroundColor(.gray)
-                        .font(.headline)
-                }
-                HStack {
-                    Image(systemName: "person.crop.circle.badge.plus")
-                        .foregroundColor(.gray)
-                        .imageScale(.large)
-                    Text("S'inscrire")
-                        .foregroundColor(.gray)
-                        .font(.headline)
-                }
-                HStack {
-                    Image(systemName: "power")
-                        .foregroundColor(.gray)
-                        .imageScale(.large)
-                    Text("Déconnexion")
-                        .foregroundColor(.red)
-                        .font(.headline)
-                }
-                HStack {
-                    Image(systemName: "gear")
-                        .foregroundColor(.gray)
-                        .imageScale(.large)
-                    Text("A propos")
-                        .foregroundColor(.gray)
-                        .font(.headline)
-                }
+                
+                //HStack {
+                //    Image(systemName: "gear")
+                //        .foregroundColor(.gray)
+                //        .imageScale(.large)
+                //    Text("A propos")
+                //        .foregroundColor(.gray)
+                //        .font(.headline)
+                //}
             }
             Spacer()
         }

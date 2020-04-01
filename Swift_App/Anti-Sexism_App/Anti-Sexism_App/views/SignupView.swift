@@ -58,17 +58,7 @@ struct SignupView: View {
                         .cornerRadius(15.0)
                         .shadow(radius: 10.0, x: 20, y: 10)
                 }.padding(.top, 50)
-                
                 Spacer()
-                HStack(spacing: 0) {
-                    Text("Vous avez déjà un compte ? ")
-                    Button(action: {self.presentationMode.wrappedValue.dismiss()} ){
-                        Text("Connectez-vous")
-                        .foregroundColor(.red)
-                        
-                    }.foregroundColor(.red)
-                    
-                }
             }
     //        .background(
     //            LinearGradient(gradient: Gradient(colors: [.purple, .blue]), startPoint: .top, endPoint: .bottom)

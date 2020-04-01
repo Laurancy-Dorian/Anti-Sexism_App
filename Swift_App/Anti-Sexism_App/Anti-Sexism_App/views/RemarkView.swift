@@ -81,7 +81,7 @@ struct RemarkView: View {
         for context in self.remarkContextManager.remarkContextList.results {
             if (context.id_context == remark.id_context){
                 hexa = context.color_context.components(separatedBy: "#")[1]
-                print("\(hexa)")
+                //print("\(hexa)")
             }
         }
         return hexa
@@ -102,7 +102,7 @@ struct RemarkView: View {
         VStack(spacing: 5) {
             HStack {
                 HStack {
-                    if (remark.pseudo_user == "") {Text("Poste Anonyme")}
+                    if (remark.pseudo_user == "") {Text("Post Anonyme")}
                     else { Text ("Par " + (remark.pseudo_user))}
                     Spacer()
                     Text (remark.date_remark.components(separatedBy: "T")[0])

@@ -10,9 +10,11 @@ import Foundation
 import SwiftUI
 import Combine
 
-class UserManager {
+class UserManager: ObservableObject {
     
-    func Login(pseudo: String, password: String){
+    @EnvironmentObject var token: Token
+    
+    func Login(pseudo: String, password: String, callback: @escaping () -> Void){
         let parameters = "pseudo_user=\(pseudo)&password_user=\(password)"
         let postData =  parameters.data(using: .utf8)
 
@@ -27,7 +29,16 @@ class UserManager {
             print(String(describing: error))
             return
           }
-          print(String(data: data, encoding: .utf8)!)
+            DispatchQueue.main.async{
+                if String(data: data, encoding: .utf8)!.contains("error") {
+                    self.token.value = ""
+                } else {
+                    let splits = String(data: data, encoding: .utf8)!.components(separatedBy: "\"")
+                    self.token.value = splits[3]
+                }
+                callback()
+            }
+            print(String(data: data, encoding: .utf8)!)
         }
         task.resume()
     }
@@ -53,6 +64,6 @@ class UserManager {
     }
     
     func LogOut(){
-        
+        self.token.value = ""
     }
 }

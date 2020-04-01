@@ -18,6 +18,10 @@ class RemarkManager: ObservableObject {
         self.getAll(idContext: idContext)
     }
     
+    init(content: String){
+        self.getWithString(search: content)
+    }
+    
     func getAll(idContext : String) {
         guard let url = URL(string : "http://vps685054.ovh.net:8080/api/remarks?context=[\(idContext)]") else {return}
         
@@ -38,6 +42,24 @@ class RemarkManager: ObservableObject {
     
     func getAllRemarks(){
         self.getAll(idContext: "")
+    }
+    
+    func getWithString(search: String){
+        guard let url = URL(string : "http://vps685054.ovh.net:8080/api/remarks?content=\(search)") else {return}
+        
+        URLSession.shared.dataTask(with: url){ (data, response, error) in
+            guard let data = data else {
+                print(String(describing: error))
+                return
+            }
+            
+            let remarkList = try! JSONDecoder().decode([Remark].self, from: data)
+            print(remarkList)
+            
+            DispatchQueue.main.async{
+                self.remarkList = RemarkList(results: remarkList)
+            }
+        }.resume()
     }
     
     func addRemark(description: String, idContext: String, token: String){
