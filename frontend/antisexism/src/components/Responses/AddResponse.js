@@ -23,6 +23,12 @@ class AddReponse extends Component {
             var myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
     
+            
+            // Get the token if exists
+            if (localStorage.getItem("auth")) {
+                myHeaders.append("Authorization", "Bearer " + JSON.parse(localStorage.getItem("auth")).token);
+            }
+            
             var urlencoded = new URLSearchParams();
             urlencoded.append("description_response", this.state.description);
             urlencoded.append("id_response_type", this.state.responseType);

@@ -4,12 +4,14 @@ import HomePage from './containers/HomePage'
 import RemarkPage from './containers/RemarkPage'
 import Header from './components/Header'
 import Login from './components/Auth/Login'
+import Notification from './components/utils/Notification'
 
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  useParams
+  useParams,
+  Redirect
 } from "react-router-dom";
 
 /**
@@ -20,46 +22,73 @@ class App extends Component {
   constructor(){
     super();
     this.state = { 
-      context: ""
+      context: "",
+      notification : "",
+      notificationType : ""
     }
   }
   
+  updateNotification = (message, notificationType) => {
+
+    this.setState({
+      notification: message,
+      notificationType: notificationType
+    })
+    
+  }
 
   render(){
-  return (
-    
-    <div className="App container">
-      <Router>
+    return (
+      
+      <div className="App container">
+        <Router>
 
-        <Header/>
+          <Header/>
+          {this.state.notification.length > 0 ? <Notification type={this.state.notificationType} content={this.state.notification} /> : ""}
+          
+          <Switch>
+            
 
-        <Switch>
-          <Route exact path="/"> 
-            <HomePage />
-          </Route>
+            <Route path="/remarks/:id">
+              <RemarkPageRoute />
+            </Route>
 
-          <Route path="/remarks/:id">
-            <RemarkPageRoute />
-          </Route>
+            <Route path="/login">
+              <Login notificationHandler={this.updateNotification} />
+            </Route>
 
-          <Route path="/login">
-            <Login />
-          </Route>
+            <Route path="/logout">
+              <LogoutPage />
+            </Route>
 
-        </Switch>
-        
-        <h1>Footer</h1>
+            <Route path="/"> 
+              <HomePage />
+            </Route>
 
-      </Router>  
-    </div>  
-    
-  );
+          </Switch>
+          
+          <h1>Footer</h1>
+
+        </Router>  
+      </div>  
+      
+    );
   }
+
+
+
+
 }
 
 function RemarkPageRoute() {
   let { id } = useParams()
   return (<RemarkPage idRemark={id} />)
+}
+
+function LogoutPage() {
+  console.log("oui")
+  localStorage.removeItem("auth")
+  return <Redirect to={{ pathname: "/"}} />
 }
 
 

@@ -22,6 +22,12 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+
 }
 
 img {
@@ -50,6 +56,13 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
+
+.app {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
 
 /**
 * Remark
@@ -124,10 +137,19 @@ code {
 * Login
 */
 
-.login .container {
-    height: 100%;
+
+.login {
+    padding:5rem;
+    min-height: 100%;
     align-content: center;
+    /* width: 100%;
+    height: 100vh; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFF;
 }
+
 
 .login .card {
     height: 370px;

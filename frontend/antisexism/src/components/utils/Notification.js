@@ -12,7 +12,7 @@ class Notification extends Component {
         const type = typesAllowedValues.includes(this.props.type) ? this.props.type : typesAllowedValues[0]
         
         return (
-            <div className={"notification alert alert-" + type}>
+            <div className={"notification mx-auto m-2 w-75 alert alert-" + type}>
                 {this.props.content}
             </div>
         )

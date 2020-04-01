@@ -2,13 +2,15 @@ import React, {Component} from 'react'
 import config from "../../config/config"
 
 import {
-    Link
+    Link,
+    Redirect
 } from "react-router-dom";
 
 class Login extends Component {
 
     constructor(props) {
         super(props);
+
         this.state = { 
             username: "",
             password: ""
@@ -22,6 +24,7 @@ class Login extends Component {
             var myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 
+            
             var urlencoded = new URLSearchParams();
             urlencoded.append("pseudo_user", this.state.username);
             urlencoded.append("password_user", this.state.password);
@@ -40,17 +43,17 @@ class Login extends Component {
                 return response.json()
             })
             .then(result => {
-                localStorage.setItem('auth', JSON.stringify(result));
-                               
+                window.localStorage.setItem('auth', JSON.stringify(result));
+               // console.log("ok")
+                this.props.notificationHandler('Bienvenue ' + result.user.pseudo_user, "success")               
             })
             .catch(error => {
-                console.log(error)
-                
+                this.props.notificationHandler(error.message, "danger")               
             });
 
             
         } else {
-            console.log("Compléter champs pls")
+            this.props.notificationHandler('Veuillez compléter tous les champs', 'warning')   
         }
         
     }
@@ -64,6 +67,10 @@ class Login extends Component {
     }
 
     render () {
+        if (localStorage.getItem("auth")) {
+            return <Redirect to={{ pathname: "/"}} />
+        } 
+
         return (
             <div className="container login">
                 <div className="d-flex justify-content-center h-100">
