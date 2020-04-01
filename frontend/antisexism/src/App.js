@@ -34,7 +34,12 @@ class App extends Component {
       notification: message,
       notificationType: notificationType
     })
-    
+  }
+
+  filterContext = (value) => {
+    this.setState(() => {
+      return ({ context: value });
+    });
   }
 
   render(){
@@ -43,7 +48,7 @@ class App extends Component {
       <div className="App container">
         <Router>
 
-          <Header/>
+          <Header handleContext={this.filterContext}/>
           {this.state.notification.length > 0 ? <Notification type={this.state.notificationType} content={this.state.notification} /> : ""}
           
           <Switch>

@@ -10,10 +10,10 @@ import {Navbar, Nav, Form, FormControl, Button, NavDropdown, Container} from 're
  */
 class Header extends Component {
 
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = { 
-      contextList: []
+      contextList: [],
     }
   }
 
@@ -31,14 +31,19 @@ class Header extends Component {
     .catch(error => console.log('error', error));
 }
 
-componentDidMount = () => {
-  this.fetchAllContexts()
-}
 
+  componentDidMount = () => {
+    this.fetchAllContexts()
+  }
+
+  
+  handleSelect = (eventKey) => {
+    this.props.handleContext(eventKey)
+  }
 
   render(){
     const items = this.state.contextList.map (context => {
-      return(  <NavDropdown.Item key={ context.id_context } value= { context.id_context } style={ {color: context.color_context} } >{ context.name_context }</NavDropdown.Item>)
+      return(  <NavDropdown.Item key={ context.id_context } eventKey= { context.id_context } style={ {color: context.color_context} } >{ context.name_context }</NavDropdown.Item>)
     })
     return(
           <Container>
@@ -58,16 +63,22 @@ componentDidMount = () => {
                 <FormControl type="text" placeholder="Search" className="mr-sm-2" />
                 <Button variant="outline-info">Search</Button>
               </Form>
-              <Nav className="justify-content-end">
+              <Nav className="justify-content-end" onSelect={this.handleSelect}>
                 <NavDropdown title="CATEGORIE">
                   {items}
                 </NavDropdown>
               </Nav>
               <Nav>
                 <NavDropdown title="PARAMETRE" >
-                  <NavDropdown.Item href="#action/3.1">Mon Compte</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.2">Mes Remarques</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">Mes Réponses</NavDropdown.Item>
+                  <Link to="/">
+                    <NavDropdown.Item >Mon Compte</NavDropdown.Item>
+                  </Link>
+                  <Link to="/">
+                    <NavDropdown.Item >Mes Remarques</NavDropdown.Item>
+                  </Link>
+                  <Link to="/">
+                    <NavDropdown.Item >Mes Réponses</NavDropdown.Item>
+                  </Link>
                   <NavDropdown.Divider />
                   <NavDropdown.Item href="#action/3.4">Déconnexion</NavDropdown.Item>
                 </NavDropdown>
