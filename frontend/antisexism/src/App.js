@@ -24,6 +24,12 @@ class App extends Component {
     }
   }
   
+  filterContext = (value) => {
+    this.setState(() => {
+      return ({ context: value });
+    });
+    console.log(value)
+  }
 
   render(){
   return (
@@ -31,11 +37,11 @@ class App extends Component {
     <div className="App container">
       <Router>
 
-        <Header/>
+        <Header handleContext={this.filterContext}/>
 
         <Switch>
           <Route exact path="/"> 
-            <HomePage />
+            <HomePage context={this.state.context}/>
           </Route>
 
           <Route path="/remarks/:id">

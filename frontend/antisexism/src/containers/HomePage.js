@@ -15,12 +15,12 @@ class HomePage extends Component {
             remarks: [],
             notification: "",
             notificationType: "",
-            contextList : []
+            contextList : [],
         }
     }
 
     fetchAllRemarks = () => {
-        fetch(config.api + "/remarks")
+        fetch(config.api + "/remarks?context=[" + this.props.context + "]")
         .then(response => response.json())
         .then(result =>  {
             this.setState(function(state) {
@@ -56,6 +56,14 @@ class HomePage extends Component {
         this.fetchAllContexts()
     }
 
+    componentDidUpdate = (prevProps) => {
+        if (prevProps.context !== this.props.context) {
+            this.fetchAllRemarks()
+            console.log(this.props)
+
+        }
+    }
+
     submitNewRemark = (message, notificationType) => {
         this.setState(function(state) {
             return {
@@ -70,7 +78,6 @@ class HomePage extends Component {
 
 
     render() { 
-
         return ( 
             <div className="home-page container">
                 <AddRemark afterSubmit={this.submitNewRemark} contextList={this.state.contextList} />
