@@ -22,7 +22,7 @@ class AddRemark extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        if (this.state.context !== "" && this.state.context !== "") {
+        if (this.state.context !== "" && this.state.description !== "") {
             var myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
 

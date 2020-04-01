@@ -51,8 +51,7 @@ class AddReponse extends Component {
                 this.props.afterSubmit("Votre réponse a bien été envoyée", "success")
             })
             .catch(error =>  {
-                //console.log('error', error)
-                console.log(error.text)
+                console.log(error)
             });
         } else {
             this.props.afterSubmit("Veuillez renseigner tous les champs", "danger")

@@ -5,6 +5,7 @@ import RemarkPage from './containers/RemarkPage'
 import Header from './components/Header'
 import Login from './components/Auth/Login'
 import Notification from './components/utils/Notification'
+import Register from './components/Auth/Register'
 
 import {
   BrowserRouter as Router,
@@ -29,7 +30,6 @@ class App extends Component {
   }
   
   updateNotification = (message, notificationType) => {
-
     this.setState({
       notification: message,
       notificationType: notificationType
@@ -57,12 +57,16 @@ class App extends Component {
               <Login notificationHandler={this.updateNotification} />
             </Route>
 
+            <Route path="/register">
+              <Register notificationHandler={this.updateNotification} />
+            </Route>
+
             <Route path="/logout">
               <LogoutPage />
             </Route>
 
             <Route path="/"> 
-              <HomePage />
+              <HomePage notificationHandler={this.updateNotification} />
             </Route>
 
           </Switch>

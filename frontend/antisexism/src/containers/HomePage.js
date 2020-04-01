@@ -13,8 +13,6 @@ class HomePage extends Component {
         super(props);
         this.state = { 
             remarks: [],
-            notification: "",
-            notificationType: "",
             contextList : []
         }
     }
@@ -26,8 +24,6 @@ class HomePage extends Component {
             this.setState(function(state) {
                 return {
                     remarks: result,
-                    notification: state.notification,
-                    notificationType: state.notificationType,
                     contextList: state.contextList
                 };
             });
@@ -42,8 +38,6 @@ class HomePage extends Component {
             this.setState(function(state) {
                 return {
                     remarks: state.remarks,
-                    notification: state.notification,
-                    notificationType: state.notificationType,
                     contextList: result
                 };
             });
@@ -57,15 +51,8 @@ class HomePage extends Component {
     }
 
     submitNewRemark = (message, notificationType) => {
-        this.setState(function(state) {
-            return {
-                remarks: state.remarks,
-                notification: message,
-                notificationType: notificationType,
-                contextList: state.contextList
-            };
-        });
         this.fetchAllRemarks()
+        this.props.notificationHandler(message, notificationType)
     }
 
 
@@ -74,7 +61,6 @@ class HomePage extends Component {
         return ( 
             <div className="home-page container">
                 <AddRemark afterSubmit={this.submitNewRemark} contextList={this.state.contextList} />
-                {this.state.notification.length > 0 ? <Notification type={this.state.notificationType} content={this.state.notification} /> : ""}
                 <RemarksList contextList={this.state.contextList} remarks={this.state.remarks} />
             </div>
          );
