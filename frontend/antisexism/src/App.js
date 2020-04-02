@@ -43,11 +43,21 @@ class App extends Component {
     });
   }
 
+  handleHomeReturn = () => {
+    this.setState(() => {
+      return ({
+        recherche: "",
+        context: ""
+      });
+    });
+  }
+
   handleSearch = (value) => {
     this.setState(() => {
       return ({recherche: value});
     });
   }
+
 
   render(){
     return (
@@ -57,7 +67,7 @@ class App extends Component {
 
 
 
-          <Header handleContext={this.filterContext} handleSearch={this.handleSearch} />
+          <Header handleContext={this.filterContext} handleSearch={this.handleSearch} handleHomeReturn={this.handleHomeReturn}/>
 
           <div className="container">
 

@@ -54,6 +54,10 @@ class Header extends Component {
     this.props.handleSearch(this.state.recherche)
   }
 
+  handleHomeReturn = () => {
+    this.props.handleHomeReturn()
+  }
+
   render(){
     const items = this.state.contextList.map (context => {
       return(  <NavDropdown.Item key={ context.id_context } eventKey= { context.id_context } style={ {color: context.color_context} } >{ context.name_context }</NavDropdown.Item>)
@@ -79,10 +83,10 @@ class Header extends Component {
     }
     return(
       <div className="header-app">
-          <Navbar onSelect = {this.handleSelect} className="d-flex justify-content-between" sticky="top">
+          <Navbar  className="d-flex justify-content-between" sticky="top">
               <Nav>
                 <Link to="/">
-                  <Navbar.Brand >
+                  <Navbar.Brand onClick={this.handleHomeReturn}>
                     <img
                       src="/logo2.png"
                       width="30"
