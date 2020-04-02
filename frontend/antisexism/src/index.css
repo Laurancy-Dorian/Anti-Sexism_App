@@ -1,123 +1,353 @@
 :root {
-  --main-background-color: #1a1a1b;
-  --secondary-background-color : #4d4d4d;
-  --text-color-light: #EEE;
-  --text-color-dark: #111;
+    --main-background-color: #232629;
+    --secondary-background-color: #777777;
+    --lighter-background-color: #c5c5c5;
+    --background-color-focus:#6c757d;
+    --text-color-light: #EEE;
+    --text-color-dark: #111;
+    --main-button-color: #750303;
+    --main-links-color: #ce6767;
+    --main-links-hover-color: #ce8787;
 }
 
 * {
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+#ConnexionBloc{
+  width: 100%;
 }
 
 body {
-	font-family: 'Open Sans', sans-serif;
-	line-height: 1.75em;
-	font-size: 16px;
-	background-color: var(--main-background-color);
-  color: var(--text-color-light);
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.75em;
+    font-size: 16px;
+    background-color: var(--main-background-color);
+    color: var(--text-color-light);
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
 
 }
 
-
 img {
-	max-width: 100%;
+    max-width: 100%;
 }
 
 li {
-	line-height: 1.5em;
+    line-height: 1.5em;
 }
 
 a {
-  text-decoration: none;
-  color : var(--text-color-light);
+    text-decoration: none;
+    color: var(--main-links-color);
 }
 
 a:hover {
-  text-decoration: none;
-  color : var(--text-color-light);
+    text-decoration: none;
+    color: var(--main-links-hover-color);
 }
 
 textarea {
-  min-width: 100%;
+    min-width: 100%;
 }
-
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 
+.app {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
 
 /**
 * Remark
 */
 
 .remark {
-  border: .1rem solid #EEE;
-  margin: 1rem;
-  border-radius: 2rem 0;
-  background: #f1b8b8;
-  color: var(--text-color-dark)
+    border: .1rem solid #EEE;
+    margin: 1rem 0;
+    border-radius: 2rem 0;
+    background: #f1b8b8;
+    color: var(--text-color-dark)
 }
 
-.remark > div {
-  padding: 1rem;
+.remark>div {
+    padding: 1rem;
 }
 
 .header-remark {
-  border-bottom: .08rem solid #888;
-  background: #750303;
-  border-radius: 2rem 0 0 0;
-  color: var(--text-color-light)
+    border-bottom: .08rem solid #888;
+    border-radius: 2rem 0 0 0;
+    color: var(--text-color-light)
 }
 
 .footer-remark {
-  border-radius: 0 0 2rem 0;
-  color : var(--text-color-dark);
+    border-radius: 0 0 2rem 0;
+    color: var(--text-color-dark);
 }
 
 .footer-remark a {
-  color : var(--text-color-dark);
+    color: var(--text-color-dark);
 }
 
 .description-remark {
-  font-size: 120%;
-  font-weight: 500;
-  text-decoration: none;
-  color : var(--text-color-dark);
+    font-size: 120%;
+    font-weight: 500;
+    text-decoration: none;
+    color: var(--text-color-dark);
+}
+
+.remark-button .btn, .remark-button .active {
+    background: var(--main-button-color);
+    border: none;
+}
+
+.btn.remark-button-number {
+    background: #FFF;
+    font-weight: 600;
+}
+
+.remark-button .clicked {
+    background: #999;
+    color : #FFF;
+    border : 1px solid
+}
+
+.remark-button-number.clicked {
+    background: #cfd8e8!important;
+    color : #888;
+    border : 1px solid #fff
+}
+
+.remark-button-number.clicked:active {
+    background: #cfd8e8!important;
+    color : #888;
+    border : 1px solid #fff
+}
+
+.remark-button .btn:hover {
+    background: #AAA!important;
+}
+
+.remark-button .btn:focus {
+    box-shadow: none!important;
+}
+/**
+* Login
+*/
+
+
+.login {
+    padding:5rem;
+    min-height: 100%;
+    align-content: center;
+    /* width: 100%;
+    height: 100vh; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #FFF;
 }
 
 
-.remark-button button {
-  background:grey;
-  border:none;
+.login .card {
+    height: 370px;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 400px;
+    background-color: var(--secondary-background-color) !important;
+}
+
+.login .social_icon span {
+    font-size: 60px;
+    margin-left: 10px;
+    color: var(--main-button-color);
+}
+
+.login .social_icon span:hover {
+    color: white;
+    cursor: pointer;
+}
+
+.login .card-header h3 {
+    color: white;
+}
+
+.login .social_icon {
+    position: absolute;
+    right: 20px;
+    top: -45px;
+}
+
+.login .input-group-prepend span {
+    width: 50px;
+    background-color: var(--main-button-color);
+    color: #FFF;
+    border: 0 !important;
+}
+
+.login input:focus {
+    outline: 0 0 0 0 !important;
+    box-shadow: 0 0 0 0 !important;
+}
+
+.login .remember {
+    color: white;
+}
+
+.login .remember input {
+    width: 20px;
+    height: 20px;
+    margin-left: 15px;
+    margin-right: 5px;
+}
+
+.login .login_btn {
+    background-color: var(--main-button-color);
+    color: #FFF;
+    width: 100px;
+}
+
+.login .login_btn:hover {
+    color: #000;
+    background-color: white;
+}
+
+.login .links {
+    color: white;
+}
+
+.login .links a {
+    margin-left: 4px;
+    color: var(--main-links-color);
 }
 
 
-.remark-button-suffered button {
-  background : #751313;
-}
-.remark-button-suffered button:hover, .remark-button-suffered button:focus, .remark-button-suffered button:active {
-  background : #9e3030!important;
-  border-color: #9e3030!important;
-  box-shadow: 0 0 0 0.02rem #c33939!important;
+/**
+* Add Reamrk Form
+*/
 
-}
-.remark-button-seen button {
-  background: #10375f;
-}
-.remark-button-seen button:hover, .remark-button-seen button:focus, .remark-button-seen button:active {
-  background: #185594!important;
-  border-color: #185594!important;
-  box-shadow: 0 0 0 0.02rem #2265ab!important;
+.add-remark textarea, .add-remark select {
+    min-height: 100px;
+    background: var(--secondary-background-color);
+    color:var(--text-color-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
+.add-remark textarea:focus, .add-remark select:focus {
+    
+    min-height: 100px;
+    background: var(--background-color-focus);
+    color:var(--text-color-light);
+
+
+}
+
+.add-remark textarea::placeholder {
+    color:#fff;
+}
+
+.add-remark {
+    border: 1px solid;
+    padding: 1rem;
+    margin-top : 1rem;
+    box-shadow: 0px 0px 5px 0px;
+}
+
+.add-remark .header {
+    margin:0 0 0.5rem 0;
+    padding-left:0.5rem;
+    border-bottom: 1px solid #888;
+}
+
+
+/**
+* Header
+*/ 
+
+.header-app, .header-app .dropdown-menu.show, .header-app a.navbar-nav {
+    background: var(--secondary-background-color);
+    color: #FFF;
+}
+
+.header-app .dropdown-menu.show .dropdown-item {
+    text-shadow: 0px 0 5px #CCC,0px 0 5px #CCC;
+
+}
+.header-app a {
+    color: #FFF
+}
+.header-app .navbar-light .navbar-nav .nav-link, .header-app .navbar-light .navbar-nav .show>.nav-link {
+    color: #FFF;
+}
+
+
+
+/**
+* Responses
+*/
+
+.responses-list {
+    width: 80%;
+}
+
+.response {
+    border: .1rem solid #EEE;
+    margin: 1rem 0;
+    background:var(--lighter-background-color);
+    color: var(--text-color-dark);
+    
+}
+
+.response>div {
+    padding: 1rem;
+}
+
+.header-response {
+    border-bottom: .08rem solid #888;
+    border-radius: 2rem 0 0 0;
+    color: var(--text-color-dark)
+}
+
+.description-response {
+    font-size: 120%;
+    font-weight: 500;
+    text-decoration: none;
+    color: var(--text-color-dark);
+}
+
+
+/**
+* Admin
+*/
+
+.tableline .tablecell {
+    border : 0.05rem solid white
+}
+
+.tableline-header {
+    font-weight: 500;
+    text-align: center;
+}
+.tableline-header .tablecell {
+    padding: 1rem;
+}
+
+.tableline:hover {
+    background:#434b52;
+}
