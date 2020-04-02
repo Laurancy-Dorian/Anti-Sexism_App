@@ -57,7 +57,7 @@ class App extends Component {
 
 
 
-          <Header handleContext={this.filterContext}/>
+          <Header handleContext={this.filterContext} handleSearch={this.handleSearch} />
 
           <div className="container">
 
@@ -83,7 +83,7 @@ class App extends Component {
               </Route>
 
               <Route path="/"> 
-                <HomePage notificationHandler={this.updateNotification} />
+                <HomePage notificationHandler={this.updateNotification} context={this.props.context} content = {this.props.content} />
               </Route>
 
             </Switch>
