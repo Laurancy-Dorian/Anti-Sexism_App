@@ -76,11 +76,33 @@ class Header extends Component {
         </Link>
       )
     }
-
     return(
-          <div className="header-app">
-            <Navbar className="d-flex justify-content-between" sticky="top">
-              
+      <div className="header-app">
+          <Navbar className="d-flex justify-content-between" sticky="top">
+              <Nav>
+                <Link to="/">
+                  <Navbar.Brand >
+                    <img
+                      src="/logo2.png"
+                      width="30"
+                      height="30"
+                      className="d-inline-block align-top"
+                      alt="React Bootstrap logo"
+                    />
+                  </Navbar.Brand>
+                </Link>
+              </Nav>
+              <Nav>
+                  <Form inline>
+                      <FormControl onChange= { this.handleChange } value={ this.state.recherche } name="recherche" type="text" placeholder="Search" className="mr-sm-2" />
+                      <button onClick={ this.handleClick }  className="btn btn-dark">Rechercher</button>
+                    </Form>
+                  <Nav className="d-flex justify-content-center" onSelect={this.handleSelect}>
+                      <NavDropdown title="CATEGORIE">
+                        {items}
+                      </NavDropdown>
+              </Nav>
+              </Nav>
               <div>
                 <Nav className="d-flex justify-content-end">
                   <div className="d-flex flex-row-reverse">
@@ -89,11 +111,10 @@ class Header extends Component {
                     
                 </Nav>
               </div>
-              
-            </Navbar>    
-          </div>
-            
+            </Navbar>
+      </div>  
     )
+    
   }
 
 }
