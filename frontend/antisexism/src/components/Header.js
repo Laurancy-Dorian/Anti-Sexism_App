@@ -14,6 +14,7 @@ class Header extends Component {
     super(props);
     this.state = { 
       contextList: [],
+      recherche: ""
     }
   }
 
@@ -41,6 +42,17 @@ class Header extends Component {
     this.props.handleContext(eventKey)
   }
 
+  handleChange = (event) => {
+    const {name, value} = event.target
+    this.setState({
+        [name] : value
+    });
+}
+
+  handleClick = () => {
+    this.props.handleSearch(this.state.recherche)
+  }
+
   render(){
     const items = this.state.contextList.map (context => {
       return(  <NavDropdown.Item key={ context.id_context } eventKey= { context.id_context } style={ {color: context.color_context} } >{ context.name_context }</NavDropdown.Item>)
@@ -64,10 +76,9 @@ class Header extends Component {
         </Link>
       )
     }
-
     return(
-          <div className="header-app">
-            <Navbar className="d-flex justify-content-between" sticky="top">
+      <div className="header-app">
+          <Navbar className="d-flex justify-content-between" sticky="top">
               <Nav>
                 <Link to="/">
                   <Navbar.Brand >
@@ -81,19 +92,17 @@ class Header extends Component {
                   </Navbar.Brand>
                 </Link>
               </Nav>
-              
               <Nav>
                   <Form inline>
-                      <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                      <button className="btn btn-dark">Rechercher</button>
+                      <FormControl onChange= { this.handleChange } value={ this.state.recherche } name="recherche" type="text" placeholder="Search" className="mr-sm-2" />
+                      <button onClick={ this.handleClick }  className="btn btn-dark">Rechercher</button>
                     </Form>
-                    <Nav className="d-flex justify-content-center" onSelect={this.handleSelect}>
+                  <Nav className="d-flex justify-content-center" onSelect={this.handleSelect}>
                       <NavDropdown title="CATEGORIE">
                         {items}
                       </NavDropdown>
-                    </Nav>
               </Nav>
-              
+              </Nav>
               <div>
                 <Nav className="d-flex justify-content-end">
                   <div className="d-flex flex-row-reverse">
@@ -102,10 +111,8 @@ class Header extends Component {
                     
                 </Nav>
               </div>
-              
-            </Navbar>    
-          </div>
-            
+            </Navbar>
+      </div>  
     )
     
   }
