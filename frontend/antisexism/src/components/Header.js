@@ -45,46 +45,67 @@ class Header extends Component {
     const items = this.state.contextList.map (context => {
       return(  <NavDropdown.Item key={ context.id_context } eventKey= { context.id_context } style={ {color: context.color_context} } >{ context.name_context }</NavDropdown.Item>)
     })
+
+    let user
+    if (window.localStorage.getItem("auth")) {
+      user = (
+        <div>
+          <span className="mr-2">{"Bienvenue " + JSON.parse(window.localStorage.getItem("auth")).user.pseudo_user}</span> 
+          <Link to="logout">
+            Déconnexion
+          </Link>
+        </div>
+      
+      )
+    } else {
+      user = (
+        <Link to="login">
+          Connexion
+        </Link>
+      )
+    }
+
     return(
-          <Container>
-            <Navbar bg="dark" variant="dark" sticky="top">
-              <Link to="/">
-              <Navbar.Brand >
-                <img
-                  src="/logo2.png"
-                  width="30"
-                  height="30"
-                  className="d-inline-block align-top"
-                  alt="React Bootstrap logo"
-                />
-              </Navbar.Brand>
-              </Link>
-              <Form inline>
-                <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                <Button variant="outline-info">Search</Button>
-              </Form>
-              <Nav className="justify-content-end" onSelect={this.handleSelect}>
-                <NavDropdown title="CATEGORIE">
-                  {items}
-                </NavDropdown>
-              </Nav>
+          <div className="header-app">
+            <Navbar className="d-flex justify-content-between" sticky="top">
               <Nav>
-                <NavDropdown title="PARAMETRE" >
-                  <Link to="/">
-                    <NavDropdown.Item >Mon Compte</NavDropdown.Item>
-                  </Link>
-                  <Link to="/">
-                    <NavDropdown.Item >Mes Remarques</NavDropdown.Item>
-                  </Link>
-                  <Link to="/">
-                    <NavDropdown.Item >Mes Réponses</NavDropdown.Item>
-                  </Link>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.4">Déconnexion</NavDropdown.Item>
-                </NavDropdown>
+                <Link to="/">
+                  <Navbar.Brand >
+                    <img
+                      src="/logo2.png"
+                      width="30"
+                      height="30"
+                      className="d-inline-block align-top"
+                      alt="React Bootstrap logo"
+                    />
+                  </Navbar.Brand>
+                </Link>
               </Nav>
+              
+              <Nav>
+                  <Form inline>
+                      <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+                      <button className="btn btn-dark">Rechercher</button>
+                    </Form>
+                    <Nav className="d-flex justify-content-center" onSelect={this.handleSelect}>
+                      <NavDropdown title="CATEGORIE">
+                        {items}
+                      </NavDropdown>
+                    </Nav>
+              </Nav>
+              
+              <div>
+                <Nav className="d-flex justify-content-end">
+                  <div className="d-flex flex-row-reverse">
+                    {user}
+                  </div>
+                    
+                </Nav>
+              </div>
+              
             </Navbar>    
-          </Container>      
+          </div>
+            
     )
     
   }

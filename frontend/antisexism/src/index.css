@@ -1,10 +1,12 @@
 :root {
     --main-background-color: #232629;
-    --secondary-background-color: #4d4d4d;
+    --secondary-background-color: #777777;
+    --background-color-focus:#6c757d;
     --text-color-light: #EEE;
     --text-color-dark: #111;
     --main-button-color: #750303;
     --main-links-color: #ce6767;
+    --main-links-hover-color: #ce8787;
 }
 
 * {
@@ -40,12 +42,12 @@ li {
 
 a {
     text-decoration: none;
-    color: var(--text-color-light);
+    color: var(--main-links-color);
 }
 
 a:hover {
     text-decoration: none;
-    color: var(--text-color-light);
+    color: var(--main-links-hover-color);
 }
 
 textarea {
@@ -226,3 +228,62 @@ code {
     margin-left: 4px;
     color: var(--main-links-color);
 }
+
+
+/**
+* Add Reamrk Form
+*/
+
+.add-remark textarea, .add-remark select {
+    min-height: 100px;
+    background: var(--secondary-background-color);
+    color:var(--text-color-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.add-remark textarea:focus, .add-remark select:focus {
+    
+    min-height: 100px;
+    background: var(--background-color-focus);
+    color:var(--text-color-light);
+
+
+}
+
+.add-remark textarea::placeholder {
+    color:#fff;
+}
+
+.add-remark {
+    border: 1px solid;
+    padding: 1rem;
+    margin-top : 1rem;
+    box-shadow: 0px 0px 5px 0px;
+}
+
+.add-remark .header {
+    margin:0 0 0.5rem 0;
+    padding-left:0.5rem;
+    border-bottom: 1px solid #888;
+}
+
+
+/**
+* Header
+*/ 
+
+.header-app, .header-app .dropdown-menu.show, .header-app a.navbar-nav {
+    background: var(--secondary-background-color);
+    color: #FFF;
+}
+
+.header-app a {
+    color: #FFF
+}
+.header-app .navbar-light .navbar-nav .nav-link, .header-app .navbar-light .navbar-nav .show>.nav-link {
+    color: #FFF
+}
+

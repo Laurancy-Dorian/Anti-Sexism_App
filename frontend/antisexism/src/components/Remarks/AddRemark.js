@@ -70,26 +70,29 @@ class AddRemark extends Component {
 
     render() {
         const options = this.props.contextList.map(context => {
-            return (<option key={context.id_context} style={{ color: context.color_context }} value={context.id_context} > {context.name_context} </option>)
+            return (<option key={context.id_context} style={{ color: context.color_context, background:"#FFF" }} value={context.id_context} > {context.name_context} </option>)
         })
         return (
-            <div className="add-remark container d-flex justify-content-center row">
-                <h2>Ajouter une remarque</h2>
-                <br />
+            <div className="add-remark container d-flex justify-content-center form-row">
+                <div className="d-flex justify-content-start w-100 header">Ajouter une remarque</div>
                 <form className="add-remark-form d-flex justify-content-center row col-12" onSubmit={this.handleSubmit}>
-                    <div className="form-group col-5" >
-                        <select className="form-control" name="context" value={this.state.context} onChange={this.handleChange}>
-                            <option value=''>--- Choisissez un contexte ---</option>
-                            {options}
-                        </select>
-                        <br />
-                        <label htmlFor="textarearemark" className="">
-                            Entrez la remarque :
-                        </label>
-                        <textarea id="textarearemark" className="form-control" name="description" value={this.state.description} onChange={this.handleChange} />
+                    <div className="form-row align-items-top col-12 d-flex justify-content-center ">
+                    
+                        <div className="col-sm-12 col-md-4 mx-0">
+                            <select className="form-control" name="context" value={this.state.context} onChange={this.handleChange}>
+                                <option value=''>--- Choisissez un contexte ---</option>
+                                {options}
+                            </select>
+                        </div>
 
-                        <br />
-                        <input className="form-control" type="submit" value="Envoyer" />
+                        <div className="col-sm-12 col-md-6 px-0 mx-0">
+                            <textarea placeholder="Entrez la remarque" id="textarearemark" className="form-control" name="description" value={this.state.description} onChange={this.handleChange} /> 
+
+                        </div>
+                        <div className="col-sm-12 col-md-2 d-flex justify-content-center align-items-center">
+                            <input className="form-control" type="submit" value="Envoyer" />
+                        </div>
+                        
                     </div>
 
                 </form>

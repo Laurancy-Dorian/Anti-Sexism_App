@@ -45,39 +45,42 @@ class App extends Component {
   render(){
     return (
       
-      <div className="App container">
+      <div className="App">
         <Router>
 
           <Header handleContext={this.filterContext}/>
-          {this.state.notification.length > 0 ? <Notification type={this.state.notificationType} content={this.state.notification} /> : ""}
-          
-          <Switch>
+
+          <div className="container">
+
+            {this.state.notification.length > 0 ? <Notification type={this.state.notificationType} content={this.state.notification} /> : ""}
             
+            <Switch>
+              
+              <Route path="/remarks/:id">
+                <RemarkPageRoute />
+              </Route>
 
-            <Route path="/remarks/:id">
-              <RemarkPageRoute />
-            </Route>
+              <Route path="/login">
+                <Login notificationHandler={this.updateNotification} />
+              </Route>
 
-            <Route path="/login">
-              <Login notificationHandler={this.updateNotification} />
-            </Route>
+              <Route path="/register">
+                <Register notificationHandler={this.updateNotification} />
+              </Route>
 
-            <Route path="/register">
-              <Register notificationHandler={this.updateNotification} />
-            </Route>
+              <Route path="/logout">
+                <LogoutPage notificationHandler={this.updateNotification} />
+              </Route>
 
-            <Route path="/logout">
-              <LogoutPage />
-            </Route>
+              <Route path="/"> 
+                <HomePage notificationHandler={this.updateNotification} />
+              </Route>
 
-            <Route path="/"> 
-              <HomePage notificationHandler={this.updateNotification} />
-            </Route>
+            </Switch>
 
-          </Switch>
+          </div>
           
-          <h1>Footer</h1>
-
+          
         </Router>  
       </div>  
       
@@ -94,9 +97,9 @@ function RemarkPageRoute() {
   return (<RemarkPage idRemark={id} />)
 }
 
-function LogoutPage() {
-  console.log("oui")
+function LogoutPage(props) {
   localStorage.removeItem("auth")
+  props.notificationHandler("Vous vous êtes bien déconnecté", "success")
   return <Redirect to={{ pathname: "/"}} />
 }
 

@@ -75,26 +75,31 @@ class AddReponse extends Component {
         })
 
         return (
-            <div className="add-response container d-flex justify-content-center row">
-                <h2>Ajouter une Réponse</h2>
-                <br />
-                <form className="add-response-form d-flex justify-content-center row col-12" onSubmit={this.handleSubmit}>
-                    <div className="form-group col-5" >
-                        <select className="form-control" name="responseType" value={this.state.responseType} onChange={this.handleChange}>
-                            <option value=''>--- Choisissez un Type de Réponse ---</option>
-                            
-                            { options }
+            <div className="add-remark add-response container d-flex justify-content-center form-row">
+                <div className="d-flex justify-content-start w-100 header">Ajouter une réponse</div>
+                <form className="add-remark-form d-flex justify-content-center row col-12" onSubmit={this.handleSubmit}>
+                    <div className="form-row align-items-top col-12 d-flex justify-content-center ">    
+                            <div className="col-sm-12 col-md-4 mx-0">
+                                <select className="form-control" name="responseType" value={this.state.responseType} onChange={this.handleChange}>
+                                    <option value=''>--- Choisissez un Type de Réponse ---</option>
+                                    
+                                    { options }
 
-                        </select>
-                        <br />
-                        <label htmlFor="textarearesponse" className="">
-                            Entrez la Response :
-                        </label>
-                        <textarea id="textarearesponse" className="form-control" name="description" value={this.state.description} onChange={this.handleChange} />
-                        
-                        <br />
-                        <input className="form-control" type="submit" value="Envoyer" />
-                    </div>
+                                </select>
+                            </div>
+                            
+                            <div className="col-sm-12 col-md-6 px-0 mx-0">
+
+                                <textarea id="textarearesponse" placeholder="Entrez la réponse que vous proposez" className="form-control" name="description" value={this.state.description} onChange={this.handleChange} />
+                            </div>
+                            <div className="col-sm-12 col-md-2 d-flex justify-content-center align-items-center">
+                                <input className="form-control" type="submit" value="Envoyer" />
+
+                            </div>
+                        </div>
+                    
+
+                    
 
                 </form>
             </div>
