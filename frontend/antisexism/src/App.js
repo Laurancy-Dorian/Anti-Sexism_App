@@ -83,7 +83,7 @@ class App extends Component {
               </Route>
 
               <Route path="/"> 
-                <HomePage notificationHandler={this.updateNotification} context={this.props.context} content = {this.props.content} />
+                <HomePage notificationHandler={this.updateNotification} context={this.state.context} content={this.state.recherche} />
               </Route>
 
             </Switch>
