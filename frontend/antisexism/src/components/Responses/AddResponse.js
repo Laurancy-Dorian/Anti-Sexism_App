@@ -71,7 +71,14 @@ class AddReponse extends Component {
     render() { 
 
         const options = this.props.responseTypeList.map (type => {
-            return( <option key={ type.id_response_type } value= { type.id_response_type } > { type.name_response_type } </option> )
+            let emoji = ""
+            try {
+                emoji = String.fromCodePoint(type.emoji_response_type )
+            } catch {
+                emoji = type.emoji_response_type
+            }
+
+            return( <option key={ type.id_response_type } value= { type.id_response_type } > { type.name_response_type } {emoji} </option> )
         })
 
         return (

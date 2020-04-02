@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import { Link } from "react-router-dom"
 import config from "../config/config"
-import {Navbar, Nav, Form, FormControl, Button, NavDropdown, Container} from 'react-bootstrap'
+import {Navbar, Nav, Form, FormControl, NavDropdown} from 'react-bootstrap'
 
 
 
@@ -60,11 +60,23 @@ class Header extends Component {
     })
 
     let user
+
     if (window.localStorage.getItem("auth")) {
+      const userdata = JSON.parse(window.localStorage.getItem("auth")).user
       user = (
         <div>
-          <span className="mr-2">{"Bienvenue " + JSON.parse(window.localStorage.getItem("auth")).user.pseudo_user}</span> 
-          <Link to="logout">
+          <span className="mr-2">{"Bienvenue " + userdata.pseudo_user[0].toUpperCase() + userdata.pseudo_user.substring(1)}</span> 
+
+          {
+              (userdata.is_admin_user) ? 
+                <Link className="mr-2 btn btn-dark" to="/admin">
+                  Panneau d'administration
+                </Link>
+              :
+              ""
+              }
+
+          <Link to="/logout" className="btn btn-dark">
             Déconnexion
           </Link>
         </div>
@@ -72,7 +84,7 @@ class Header extends Component {
       )
     } else {
       user = (
-        <Link to="login">
+        <Link className="btn btn-dark" to="/login">
           Connexion
         </Link>
       )
@@ -93,18 +105,26 @@ class Header extends Component {
                   </Navbar.Brand>
                 </Link>
               </Nav>
-              <Nav>
-                  <Form inline>
-                      <FormControl onChange= { this.handleChange } value={ this.state.recherche } name="recherche" type="text" placeholder="Search" className="mr-sm-2" />
-                      <div onClick={ this.handleClick }  className="btn btn-dark">Rechercher</div>
-                    </Form>
-                  <Nav className="d-flex justify-content-center" onSelect={this.handleSelect}>
-                      <NavDropdown title="CATEGORIE">
-                        {items}
-                      </NavDropdown>
-              </Nav>
-              </Nav>
-              <div>
+              
+                {
+                  !this.props.admin ?
+                    <Nav>
+                      <Form inline>
+                        <FormControl onChange= { this.handleChange } value={ this.state.recherche } name="recherche" type="text" placeholder="Search" className="mr-sm-2" />
+                        <div onClick={ this.handleClick }  className="btn btn-dark">Rechercher</div>
+                      </Form>
+                      <Nav className="d-flex justify-content-center" onSelect={this.handleSelect}>
+                          <NavDropdown title="CATEGORIE">
+                            {items}
+                          </NavDropdown>
+                      </Nav>
+                    </Nav>
+                  :
+                    ""
+                }
+                  
+              
+              <div className="actions-header">
                 <Nav className="d-flex justify-content-end">
                   <div className="d-flex flex-row-reverse">
                     {user}

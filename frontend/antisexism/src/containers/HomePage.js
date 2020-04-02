@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 
 import RemarksList from '../components/Remarks/RemarksList'
 import AddRemark from '../components/Remarks/AddRemark'
-import Notification from '../components/utils/Notification'
 
 import config from '../config/config'
 

@@ -99,12 +99,20 @@ class Response extends Component {
                 + date.getMinutes().toLocaleString('fr-FR', {minimumIntegerDigits: 2, useGrouping:false})
 
         let typeName = ""
-        let typeEmoji = ""
         
+        let emoji = ""
         if (this.props.type) {
             typeName = this.props.type.name_response_type 
-            typeEmoji = this.props.type.emoji_response_type 
+
+            try {
+                
+                emoji = String.fromCodePoint(this.props.type.emoji_response_type )
+            } catch {
+                emoji = this.props.type.emoji_response_type
+            }
         }
+
+        
         
 
         return ( 
@@ -113,7 +121,7 @@ class Response extends Component {
                     <div className="response-user col-4">Par { this.props.data.pseudo_user ? this.props.data.pseudo_user : "Anonyme" }</div>
                     <div className="remark-context col-4 text-center">
                         <span className="mr-2 ml-2 response-type-name"> { typeName } </span>
-                        <span className="mr-2 ml-2 response-type-emoji"> { typeEmoji } </span>
+                        <span className="mr-2 ml-2 response-type-emoji"> { emoji } </span>
                     </div>
                     <div className="response-date col-4 text-right">Le { date } </div>
                 </div>
