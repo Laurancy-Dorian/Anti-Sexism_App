@@ -6,7 +6,7 @@ Deployed application link :
 http://vps685054.ovh.net:8080
 
 Api link :
-http://vps685054.ovh.net:8080/api
+http://vps685054.ovh.net:8080/
 
 Api documentation link :
 http://vps685054.ovh.net:8080/apidoc
