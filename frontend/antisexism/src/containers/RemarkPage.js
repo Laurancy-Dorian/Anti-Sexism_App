@@ -120,7 +120,7 @@ class RemarkPage extends Component {
         return ( 
             <div className="remark-page container">
 
-               <RemarksList remarks={this.state.remark} contextList={this.state.contextList} />
+               <RemarksList remarks={this.state.remark} contextList={this.state.contextList} handleUpdate={this.fetchRemark}/>
                {this.state.notification.length > 0 ? <Notification type={this.state.notificationType} content={this.state.notification} /> : ""}
                <AddResponse idRemark={parseInt(this.props.idRemark)} afterSubmit={this.submitNewResponse} responseTypeList={this.state.responsesTypeList} />
                <ResponsesList responses={this.state.responses} responseTypeList={this.state.responsesTypeList} />

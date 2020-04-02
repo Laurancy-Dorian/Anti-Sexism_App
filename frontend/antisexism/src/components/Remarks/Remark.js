@@ -27,32 +27,84 @@ class Remark extends Component {
             .then(result =>  {
                 this.setState({
                     nb_comments: result.length,
-                    seen : false,
-                    suffered : false
                 })
             })
             .catch(error => console.log('error', error));
     }
 
 
+    fetchLocal = (element) => {
+        if (window.localStorage.getItem(element)) {
+            if (JSON.parse(window.localStorage.getItem(element)).find(i => i === this.props.data.id_remark)) {
+                this.setState({
+                    [element]: true
+                })
+            } else {
+                this.setState({
+                    [element]: false
+                })
+            }
+        }
+    }
+
+
     componentDidMount = () => {
         this.fetchNumberComments()
+        this.fetchLocal("seen")
+        this.fetchLocal("suffered")
     }
+
+
 
     componentDidUpdate(prevProps) {
         if (prevProps.data.id_remark !== this.props.data.id_remark) {
             this.fetchNumberComments()
+            this.fetchLocal("seen")
+            this.fetchLocal("suffered")
         }        
       }
  
 
-    handleClickSeen = () => {
-        console.log("Seen")
+    handleClick = (event) => {
+        const elem = event.target.name
+
+        let array = []
+        if (window.localStorage.getItem(elem)) {
+            array = JSON.parse(window.localStorage.getItem(elem))
+        }
+
+
+        let myHeaders = new Headers();
+        let urlencoded = new URLSearchParams();
+        let requestOptions = {
+            method: '',
+            headers: myHeaders,
+            body: urlencoded,
+            redirect: 'follow'
+        };
+
+
+        if(array.indexOf(this.props.data.id_remark) === -1) {
+            array.push(this.props.data.id_remark)
+            requestOptions.method = "PUT"
+        } else {
+            array = array.filter(i => i != this.props.data.id_remark)
+            requestOptions.method = "DELETE"
+        }
+        
+        
+
+        fetch("http://vps685054.ovh.net:8080/api/remarks/"+ this.props.data.id_remark + "/" + elem, requestOptions)
+            .then(response =>  {
+                if (response.status != 200) throw Error ("Modification non effectuée")
+                window.localStorage.setItem(elem, JSON.stringify(array))
+                this.fetchLocal(elem)
+                this.props.handleUpdate(this.props.data.id_remark)
+            })
+            .catch(error => console.log('error', error));
+        
     }
 
-    handleClickSuffered = () => {
-        console.log("Suffered")
-    }
 
 
     render() { 
@@ -70,6 +122,7 @@ class Remark extends Component {
         const lighterColor = this.props.context ? lightenDarkenColor(color, 200) : ""
         const buttonColor = this.props.context ? lightenDarkenColor(color, -50) : ""
         const fontColor =  this.props.context ? getContrastYIQ(color) : ""
+
 
         return ( 
             <div 
@@ -99,14 +152,14 @@ class Remark extends Component {
                         </div>
                     </Link>
                     <div className="remark-buttons container row justify-content-center">
-                        <div onClick={this.handleClickSeen} className="btn btn-group remark-button remark-button-seen row col-12 col-lg-4 ml-md-5 mr-md-5" >
-                            <button className="btn btn-primary col-10" style={{background:buttonColor}}>J'ai déjà entendu</button>
-                            <div className="remark-button-number btn btn-light col-2"> { this.props.data.nb_seen_remark } </div>
+                        <div onClick={this.handleClick} className={"btn btn-group remark-button remark-button-seen row col-12 col-lg-4 ml-md-5 mr-md-5 " } >
+                            <button className={"btn btn-primary col-10 " + (this.state.seen ? "clicked" : "")} name="seen" style={this.state.seen ? {} : {background:buttonColor}}>J'ai déjà entendu</button>
+                            <button className={"remark-button-number btn btn-light col-2 " + (this.state.seen ? "clicked" : "")} name="seen"> { this.props.data.nb_seen_remark } </button>
                         </div>
                         
-                        <div onClick={this.handleClickSuffered} className="btn btn-group remark-button remark-button remark-button-suffered col-12 col-lg-4 row col ml-md-5 mr-md-5">
-                        <button className="btn btn-primary col-10"  style={{background:buttonColor}}>J'ai déjà subi</button>
-                            <div className="remark-button-number btn btn-light col-2"> { this.props.data.nb_suffered_remark } </div>
+                        <div onClick={this.handleClick} className="btn btn-group remark-button remark-button remark-button-suffered col-12 col-lg-4 row col ml-md-5 mr-md-5">
+                            <button className={"btn btn-primary col-10 " + (this.state.suffered ? "clicked" : "")} name="suffered" style={this.state.suffered ? {} : {background:buttonColor}}>J'ai déjà subi</button>
+                            <button className={"remark-button-number btn btn-light col-2 " + (this.state.suffered ? "clicked" : "")} name="suffered"> { this.props.data.nb_suffered_remark } </button>
                         </div>
                     </div>
                    

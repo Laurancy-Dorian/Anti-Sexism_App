@@ -10,7 +10,7 @@ class RemarksList extends Component {
         const remarks = this.props.remarks.map(remark => {
             const context = this.props.contextList.find(c => c.id_context === remark.id_context)
             return (
-                <Remark key={remark.id_remark} data={remark} context={ context } />
+                <Remark key={remark.id_remark} data={remark} context={ context } handleUpdate={ this.props.handleUpdate } />
             )
         })
 

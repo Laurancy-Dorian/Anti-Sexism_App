@@ -82,7 +82,6 @@ code {
 
 .header-remark {
     border-bottom: .08rem solid #888;
-    background: #750303;
     border-radius: 2rem 0 0 0;
     color: var(--text-color-light)
 }
@@ -104,32 +103,24 @@ code {
 }
 
 .remark-button button {
-    background: grey;
+    background: #fff;
     border: none;
 }
 
-.remark-button-suffered button {
-    background: #751313;
+.remark-button-number {
+    font-weight: 600;
 }
 
-.remark-button-suffered button:hover,
-.remark-button-suffered button:focus,
-.remark-button-suffered button:active {
-    background: #9e3030!important;
-    border-color: #9e3030!important;
-    box-shadow: 0 0 0 0.02rem #c33939!important;
+.remark-button .clicked {
+    background: #999;
+    color : #FFF;
+    border : 1px solid
 }
 
-.remark-button-seen button {
-    background: #10375f;
-}
-
-.remark-button-seen button:hover,
-.remark-button-seen button:focus,
-.remark-button-seen button:active {
-    background: #185594!important;
-    border-color: #185594!important;
-    box-shadow: 0 0 0 0.02rem #2265ab!important;
+.remark-button-number.clicked {
+    background: #cfd8e8;
+    color : #888;
+    border : 1px solid #fff
 }
 
 
