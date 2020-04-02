@@ -32,8 +32,22 @@ class Response extends Component {
         }
     }
 
-    handleClick = (event) => {
-        const elem = event.target.name
+    handleLikeClick = () => {
+        if (this.state.dislike) {
+            this.handleClick("dislike")
+        }
+        this.handleClick("like")
+    }
+
+    handleDislikeClick = (event) => {
+        if (this.state.like) {
+            this.handleClick("like")
+        }
+        this.handleClick("dislike")
+    }
+
+    handleClick = (name) => {
+        const elem = name
 
         let array = []
         if (window.localStorage.getItem(elem)) {
@@ -54,13 +68,13 @@ class Response extends Component {
         if(array.indexOf(this.props.data.id_response) === -1) {
             array.push(this.props.data.id_response)
             requestOptions.method = "PUT"
+
         } else {
             array = array.filter(i => i !== this.props.data.id_response)
             requestOptions.method = "DELETE"
         }
         
         
-
         fetch("http://vps685054.ovh.net:8080/api/remarks/"+ this.props.data.id_remark + "/responses/" + this.props.data.id_response + "/" + elem, requestOptions)
             .then(response =>  {
                 if (response.status !== 200) throw Error ("Modification non effectuée")
@@ -108,14 +122,14 @@ class Response extends Component {
                         { this.props.data.description_response }
                     </div>
                     <div className="remark-buttons container row justify-content-center">
-                        <div className="btn btn-group remark-button remark-button-seen row col-12 col-lg-3 ml-md-5 mr-md-5">
-                            <button onClick={this.handleClick} className={"btn btn-primary col-10  " + (this.state.like ? "clicked" : "")} name="like">Pertinent</button>
-                            <div onClick={this.handleClick} className={"remark-button-number btn btn-light col-2 " + (this.state.like ? "clicked" : "")} name="like"> { this.props.data.nb_likes_response } </div>
+                        <div className="btn btn-group remark-button remark-button-seen row col-12 col-lg-5 ml-md-2 mr-md-2">
+                            <button onClick={this.handleLikeClick} className={"btn btn-primary col-10  " + (this.state.like ? "clicked" : "")} name="like">Pertinent</button>
+                            <div onClick={this.handleLikeClick} className={"remark-button-number btn btn-light col-2 " + (this.state.like ? "clicked" : "")} name="like"> { this.props.data.nb_likes_response } </div>
                         </div>
                         
-                        <div onClick={this.handleClick} className="btn btn-group remark-button remark-button remark-button-suffered col-12 col-lg-3 row col ml-md-5 mr-md-5">
-                        <button onClick={this.handleClick} className={"btn btn-primary col-10 " + (this.state.dislike ? "clicked" : "")} name="dislike">Non Pertinent</button>
-                            <div onClick={this.handleClick} className={"remark-button-number btn btn-light col-2 " + (this.state.dislike ? "clicked" : "")} name="dislike"> { this.props.data.nb_dislikes_response } </div>
+                        <div className="btn btn-group remark-button remark-button remark-button-suffered col-12 col-lg-5 row col ml-md-2 mr-md-2">
+                        <button onClick={this.handleDislikeClick} className={"btn btn-primary col-10 " + (this.state.dislike ? "clicked" : "")} name="dislike">Non Pertinent</button>
+                            <div onClick={this.handleDislikeClick} className={"remark-button-number btn btn-light col-2 " + (this.state.dislike ? "clicked" : "")} name="dislike"> { this.props.data.nb_dislikes_response } </div>
                             
                         </div>
                         

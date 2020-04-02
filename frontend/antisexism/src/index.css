@@ -1,6 +1,7 @@
 :root {
     --main-background-color: #232629;
     --secondary-background-color: #777777;
+    --lighter-background-color: #c5c5c5;
     --background-color-focus:#6c757d;
     --text-color-light: #EEE;
     --text-color-dark: #111;
@@ -280,10 +281,47 @@ code {
     color: #FFF;
 }
 
+.header-app .dropdown-menu.show .dropdown-item {
+    text-shadow: 0px 0 5px #CCC,0px 0 5px #CCC;
+
+}
 .header-app a {
     color: #FFF
 }
 .header-app .navbar-light .navbar-nav .nav-link, .header-app .navbar-light .navbar-nav .show>.nav-link {
-    color: #FFF
+    color: #FFF;
 }
 
+
+/**
+* Responses
+*/
+
+.responses-list {
+    width: 80%;
+}
+
+.response {
+    border: .1rem solid #EEE;
+    margin: 1rem 0;
+    background:var(--lighter-background-color);
+    color: var(--text-color-dark);
+    
+}
+
+.response>div {
+    padding: 1rem;
+}
+
+.header-response {
+    border-bottom: .08rem solid #888;
+    border-radius: 2rem 0 0 0;
+    color: var(--text-color-dark)
+}
+
+.description-response {
+    font-size: 120%;
+    font-weight: 500;
+    text-decoration: none;
+    color: var(--text-color-dark);
+}
