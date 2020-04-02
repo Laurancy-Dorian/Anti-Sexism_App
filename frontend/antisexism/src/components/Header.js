@@ -79,7 +79,7 @@ class Header extends Component {
     }
     return(
       <div className="header-app">
-          <Navbar className="d-flex justify-content-between" sticky="top">
+          <Navbar onSelect = {this.handleSelect} className="d-flex justify-content-between" sticky="top">
               <Nav>
                 <Link to="/">
                   <Navbar.Brand >
