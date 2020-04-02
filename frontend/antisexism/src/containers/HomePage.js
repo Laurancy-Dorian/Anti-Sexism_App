@@ -16,9 +16,11 @@ class HomePage extends Component {
             contextList : []
         }
     }
-
+    
     fetchAllRemarks = () => {
-        fetch(config.api + "/remarks?context=[" + this.props.context + "]")
+        const context = this.props.context ? this.props.context : ""
+        const content = this.props.content ? this.props.content : ""
+        fetch(config.api + "/remarks?context=[" + context + "]&content=" + content )
         .then(response => response.json())
         .then(result =>  {
             this.setState(function(state) {
@@ -51,10 +53,9 @@ class HomePage extends Component {
     }
 
     componentDidUpdate = (prevProps) => {
-        if (prevProps.context !== this.props.context) {
+        if (prevProps.context !== this.props.context || prevProps.content !== this.props.content) {
+            
             this.fetchAllRemarks()
-            console.log(this.props)
-
         }
     }
 

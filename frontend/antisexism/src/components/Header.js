@@ -14,6 +14,7 @@ class Header extends Component {
     super(props);
     this.state = { 
       contextList: [],
+      recherche: ""
     }
   }
 
@@ -41,6 +42,17 @@ class Header extends Component {
     this.props.handleContext(eventKey)
   }
 
+  handleChange = (event) => {
+    const {name, value} = event.target
+    this.setState({
+        [name] : value
+    });
+}
+
+  handleClick = () => {
+    this.props.handleSearch(this.state.recherche)
+  }
+
   render(){
     const items = this.state.contextList.map (context => {
       return(  <NavDropdown.Item key={ context.id_context } eventKey= { context.id_context } style={ {color: context.color_context} } >{ context.name_context }</NavDropdown.Item>)
@@ -60,8 +72,8 @@ class Header extends Component {
               </Navbar.Brand>
               </Link>
               <Form inline>
-                <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-                <Button variant="outline-info">Search</Button>
+                <FormControl onChange= { this.handleChange } value={ this.state.recherche } name="recherche" type="text" placeholder="Search" className="mr-sm-2" />
+                <Button onClick={ this.handleClick } variant="outline-info">Search</Button>
               </Form>
               <Nav className="justify-content-end" onSelect={this.handleSelect}>
                 <NavDropdown title="CATEGORIE">
@@ -69,19 +81,8 @@ class Header extends Component {
                 </NavDropdown>
               </Nav>
               <Nav>
-                <NavDropdown title="PARAMETRE" >
-                  <Link to="/">
-                    <NavDropdown.Item >Mon Compte</NavDropdown.Item>
-                  </Link>
-                  <Link to="/">
-                    <NavDropdown.Item >Mes Remarques</NavDropdown.Item>
-                  </Link>
-                  <Link to="/">
-                    <NavDropdown.Item >Mes Réponses</NavDropdown.Item>
-                  </Link>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.4">Déconnexion</NavDropdown.Item>
-                </NavDropdown>
+                <Button variant="outline-info">Connexion</Button>{' '}
+                <Button variant="link">S'inscrire</Button>
               </Nav>
             </Navbar>    
           </Container>      

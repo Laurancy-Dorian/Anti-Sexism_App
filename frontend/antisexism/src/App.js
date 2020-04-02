@@ -25,7 +25,8 @@ class App extends Component {
     this.state = { 
       context: "",
       notification : "",
-      notificationType : ""
+      notificationType : "",
+      recherche: ""
     }
   }
   
@@ -42,13 +43,19 @@ class App extends Component {
     });
   }
 
+  handleSearch = (value) => {
+    this.setState(() => {
+      return ({recherche: value});
+    });
+  }
+
   render(){
     return (
       
       <div className="App container">
         <Router>
 
-          <Header handleContext={this.filterContext}/>
+          <Header handleContext={this.filterContext} handleSearch={this.handleSearch}/>
           {this.state.notification.length > 0 ? <Notification type={this.state.notificationType} content={this.state.notification} /> : ""}
           
           <Switch>
@@ -71,7 +78,7 @@ class App extends Component {
             </Route>
 
             <Route path="/"> 
-              <HomePage notificationHandler={this.updateNotification} />
+              <HomePage notificationHandler={this.updateNotification} context={this.state.context} content={this.state.recherche}/>
             </Route>
 
           </Switch>
