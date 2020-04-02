@@ -45,6 +45,11 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 /* Static files */
 app.use('/apidoc', express.static(path.join(__dirname, 'apidoc')));    // Api Documentation
 
+app.use(express.static(path.join(__dirname, 'app')));
+app.get('/app', function(req, res) {
+  res.sendFile(path.join(__dirname, 'app', 'index.html'));
+});
+
 
 /*  Loads the routes for all resources */
 var routes = require('./routes');
