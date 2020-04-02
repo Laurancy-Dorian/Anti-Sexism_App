@@ -96,7 +96,7 @@ class Header extends Component {
               <Nav>
                   <Form inline>
                       <FormControl onChange= { this.handleChange } value={ this.state.recherche } name="recherche" type="text" placeholder="Search" className="mr-sm-2" />
-                      <button onClick={ this.handleClick }  className="btn btn-dark">Rechercher</button>
+                      <div onClick={ this.handleClick }  className="btn btn-dark">Rechercher</div>
                     </Form>
                   <Nav className="d-flex justify-content-center" onSelect={this.handleSelect}>
                       <NavDropdown title="CATEGORIE">
