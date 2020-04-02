@@ -55,7 +55,10 @@ class Header extends Component {
   }
 
   handleHomeReturn = () => {
-    this.props.handleHomeReturn()
+    if (this.props.handleHomeReturn) {
+      this.props.handleHomeReturn()
+    }
+    
   }
 
   render(){

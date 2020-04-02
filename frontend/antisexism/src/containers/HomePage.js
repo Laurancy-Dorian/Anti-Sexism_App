@@ -19,7 +19,6 @@ class HomePage extends Component {
     fetchAllRemarks = () => {
         const context = this.props.context ? this.props.context : ""
         const content = this.props.content ? this.props.content : ""
-        console.log(config.api + "/remarks?context=[" + context + "]&content=" + content )
         fetch(config.api + "/remarks?context=[" + context + "]&content=" + content )
         .then(response => response.json())
         .then(result =>  {
