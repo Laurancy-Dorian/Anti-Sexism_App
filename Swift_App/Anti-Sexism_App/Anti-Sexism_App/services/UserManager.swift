@@ -12,9 +12,9 @@ import Combine
 
 class UserManager: ObservableObject {
     
-    @EnvironmentObject var token: Token
+    @State var token: String = ""
     
-    func Login(pseudo: String, password: String, callback: @escaping () -> Void){
+    func Login(pseudo: String, password: String, callback: @escaping (_ token: String) -> Void) {
         let parameters = "pseudo_user=\(pseudo)&password_user=\(password)"
         let postData =  parameters.data(using: .utf8)
 
@@ -31,19 +31,18 @@ class UserManager: ObservableObject {
           }
             DispatchQueue.main.async{
                 if String(data: data, encoding: .utf8)!.contains("error") {
-                    self.token.value = ""
+                    callback("")
                 } else {
                     let splits = String(data: data, encoding: .utf8)!.components(separatedBy: "\"")
-                    self.token.value = splits[3]
+                    callback(splits[3])
                 }
-                callback()
             }
             print(String(data: data, encoding: .utf8)!)
         }
         task.resume()
     }
     
-    func SignIn(pseudo: String, password: String){
+    func SignIn(pseudo: String, password: String, callback: @escaping (_ token: String) -> Void){
         let parameters = "pseudo_user=\(pseudo)&password_user=\(password)"
         let postData =  parameters.data(using: .utf8)
 
@@ -58,12 +57,19 @@ class UserManager: ObservableObject {
             print(String(describing: error))
             return
           }
+            DispatchQueue.main.async{
+                if String(data: data, encoding: .utf8)!.contains("error") {
+                    callback("error")
+                } else {
+                    callback("Signed in successful")
+                }
+            }
           print(String(data: data, encoding: .utf8)!)
         }
         task.resume()
     }
     
     func LogOut(){
-        self.token.value = ""
+        LoginView.token = ""
     }
 }

@@ -67,7 +67,11 @@ struct AddAnswerView: View {
                 if (self.response == ""){
                     self.showingAlert = true
                 } else{
-                    AnswerManager(idRemark: String(self.idRemark)).addAnswer(description: self.response, idType: String(self.idType), token: "", idRemark: String(self.idRemark))
+                    if (self.enableAnonymat){
+                        AnswerManager(idRemark: String(self.idRemark)).addAnswer(description: self.response, idType: String(self.idType), token: "", idRemark: String(self.idRemark))
+                    } else {
+                        AnswerManager(idRemark: String(self.idRemark)).addAnswer(description: self.response, idType: String(self.idType), token: LoginView.token, idRemark: String(self.idRemark))
+                    }
                     self.parent.presentationMode.wrappedValue.dismiss()
                 }
             }){

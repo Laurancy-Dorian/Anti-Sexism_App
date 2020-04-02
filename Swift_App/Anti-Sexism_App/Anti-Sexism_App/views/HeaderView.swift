@@ -10,9 +10,6 @@ import SwiftUI
 
 struct HeaderView: View {
 
-    @State var text = ""
-    @EnvironmentObject var token: Token
-
     var body: some View{
         VStack() {
             VStack(alignment: .leading, spacing: 30){
@@ -66,7 +63,7 @@ struct HeaderView: View {
                 .foregroundColor(.gray)
                 .font(.headline)
                 .padding(.top, 30)
-                if self.token.value == "" {
+                if LoginView.token == "" {
                     NavigationLink(destination: LoginView()){
                         HStack {
                             Image(systemName: "person.circle")

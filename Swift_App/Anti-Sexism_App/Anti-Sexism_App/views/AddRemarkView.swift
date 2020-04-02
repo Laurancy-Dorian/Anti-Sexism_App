@@ -70,7 +70,11 @@ struct AddRemarkView: View {
                 if (self.remark == ""){
                     self.showingAlert = true
                 } else{
-                    self.remarkManager.addRemark(description: self.remark, idContext: String(self.idContext), token: "")
+                    if (self.enableAnonymat){
+                        self.remarkManager.addRemark(description: self.remark, idContext: String(self.idContext), token: "")
+                    } else {
+                        self.remarkManager.addRemark(description: self.remark, idContext: String(self.idContext), token: LoginView.token)
+                    }
                     self.parent.presentationMode.wrappedValue.dismiss()
                 }
             }){

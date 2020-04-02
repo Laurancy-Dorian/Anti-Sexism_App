@@ -9,7 +9,7 @@
 import SwiftUI
 
 enum ActiveAlert {
-    case first, second
+    case first, second, third
 }
 
 struct LoginView: View {
@@ -20,7 +20,7 @@ struct LoginView: View {
     @State private var password = ""
     @State private var showingAlert = false
     @State private var activeAlert: ActiveAlert = .first
-    @EnvironmentObject var token: Token
+    static var token: String = ""
     
     var body: some View {
         VStack() {
@@ -51,13 +51,16 @@ struct LoginView: View {
                     self.activeAlert = .first
                     self.showingAlert = true
                 } else{
-                    self.userManager.Login(pseudo: self.pseudo, password: self.password, callback: {
-                        if self.token.$value == "" {
+                     self.userManager.Login(pseudo: self.pseudo, password: self.password, callback: {token -> Void in
+                        if (token == "") {
                             self.activeAlert = .second
                             self.showingAlert = true
-                            return
                         } else {
+                            LoginView.token = token
+                            self.activeAlert = .third
+                            self.showingAlert = true
                             self.presentationMode.wrappedValue.dismiss()
+                            
                         }
                     })
                 }
@@ -77,6 +80,8 @@ struct LoginView: View {
                             return Alert(title: Text("Attention"), message: Text("Veuillez ne pas laisser les champs vides"), dismissButton: .default(Text("D'accord!")))
                     case .second:
                             return Alert(title: Text("Attention"), message: Text("Vos infromations sont incorrectes"), dismissButton: .default(Text("D'accord!")))
+                    case .third:
+                    return Alert(title: Text("Attention"), message: Text("Vous etes connecte"), dismissButton: .default(Text("D'accord!")))
                 }
             }
             Spacer()
