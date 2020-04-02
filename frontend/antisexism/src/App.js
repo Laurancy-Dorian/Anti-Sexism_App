@@ -47,13 +47,23 @@ class App extends Component {
     });
   }
 
+  handleHomeReturn = () => {
+    this.setState(() => {
+      return ({
+        recherche: "",
+        context: ""
+      });
+    });
+  }
+
   handleSearch = (value) => {
     this.setState(() => {
       return ({ recherche: value });
     });
   }
 
-  render() {
+
+  render(){
     return (
       <div className="App">
         <Router>
@@ -69,7 +79,7 @@ class App extends Component {
 
             <Route path="/">
 
-              <Header handleContext={this.filterContext} handleSearch={this.handleSearch} />
+              <Header handleContext={this.filterContext} handleSearch={this.handleSearch} handleHomeReturn={this.handleHomeReturn}/>
               <div className="container">
                 {this.state.notification.length > 0 ? <Notification type={this.state.notificationType} content={this.state.notification} /> : ""}
 
