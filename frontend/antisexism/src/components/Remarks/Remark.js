@@ -152,14 +152,14 @@ class Remark extends Component {
                         </div>
                     </Link>
                     <div className="remark-buttons container row justify-content-center">
-                        <div onClick={this.handleClick} className={"btn btn-group remark-button remark-button-seen row col-12 col-lg-4 ml-md-5 mr-md-5 " } >
-                            <button className={"btn btn-primary col-10 " + (this.state.seen ? "clicked" : "")} name="seen" style={this.state.seen ? {} : {background:buttonColor}}>J'ai déjà entendu</button>
-                            <button className={"remark-button-number btn btn-light col-2 " + (this.state.seen ? "clicked" : "")} name="seen"> { this.props.data.nb_seen_remark } </button>
+                        <div className={"btn btn-group remark-button remark-button-seen row col-12 col-lg-4 ml-md-5 mr-md-5 " } >
+                            <button onClick={this.handleClick} className={"btn btn-primary col-10 " + (this.state.seen ? "clicked" : "")} name="seen" style={this.state.seen ? {} : {background:buttonColor}}>J'ai déjà entendu</button>
+                            <button onClick={this.handleClick} className={"remark-button-number btn btn-light col-2 " + (this.state.seen ? "clicked" : "")} name="seen"> { this.props.data.nb_seen_remark } </button>
                         </div>
                         
-                        <div onClick={this.handleClick} className="btn btn-group remark-button remark-button remark-button-suffered col-12 col-lg-4 row col ml-md-5 mr-md-5">
-                            <button className={"btn btn-primary col-10 " + (this.state.suffered ? "clicked" : "")} name="suffered" style={this.state.suffered ? {} : {background:buttonColor}}>J'ai déjà subi</button>
-                            <button className={"remark-button-number btn btn-light col-2 " + (this.state.suffered ? "clicked" : "")} name="suffered"> { this.props.data.nb_suffered_remark } </button>
+                        <div className="btn btn-group remark-button remark-button remark-button-suffered col-12 col-lg-4 row col ml-md-5 mr-md-5">
+                            <button onClick={this.handleClick} className={"btn btn-primary col-10 " + (this.state.suffered ? "clicked" : "")} name="suffered" style={this.state.suffered ? {} : {background:buttonColor}}>J'ai déjà subi</button>
+                            <button onClick={this.handleClick} className={"remark-button-number btn btn-light col-2 " + (this.state.suffered ? "clicked" : "")} name="suffered"> { this.props.data.nb_suffered_remark } </button>
                         </div>
                     </div>
                    

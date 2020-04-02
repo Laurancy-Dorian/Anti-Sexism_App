@@ -27,12 +27,27 @@ class HomePage extends Component {
             this.setState(function(state) {
                 return {
                     remarks: result,
-                    contextList: state.contextList
                 };
             });
         })
         .catch(error => console.log('error', error));
     }
+
+    updateRemark = (idRemark) => {
+        console.log(idRemark)
+        fetch(config.api + "/remarks/" + idRemark)
+        .then(response => response.json())
+        .then(result =>  {
+            this.setState(function(state) {
+                const newState = state.remarks.map(remark => result.find(newRemark => newRemark.id_remark === remark.id_remark) || remark);
+                return {
+                    remarks: newState
+                };
+            });
+        })
+        .catch(error => console.log('error', error));
+    }
+
 
     fetchAllContexts = () => {
         fetch(config.api + "/remarks_contexts")
@@ -69,7 +84,7 @@ class HomePage extends Component {
         return ( 
             <div className="home-page container">
                 <AddRemark afterSubmit={this.submitNewRemark} contextList={this.state.contextList} />
-                <RemarksList contextList={this.state.contextList} remarks={this.state.remarks} />
+                <RemarksList contextList={this.state.contextList} remarks={this.state.remarks} handleUpdate={this.updateRemark} />
             </div>
          );
     }
