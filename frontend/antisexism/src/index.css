@@ -102,12 +102,13 @@ code {
     color: var(--text-color-dark);
 }
 
-.remark-button button {
-    background: #fff;
+.remark-button .btn, .remark-button .active {
+    background: var(--main-button-color);
     border: none;
 }
 
-.remark-button-number {
+.btn.remark-button-number {
+    background: #FFF;
     font-weight: 600;
 }
 
@@ -118,12 +119,24 @@ code {
 }
 
 .remark-button-number.clicked {
-    background: #cfd8e8;
+    background: #cfd8e8!important;
     color : #888;
     border : 1px solid #fff
 }
 
+.remark-button-number.clicked:active {
+    background: #cfd8e8!important;
+    color : #888;
+    border : 1px solid #fff
+}
 
+.remark-button .btn:hover {
+    background: #AAA!important;
+}
+
+.remark-button .btn:focus {
+    box-shadow: none!important;
+}
 /**
 * Login
 */

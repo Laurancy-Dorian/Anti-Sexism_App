@@ -88,7 +88,7 @@ class Remark extends Component {
             array.push(this.props.data.id_remark)
             requestOptions.method = "PUT"
         } else {
-            array = array.filter(i => i != this.props.data.id_remark)
+            array = array.filter(i => i !== this.props.data.id_remark)
             requestOptions.method = "DELETE"
         }
         
@@ -96,7 +96,7 @@ class Remark extends Component {
 
         fetch("http://vps685054.ovh.net:8080/api/remarks/"+ this.props.data.id_remark + "/" + elem, requestOptions)
             .then(response =>  {
-                if (response.status != 200) throw Error ("Modification non effectuée")
+                if (response.status !== 200) throw Error ("Modification non effectuée")
                 window.localStorage.setItem(elem, JSON.stringify(array))
                 this.fetchLocal(elem)
                 this.props.handleUpdate(this.props.data.id_remark)
