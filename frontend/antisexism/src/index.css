@@ -1,10 +1,12 @@
 :root {
     --main-background-color: #232629;
-    --secondary-background-color: #4d4d4d;
+    --secondary-background-color: #777777;
+    --background-color-focus:#6c757d;
     --text-color-light: #EEE;
     --text-color-dark: #111;
     --main-button-color: #750303;
     --main-links-color: #ce6767;
+    --main-links-hover-color: #ce8787;
 }
 
 * {
@@ -44,12 +46,12 @@ li {
 
 a {
     text-decoration: none;
-    color: var(--text-color-light);
+    color: var(--main-links-color);
 }
 
 a:hover {
     text-decoration: none;
-    color: var(--text-color-light);
+    color: var(--main-links-hover-color);
 }
 
 textarea {
@@ -86,7 +88,6 @@ code {
 
 .header-remark {
     border-bottom: .08rem solid #888;
-    background: #750303;
     border-radius: 2rem 0 0 0;
     color: var(--text-color-light)
 }
@@ -107,36 +108,41 @@ code {
     color: var(--text-color-dark);
 }
 
-.remark-button button {
-    background: grey;
+.remark-button .btn, .remark-button .active {
+    background: var(--main-button-color);
     border: none;
 }
 
-.remark-button-suffered button {
-    background: #751313;
+.btn.remark-button-number {
+    background: #FFF;
+    font-weight: 600;
 }
 
-.remark-button-suffered button:hover,
-.remark-button-suffered button:focus,
-.remark-button-suffered button:active {
-    background: #9e3030!important;
-    border-color: #9e3030!important;
-    box-shadow: 0 0 0 0.02rem #c33939!important;
+.remark-button .clicked {
+    background: #999;
+    color : #FFF;
+    border : 1px solid
 }
 
-.remark-button-seen button {
-    background: #10375f;
+.remark-button-number.clicked {
+    background: #cfd8e8!important;
+    color : #888;
+    border : 1px solid #fff
 }
 
-.remark-button-seen button:hover,
-.remark-button-seen button:focus,
-.remark-button-seen button:active {
-    background: #185594!important;
-    border-color: #185594!important;
-    box-shadow: 0 0 0 0.02rem #2265ab!important;
+.remark-button-number.clicked:active {
+    background: #cfd8e8!important;
+    color : #888;
+    border : 1px solid #fff
 }
 
+.remark-button .btn:hover {
+    background: #AAA!important;
+}
 
+.remark-button .btn:focus {
+    box-shadow: none!important;
+}
 /**
 * Login
 */
@@ -226,3 +232,62 @@ code {
     margin-left: 4px;
     color: var(--main-links-color);
 }
+
+
+/**
+* Add Reamrk Form
+*/
+
+.add-remark textarea, .add-remark select {
+    min-height: 100px;
+    background: var(--secondary-background-color);
+    color:var(--text-color-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.add-remark textarea:focus, .add-remark select:focus {
+    
+    min-height: 100px;
+    background: var(--background-color-focus);
+    color:var(--text-color-light);
+
+
+}
+
+.add-remark textarea::placeholder {
+    color:#fff;
+}
+
+.add-remark {
+    border: 1px solid;
+    padding: 1rem;
+    margin-top : 1rem;
+    box-shadow: 0px 0px 5px 0px;
+}
+
+.add-remark .header {
+    margin:0 0 0.5rem 0;
+    padding-left:0.5rem;
+    border-bottom: 1px solid #888;
+}
+
+
+/**
+* Header
+*/ 
+
+.header-app, .header-app .dropdown-menu.show, .header-app a.navbar-nav {
+    background: var(--secondary-background-color);
+    color: #FFF;
+}
+
+.header-app a {
+    color: #FFF
+}
+.header-app .navbar-light .navbar-nav .nav-link, .header-app .navbar-light .navbar-nav .show>.nav-link {
+    color: #FFF
+}
+

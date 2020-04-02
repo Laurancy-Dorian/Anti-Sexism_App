@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 
 import RemarksList from '../components/Remarks/RemarksList'
 import AddRemark from '../components/Remarks/AddRemark'
-import Notification from '../components/utils/Notification'
 
 import config from '../config/config'
 
@@ -27,6 +26,20 @@ class HomePage extends Component {
                 return {
                     remarks: result,
                     contextList: state.contextList
+                };
+            });
+        })
+        .catch(error => console.log('error', error));
+    }
+
+    updateRemark = (idRemark) => {
+        fetch(config.api + "/remarks/" + idRemark + "?context=[" + this.props.context + "]")
+        .then(response => response.json())
+        .then(result =>  {
+            this.setState(function(state) {
+                const newState = state.remarks.map(remark => result.find(newRemark => newRemark.id_remark === remark.id_remark) || remark);
+                return {
+                    remarks: newState
                 };
             });
         })
@@ -69,7 +82,7 @@ class HomePage extends Component {
         return ( 
             <div className="home-page container">
                 <AddRemark afterSubmit={this.submitNewRemark} contextList={this.state.contextList} />
-                <RemarksList contextList={this.state.contextList} remarks={this.state.remarks} />
+                <RemarksList contextList={this.state.contextList} remarks={this.state.remarks} handleUpdate={this.updateRemark} />
             </div>
          );
     }

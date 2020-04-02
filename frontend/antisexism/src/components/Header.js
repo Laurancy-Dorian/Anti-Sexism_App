@@ -57,35 +57,42 @@ class Header extends Component {
     const items = this.state.contextList.map (context => {
       return(  <NavDropdown.Item key={ context.id_context } eventKey= { context.id_context } style={ {color: context.color_context} } >{ context.name_context }</NavDropdown.Item>)
     })
-    return(
-          <Container>
-            <Navbar bg="dark" variant="dark" sticky="top">
-              <Link to="/">
-              <Navbar.Brand >
-                <img
-                  src="/logo2.png"
-                  width="30"
-                  height="30"
-                  className="d-inline-block align-top"
-                  alt="React Bootstrap logo"
-                />
-              </Navbar.Brand>
-              </Link>
-              <Form inline>
-                <FormControl onChange= { this.handleChange } value={ this.state.recherche } name="recherche" type="text" placeholder="Search" className="mr-sm-2" />
-                <Button onClick={ this.handleClick } variant="outline-info">Search</Button>
-              </Form>
-              <Nav className="justify-content-end" onSelect={this.handleSelect}>
-                <NavDropdown title="CATEGORIE">
-                  {items}
-                </NavDropdown>
-              </Nav>
-              <Nav>
-                <Button variant="outline-info">Connexion</Button>{' '}
-                <Button variant="link">S'inscrire</Button>
-              </Nav>
+
+    let user
+    if (window.localStorage.getItem("auth")) {
+      user = (
+        <div>
+          <span className="mr-2">{"Bienvenue " + JSON.parse(window.localStorage.getItem("auth")).user.pseudo_user}</span> 
+          <Link to="logout">
+            Déconnexion
+          </Link>
+        </div>
+      
+      )
+    } else {
+      user = (
+        <Link to="login">
+          Connexion
+        </Link>
+      )
+    }
+
+
+          <div className="header-app">
+            <Navbar className="d-flex justify-content-between" sticky="top">
+              
+              <div>
+                <Nav className="d-flex justify-content-end">
+                  <div className="d-flex flex-row-reverse">
+                    {user}
+                  </div>
+                    
+                </Nav>
+              </div>
+              
             </Navbar>    
-          </Container>      
+          </div>
+            
     )
     
   }

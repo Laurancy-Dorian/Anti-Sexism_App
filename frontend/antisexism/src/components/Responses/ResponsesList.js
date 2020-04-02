@@ -10,7 +10,7 @@ class ResponsesList extends Component {
             const type = this.props.responseTypeList.find(t => t.id_response_type === response.id_response_type)
 
             return (
-                <Response key={"response-" + response.id_response} data={response} type={type} />
+                <Response key={"response-" + response.id_response} data={response} type={type} handleUpdate={this.props.handleUpdate}/>
             )
         })
 
