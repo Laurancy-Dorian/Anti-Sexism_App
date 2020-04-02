@@ -77,7 +77,7 @@ class Header extends Component {
       )
     }
 
-
+    return(
           <div className="header-app">
             <Navbar className="d-flex justify-content-between" sticky="top">
               
@@ -94,7 +94,6 @@ class Header extends Component {
           </div>
             
     )
-    
   }
 
 }
